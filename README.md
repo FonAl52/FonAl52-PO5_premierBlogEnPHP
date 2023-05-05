@@ -5,5 +5,5 @@
 # ------ Use instructions
 # 1- Clone this repo on your personnal server folder
 # 2- Lunch your server 
-# 3- Go to http://localhost:8888/blog-mvc-master/post&home to visit the blog
+# 3- Go to http://localhost:8888/FonAl52-PO5_premierBlogEnPHP/post&home to visit the blog
 # ------
