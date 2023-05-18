@@ -111,4 +111,18 @@ class UserManager extends Model
       $req->execute($values);
       return $req->rowCount() > 0;
   }
+
+  public function getAllUsers()
+  {
+    $this->getBdd();
+    $req = self::$bdd->query("SELECT id, firstName, lastName, picture FROM user");
+    $users = [];
+
+    while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+      $users[] = new User($data);
+    }
+    
+    $req->closeCursor();
+    return $users;
+  }
 }

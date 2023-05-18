@@ -1,12 +1,15 @@
 <?php
 require_once 'views/View.php';
 require_once 'models/CategoryManager.php';
-
+require_once 'models/UserManager.php';
+require_once 'models/Post.php';
+require_once 'models/PostManager.php';
 class ControllerPost
 
 {
   private $view;
   private $categoryManager;
+  private $postManager;
 
   public function __construct()
   {
@@ -22,6 +25,9 @@ class ControllerPost
     elseif (isset($_GET['new']) && $_SESSION['role']== 1) {
       $this->addPost();
     }
+    elseif (isset($_GET['viewAll']) ) {
+      $this->viewAll();
+    }
     else {
       $this->home();
     }
@@ -29,10 +35,13 @@ class ControllerPost
 
   public function home()
   {
-    // $this->_postManager = new PostManager();
-    // $posts = $this->_postManager->getPosts();
+    $this->postManager = new PostManager();
+    $posts = $this->getAllPosts();
+    $categories = $this->categoryId();
+    $users = $this->getAllUsers();
+
     $this->view = new View('Home');
-    $this->view->generate(array());
+    $this->view->generate(array('posts' => $posts, 'categories' => $categories, 'users' => $users));
   }
 
   private function create()
@@ -122,5 +131,31 @@ class ControllerPost
     $categories = $this->categoryManager->getCategories();
 
     return $categories;
+  }
+
+  public function viewAll(){
+    $this->postManager = new PostManager();
+    $posts = $this->getAllPosts();
+    $categories = $this->categoryId();
+    $users = $this->getAllUsers();
+
+    $this->view = new View('AllPosts');
+    $this->view->generate(array('posts' => $posts, 'categories' => $categories, 'users' => $users));
+  }
+
+  private function getAllPosts()
+  {
+    $this->postManager = new PostManager;
+    $posts = $this->postManager->getAll('post', 'posts');
+
+    return $posts;
+  }
+
+  private function getAllUsers()
+  {
+    $userManager = new UserManager();
+    $users = $userManager->getAllUsers();
+
+    return $users;
   }
 }
