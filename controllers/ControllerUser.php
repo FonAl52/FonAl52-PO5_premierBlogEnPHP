@@ -25,6 +25,8 @@ class ControllerUser
             $this->verifyEmail();
         } elseif (isset($_GET['changePassword'])) {
             $this->changePassword();
+        } elseif (isset($_GET['disconnect'])) {
+            $this->disconnect();
         } else {
             throw new \Exception("Page Introuvable");
         }
@@ -192,6 +194,18 @@ class ControllerUser
         // Si les données ne sont pas valides ou si la mise à jour a échoué, afficher le formulaire de modification avec les erreurs
         $this->view = new View('ResetPassword');
         $this->view->generate(array('errors' => $errors));
+    }
+
+    private function disconnect()
+    {
+        // Supprimez toutes les variables de session
+        session_unset();
+
+        // Détruisez la session
+        session_destroy();
+
+        // Redirigez l'utilisateur vers la page de connexion
+        header('location:user&connect');
     }
 
 }
