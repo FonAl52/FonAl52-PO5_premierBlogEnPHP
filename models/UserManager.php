@@ -79,4 +79,36 @@ class UserManager extends Model
     }
     return $user;
   }
+
+  public function getUserById($userId)
+  {
+      $this->getBdd();
+      $req = self::$bdd->prepare('SELECT * FROM user WHERE id = ?');
+      $req->execute(array($userId));
+      $user = $req->fetch(PDO::FETCH_ASSOC);
+
+      return $user;
+  }
+
+  public function updateUser($user, $options)
+  {   
+      // var_dump($user);
+      // var_dump($options);
+      $this->getBdd();
+      $set = [];
+      $values = [];
+      foreach ($options as $key => $value) {
+          $set[] = "$key = ?";
+          $values[] = $value;
+      }
+      // var_dump($set);
+      // var_dump($values);
+      
+      $values[] = $user['id'];
+      // var_dump($values);
+      $req = self::$bdd->prepare("UPDATE user SET " . implode(", ", $set) . " WHERE id = ?");
+      // var_dump($req);die;
+      $req->execute($values);
+      return $req->rowCount() > 0;
+  }
 }
