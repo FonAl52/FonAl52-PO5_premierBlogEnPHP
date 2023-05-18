@@ -6,10 +6,6 @@
 class UserManager extends Model
 {
 
-  //gréer la fonction qui va recuperer
-  //tous les posts dans la bdd
-
-
   public function createUser($user)
   {
     if (!($user instanceof User)) {
@@ -37,7 +33,7 @@ class UserManager extends Model
     $req->closeCursor();
     return true;
   }
-  
+
   public function getUserByEmail($email)
   {
     $this->getBdd();
@@ -45,6 +41,42 @@ class UserManager extends Model
     $req->execute(array($email));
     $user = $req->fetch(PDO::FETCH_ASSOC);
 
+    return $user;
+  }
+
+  public function verifyPassword($email, $password)
+  {
+    $this->getBdd();
+    $req = self::$bdd->prepare('SELECT * FROM user WHERE email = ? AND password = ?');
+    $req->execute(array($email,md5($password)));
+    $user = $req->fetch(PDO::FETCH_ASSOC);
+    if($user){
+      $this->openSession($user);
+    }
+    return $user;
+  }
+
+  private function openSession($user)
+  {
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['firstName'] = $user['firstName'];
+    $_SESSION['lastName'] = $user['lastName'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['age'] = $user['age'];
+    $_SESSION['phone'] = $user['phone'];
+    $_SESSION['picture'] = $user['picture'];
+    $_SESSION['role'] = $user['role'];
+  }
+
+  public function changePassword($userId, $newPassword)
+  {
+    $this->getBdd();
+    $req = self::$bdd->prepare('UPDATE user SET password = ? WHERE id = ?');
+    $hashedPassword = md5($newPassword);
+    $user = $req->execute(array($hashedPassword, $userId));
+    if($user){
+      $this->openSession($user);
+    }
     return $user;
   }
 }
