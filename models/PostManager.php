@@ -12,7 +12,7 @@ class PostManager extends Model
       // Retourner une erreur ou une exception
       return false;
     }
-    
+
     return $this->createOne('post', $post);
   }
 
@@ -28,24 +28,22 @@ class PostManager extends Model
     return $this->getOne('post', 'Post', $id);
   }
 
-  public function getAll($table)
+  private function createOne($table, $obj)
   {
-      $this->getBdd();
-      $data = [];
-      $req = self::$bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id DESC');
-      $req->execute();
+    $this->getBdd();
 
-      // On récupère les données directement dans un tableau
-      while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
-          $data[] = $row;
-      }
-
-      $req->closeCursor();
-
-      return $data;
+    $req = self::$bdd->prepare("INSERT INTO " . $table . " (categoryId, userId, title, chapo, picture, content) VALUES (?, ?, ?, ?, ?, ?)");
+    $req->execute(array(
+      $obj->getCategoryId(),
+      $obj->getUserId(),
+      $obj->getTitle(),
+      $obj->getChapo(),
+      $obj->getPicture(),
+      $obj->getContent(),
+    ));
+    $req->closeCursor();
+    return true;
   }
-
-
 
   private function getOne($table, $obj, $id)
   {
@@ -61,20 +59,20 @@ class PostManager extends Model
     $req->closeCursor();
   }
   
-  private function createOne($table, $obj)
-{
+  public function getAll($table)
+  {
     $this->getBdd();
+    $data = [];
+    $req = self::$bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id DESC');
+    $req->execute();
 
-    $req = self::$bdd->prepare("INSERT INTO ".$table." (categoryId, userId, title, chapo, picture, content) VALUES (?, ?, ?, ?, ?, ?)");
-    $req->execute(array(
-        $obj->getCategoryId(),
-        $obj->getUserId(),
-        $obj->getTitle(),
-        $obj->getChapo(),
-        $obj->getPicture(),
-        $obj->getContent(),
-    ));
+    // On récupère les données directement dans un tableau
+    while ($row = $req->fetch(PDO::FETCH_ASSOC)) {
+      $data[] = $row;
+    }
+
     $req->closeCursor();
-    return true;
-}
+
+    return $data;
+  }
 }

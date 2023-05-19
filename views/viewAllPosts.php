@@ -1,16 +1,9 @@
 <section class="blog-area section">
 	<div class="container">
+
 		<div class="row">
-			<?php
-			$postCount = 0; // Variable de comptage des articles affichés
 
-			foreach ($posts as $post) :
-				if ($postCount >= 3) {
-					break; // Arrêter la boucle si le nombre d'articles affichés atteint 3
-				}
-				$postCount++;
-
-			?>
+			<?php foreach ($posts as $post) : ?>
 				<div class="col-lg-4 col-md-6">
 					<div class="card h-100">
 						<div class="single-post post-style-1">
@@ -35,7 +28,6 @@
 							<a class="avatar" href="#"><img src="<?= $authorImage ?>" alt="Profile Image"></a>
 
 							<div class="blog-info">
-
 								<ul class="post-header">
 									<?php if ($post['createdAt'] === $post['updatedAt']) : ?>
 										<li>Date de mise en ligne : <?= $post['createdAt'] ?></li>
@@ -67,7 +59,7 @@
 					</div><!-- card -->
 				</div><!-- col-lg-4 col-md-6 -->
 			<?php endforeach; ?>
+
 		</div><!-- row -->
-		<a class="load-more-btn" href="post&viewAll"><b>LOAD MORE</b></a>
 	</div><!-- container -->
 </section><!-- section -->
