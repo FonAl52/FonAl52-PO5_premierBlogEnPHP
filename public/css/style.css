@@ -51,6 +51,26 @@
     top: 50%;
 }
 
+#single-post .edit-post {
+    display: block;
+    color: #1e1c1c;
+    padding: 2%;
+} 
+
+#single-post .post-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.post-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2%;
+}
+
 .info-row:hover .edit-icon {
     display: inline-block;
 }
