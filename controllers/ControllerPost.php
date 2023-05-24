@@ -10,6 +10,7 @@ class ControllerPost
   private $view;
   private $categoryManager;
   private $postManager;
+  private $userManager;
 
   public function __construct()
   {
@@ -27,6 +28,9 @@ class ControllerPost
     }
     elseif (isset($_GET['viewAll']) ) {
       $this->viewAll();
+    }
+    elseif (isset($_GET['id'])) {
+      $this->viewOne();
     }
     else {
       $this->home();
@@ -158,4 +162,25 @@ class ControllerPost
 
     return $users;
   }
+
+  private function viewOne()
+{
+  if (isset($_GET['id'], $_GET['id'])) {
+    $this->postManager = new PostManager;
+    $this->userManager = new UserManager();
+    
+    $post = $this->postManager->getPost($_GET['id']);
+    $categories = $this->categoryId();
+    $userId = $post[0]->getUserId();
+
+    $user = $this->userManager->getUserById($userId);
+    
+
+    $this->view = new View('SinglePost');
+    $this->view->generate(array('post' => $post, 'categories' => $categories, 'user' => $user));
+  }
+}
+
+
+
 }

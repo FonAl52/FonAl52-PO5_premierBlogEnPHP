@@ -79,11 +79,11 @@ class UserManager extends Model
     }
     return $user;
   }
-
+  
   public function getUserById($userId)
   {
       $this->getBdd();
-      $req = self::$bdd->prepare('SELECT * FROM user WHERE id = ?');
+      $req = self::$bdd->prepare('SELECT firstName, lastName, email, age, phone, picture, role FROM user WHERE id = ?');
       $req->execute(array($userId));
       $user = $req->fetch(PDO::FETCH_ASSOC);
 

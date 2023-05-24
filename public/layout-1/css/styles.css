@@ -194,7 +194,7 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 	
 .post-style-2 .avatar-area .right-area{ margin-left: 90px; position: absolute; top: 50%; transform: translateY(-50%); }
 
-.post-style-2 .blog-image{ width: 50%; float: left; height: 100%; }
+.post-style-2 .blog-image{ width: 100%; float: left; height: 100%; }
 
 .post-style-2 .blog-image img{ height: 100%; width: 100%; }
 

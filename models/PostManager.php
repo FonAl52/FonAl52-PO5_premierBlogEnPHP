@@ -48,22 +48,22 @@ class PostManager extends Model
   private function getOne($table, $obj, $id)
   {
     $this->getBdd();
-    $var = [];
-    $req = self::$bdd->prepare("SELECT id, categoryId, title, chapo, picture, content, DATE_FORMAT(createdAt, '%d/%m/%Y à %Hh%imin%ss') AS createdAt, DATE_FORMAT(updatedAt, '%d/%m/%Y à %Hh%imin%ss') AS updatedAt FROM " . $table . " WHERE id = ?");
+    $data = [];
+    $req = self::$bdd->prepare("SELECT id, categoryId, userId, title, chapo, picture, content, DATE_FORMAT(createdAt, '%d/%m/%Y à %Hh%imin%ss') AS createdAt, DATE_FORMAT(updatedAt, '%d/%m/%Y à %Hh%imin%ss') AS updatedAt FROM " . $table . " WHERE id = ?");
     $req->execute(array($id));
-    while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
-      $var[] = new $obj($data);
+    while ($var = $req->fetch(PDO::FETCH_ASSOC)) {
+      $data[] = new $obj($var);
     }
-
-    return $var;
     $req->closeCursor();
+    
+    return $data;
   }
   
   public function getAll($table)
   {
     $this->getBdd();
     $data = [];
-    $req = self::$bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id DESC');
+    $req = self::$bdd->prepare("SELECT id, categoryId, userId, title, chapo, picture, content, DATE_FORMAT(createdAt, '%d/%m/%Y à %Hh%imin%ss') AS createdAt, DATE_FORMAT(updatedAt, '%d/%m/%Y à %Hh%imin%ss') AS updatedAt FROM " . $table . ' ORDER BY id DESC');
     $req->execute();
 
     // On récupère les données directement dans un tableau
