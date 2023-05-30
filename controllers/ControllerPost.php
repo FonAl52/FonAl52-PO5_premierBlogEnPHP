@@ -4,6 +4,8 @@ require_once 'models/CategoryManager.php';
 require_once 'models/UserManager.php';
 require_once 'models/Post.php';
 require_once 'models/PostManager.php';
+require_once 'models/Comment.php';
+require_once 'models/CommentManager.php';
 class ControllerPost
 
 {
@@ -11,6 +13,7 @@ class ControllerPost
   private $categoryManager;
   private $postManager;
   private $userManager;
+  private $commentManager;
 
   public function __construct()
   {
@@ -167,17 +170,19 @@ class ControllerPost
 {
   if (isset($_GET['id'], $_GET['id'])) {
     $this->postManager = new PostManager;
-    $this->userManager = new UserManager();
+    $this->userManager = new UserManager;
+    $this->commentManager = new CommentManager;
+    $postId = $_GET['id'];
     
     $post = $this->postManager->getPost($_GET['id']);
     $categories = $this->categoryId();
-    $userId = $post[0]->getUserId();
 
-    $user = $this->userManager->getUserById($userId);
+    $users = $this->getAllUsers();
     
-
+    $comments =  $this->commentManager->getCommentsByPostId($postId);
+    
     $this->view = new View('SinglePost');
-    $this->view->generate(array('post' => $post, 'categories' => $categories, 'user' => $user));
+    $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
   }
 }
 
