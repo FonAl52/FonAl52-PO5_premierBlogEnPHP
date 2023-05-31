@@ -16,6 +16,17 @@ class CommentManager extends Model
     return $this->getOneComment('comment', 'Comment', $postId);
   }
 
+  public function createComment($comment)
+  {
+    
+    if (!($comment instanceof Comment)) {
+      // Retourner une erreur ou une exception
+      return false;
+    }
+    
+    return $this->createOne('comment', $comment);
+  }
+
   private function getAllComment($table, $obj)
   {
     $this->getBdd();
@@ -36,16 +47,11 @@ class CommentManager extends Model
 
   private function getOneComment($table, $obj, $postId)
   {
-    $testbdd = $this->getBdd();
-    var_dump($testbdd);
-    die;
-
+    $this->getBdd();
     $var = [];
 
     $req = self::$bdd->prepare("SELECT id, postId, userId, content, DATE_FORMAT(createdAt, '%d/%m/%Y à %Hh%imin%ss') AS createdAt, DATE_FORMAT(updatedAt, '%d/%m/%Y à %Hh%imin%ss') AS updatedAt FROM " . $table . " WHERE postId = ?");
-    $test = $req->execute(array($postId));
-    var_dump($test);
-    die;
+    $req->execute(array($postId));
     while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
       $var[] = new $obj($data);
     }
@@ -59,7 +65,7 @@ class CommentManager extends Model
     $this->getBdd();
     $comments = [];
 
-    $req = self::$bdd->prepare("SELECT * FROM comment WHERE postId = ?");
+    $req = self::$bdd->prepare("SELECT * FROM comment WHERE postId = ? ORDER BY id desc");
 
     $req->execute([$postId]);
 
@@ -75,4 +81,18 @@ class CommentManager extends Model
 
     return $comments;
   }
+
+
+  public function createOne($table, $obj)
+{
+    $this->getBdd();
+    $req = self::$bdd->prepare("INSERT INTO " . $table . " (postId, userId, comment, validated, createdAt, updatedAt) VALUES (?, ?, ?, 0, NOW(), NOW())");
+    $req->execute(array(
+        $obj->getPostId(),
+        $obj->getUserId(),
+        $obj->getComment(),
+    ));
+    $req->closeCursor();
+    return true;
+}
 }

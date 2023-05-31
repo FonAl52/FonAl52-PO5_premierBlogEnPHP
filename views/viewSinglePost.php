@@ -104,7 +104,7 @@
       <?php foreach ($comments as $comment) : ?>
         <?php
         $commentAuthorName = 'Unknown';
-        $commentAuthorImage = 'public/images/userProfilePicturePlaceholder.jpg';
+        $commentAuthorImage = '/public/images/userProfilePicturePlaceholder.jpg';
 
         foreach ($users as $user) {
 
@@ -131,8 +131,40 @@
           </ul>
         </div>
       <?php endforeach; ?>
-
-
-
     </div><!-- container -->
+    <div class="single-post post-style-2">
+      <div class="post-row">
+        <?php
+        if (isset($_SESSION['message'])) {
+          echo '<div class="success-message">' . $_SESSION['message'] . '</div>';
+          unset($_SESSION['message']);
+        }
+        ?>
+      </div>
+    </div>
+    <?php if (isset($_SESSION['id'])) { ?>
+      <form class="comment-form" action="comment&create" method="POST">
+        <input type="hidden" name="postId" value="<?= $post[0]->getId() ?>">
+        <input type="hidden" name="userId" value="<?= $_SESSION['id'] ?>">
+
+        <div class="form-group">
+          <label for="comment">Ajouter un nouveau commentaire</label>
+          <textarea class="form-control" id="comment" name="comment" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </form>
+    <?php } else { ?>
+      <div class="single-post post-style-2">
+        <div class="post-row">
+          <p><strong>Pour ajouter un commentaire merci de vous connecter ou de vous inscrire</strong></p>
+        </div>
+        <div class="post-row">
+          <a href="user&connect">Se connecter</a>
+        </div>
+        <div class="post-row">
+          <a href="user&register">S’inscrire</a>
+        </div>
+      </div>
+    <?php } ?>
 </section><!-- section -->
