@@ -304,6 +304,9 @@ header .src-area .src-btn{ position: absolute; top: 0; bottom: 0; left: 0; width
 .comment-form{ margin: 30px 0; padding: 30px; box-shadow: 0px 0px 5px rgba(0,0,0,.1); 
 	 background: #faff2d; border-radius: 15px; width: 100%;}
 
+#single-post .comment-form{ margin: 30px 0; padding: 30px; box-shadow: 0px 0px 5px rgba(0,0,0,.1); 
+		background: #faff2d; border-radius: 15px; height:50%; width: 70%;}
+
 .comment-form .form-control{ margin-bottom: 30px; border-radius: 1px; border: 0; border-bottom: 1px solid #1e1c1c;
 	height: 45px; line-height: 45px; box-shadow: none; padding: 0; max-width: 100%; background: #faff2d;}
 

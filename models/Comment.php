@@ -10,6 +10,7 @@ class Comment
   private $postId;
   private $userId;
   private $comment;
+  private $validated;
   private $createdAt;
   private $updatedAt;
 
@@ -59,12 +60,19 @@ class Comment
     }
   }
 
+  public function setValidated($validated)
+  {
+    if (is_string($validated)) {
+      $this->validated = $validated;
+    }
+  }
+
   public function setCreatedAt($createdAt)
   {
       $this->createdAt = $createdAt;
 
   }
-  public function set($updatedAt)
+  public function setUpdatedAt($updatedAt)
   {
       $this->updatedAt = $updatedAt;
 
@@ -88,6 +96,11 @@ class Comment
   public function getComment()
   {
     return $this->comment;
+  }
+
+  public function getValidated()
+  {
+    return $this->validated;
   }
 
   public function getCreatedAt()
