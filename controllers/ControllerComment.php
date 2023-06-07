@@ -28,6 +28,7 @@ class ControllerComment
   {
     $commentManager = new CommentManager();
     $newFields = array_map('htmlspecialchars', $_POST);
+    $postId = $newFields['postId'];
     // Valider les données soumises
     $errors = [];
     if (empty($newFields['postId'])) {
@@ -48,8 +49,6 @@ class ControllerComment
     
       if ($commentManager->createComment($comment)) {
         $_SESSION['message'] = "Votre commentaire a été envoyer avec succès ! Il sera visible un foie vérifié";
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit();
       } else {
         $errors['errors'] = "Une erreur est survenue lors de la création de votre commentaire. Veuillez réessayer ultérieurement.";
       }
@@ -58,8 +57,8 @@ class ControllerComment
     }
     
     // Si les données ne sont pas valides ou si la création de l'article a échoué, afficher le formulaire avec les erreurs
-    $this->view = new View('viewAll');
-    $this->view->generate(array('errors' => $errors));
+    header('Location: post&id='.$newFields['postId']);
+    
   }
   
 }

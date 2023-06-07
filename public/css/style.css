@@ -99,6 +99,15 @@
     align-items: center;
 }
 
+#single-post .container{     
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
 .comment-row{ padding: 2%!important; }
 
 #single-post .comment{ 
@@ -107,5 +116,9 @@
     height: 70%!important;
     flex-direction: column;
     align-items: stretch;
+}
+#single-post .section{ 
+    padding: 0;
+
 }
 
