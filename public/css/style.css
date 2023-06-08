@@ -161,4 +161,23 @@ body footer{
     padding: 5% 0;
 }
 
-  
+body #single-post{
+    background-color: #ffffff;
+}
+#single-post .blog-image img{
+    border-top-right-radius: 225px;
+}
+.blog-area .single-post{
+    box-shadow: none;
+    border: none;
+}
+#single-post .comment-row{
+    margin: 1%;
+    background-color: #424242;
+}
+#single-post .comment-row p, #single-post .comment-row ul{
+    color: #ffffff;
+}
+.para{
+    padding: 1% 3%;
+}
