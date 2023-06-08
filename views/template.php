@@ -64,8 +64,8 @@
 							<li><a href="#">MENTION LÉGALE</a></li>
 						</ul>
 						<ul>
-							<?php if (isset($_SESSION['role']) && $_SESSION['role'] === 1) { ?>
-								<li><a href="admin&userManagement">ADMINISTRATION</a></li>
+							<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1) { ?>
+								<li><a href="admin&management">ADMINISTRATION</a></li>
 							<?php } ?>
 						</ul>
 					</div>

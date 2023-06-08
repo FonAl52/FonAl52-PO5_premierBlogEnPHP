@@ -1,23 +1,26 @@
-.profile-section{
+.profile-section {
     width: 120vw;
-	min-height: 80vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.profile-section .profile-picture{
+
+.profile-section .profile-picture {
     margin: 10% 2%;
 }
 
-.profile-section .info-row{
+.profile-section .info-row {
     font-size: 20px;
     color: #ffffff;
 }
-.profile-section .info-row .info-label{
+
+.profile-section .info-row .info-label {
     font-size: 23px;
     font-weight: 500;
     color: #faff2d;
 }
+
 .edit-profile-icon {
     display: none;
     position: absolute;
@@ -28,7 +31,7 @@
     color: #faff2d;
 }
 
-.profile-picture{
+.profile-picture {
     border: 15px solid #faff2d;
     border-radius: 250px;
     overflow: hidden;
@@ -55,13 +58,14 @@
     display: block;
     color: #1e1c1c;
     padding: 2%;
-} 
+}
 
 #single-post .post-row {
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
+
 #single-post .post-header {
     padding: 0;
 }
@@ -91,15 +95,17 @@
     background-color: transparent;
 }
 
-.form-label { color: #1e1c1c; }
+.form-label {
+    color: #1e1c1c;
+}
 
-.container{     
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#single-post .container{     
+#single-post .container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,17 +114,51 @@
     margin: 0;
 }
 
-.comment-row{ padding: 2%!important; }
+.comment-row {
+    padding: 2% !important;
+}
 
-#single-post .comment{ 
+#single-post .comment {
     display: flex;
-    width: 80%!important;
-    height: 70%!important;
+    width: 80% !important;
+    height: 70% !important;
     flex-direction: column;
     align-items: stretch;
 }
-#single-post .section{ 
-    padding: 0;
 
+#single-post .section {
+    padding: 0;
 }
 
+.sidebar {
+    position: relative;
+    top: -20%;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    background-color: #faff2d;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #1e1c1c;
+    margin: 1%;
+}
+.nav-link:hover{
+    opacity: .8;
+}
+
+#admin{
+    padding: 0;
+}
+
+#admin #users-section {
+    display: flex;
+    padding: 10%;
+}
+
+body footer{
+    margin-top: 0;
+    padding: 5% 0;
+}
+
+  

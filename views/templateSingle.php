@@ -89,6 +89,31 @@
 	<script src="public/common-js/tether.min.js" type="text/javascript"></script>
 	<script src="public/common-js/bootstrap.js" type="text/javascript"></script>
 	<script src="public/common-js/scripts.js" type="text/javascript"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Cacher toutes les sections au chargement de la page
+  $('section[id^="users"], section[id^="articles"], section[id^="comments"]').hide();
+
+  // Afficher par défaut la section user-section
+  $('#user-section').show();
+
+  // Gérer les clics sur les liens du menu
+  $('a[data-target]').on('click', function(e) {
+    e.preventDefault();
+
+    // Récupérer l'ID de la section cible
+    var target = $(this).data('target');
+
+    // Cacher toutes les sections
+    $('section[id^="users"], section[id^="articles"], section[id^="comments"]').hide();
+
+    // Afficher la section cible
+    $('#' + target).show();
+  });
+});
+</script>
+
 </body>
 
 </html>
