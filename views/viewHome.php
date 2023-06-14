@@ -68,6 +68,6 @@
 				</div><!-- col-lg-4 col-md-6 -->
 			<?php endforeach; ?>
 		</div><!-- row -->
-		<a class="load-more-btn" href="post&viewAll"><b>LOAD MORE</b></a>
+		<a class="load-more-btn" href="post&viewAll"><b>VOIR PLUS</b></a>
 	</div><!-- container -->
 </section><!-- section -->
