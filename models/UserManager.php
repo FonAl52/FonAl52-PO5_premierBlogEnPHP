@@ -48,9 +48,9 @@ class UserManager extends Model
   {
     $this->getBdd();
     $req = self::$bdd->prepare('SELECT * FROM user WHERE email = ? AND password = ?');
-    $req->execute(array($email,md5($password)));
+    $req->execute(array($email, md5($password)));
     $user = $req->fetch(PDO::FETCH_ASSOC);
-    if($user){
+    if ($user) {
       $this->openSession($user);
     }
     return $user;
@@ -74,55 +74,82 @@ class UserManager extends Model
     $req = self::$bdd->prepare('UPDATE user SET password = ? WHERE id = ?');
     $hashedPassword = md5($newPassword);
     $user = $req->execute(array($hashedPassword, $userId));
-    if($user){
+    if ($user) {
       $this->openSession($user);
     }
     return $user;
   }
-  
+
   public function getUserById($userId)
   {
-      $this->getBdd();
-      $req = self::$bdd->prepare('SELECT firstName, lastName, email, age, phone, picture, role FROM user WHERE id = ?');
-      $req->execute(array($userId));
-      $user = $req->fetch(PDO::FETCH_ASSOC);
+    $this->getBdd();
+    $req = self::$bdd->prepare('SELECT firstName, lastName, email, age, phone, picture, role FROM user WHERE id = ?');
+    $req->execute(array($userId));
+    $user = $req->fetch(PDO::FETCH_ASSOC);
 
-      return $user;
+    return $user;
   }
 
   public function updateUser($user, $options)
-  {   
-      // var_dump($user);
-      // var_dump($options);
-      $this->getBdd();
-      $set = [];
-      $values = [];
-      foreach ($options as $key => $value) {
-          $set[] = "$key = ?";
-          $values[] = $value;
-      }
-      // var_dump($set);
-      // var_dump($values);
-      
-      $values[] = $user['id'];
-      // var_dump($values);
-      $req = self::$bdd->prepare("UPDATE user SET " . implode(", ", $set) . " WHERE id = ?");
-      // var_dump($req);die;
-      $req->execute($values);
-      return $req->rowCount() > 0;
+  {
+    // var_dump($user);
+    // var_dump($options);
+    $this->getBdd();
+    $set = [];
+    $values = [];
+    foreach ($options as $key => $value) {
+      $set[] = "$key = ?";
+      $values[] = $value;
+    }
+    // var_dump($set);
+    // var_dump($values);
+
+    $values[] = $user['id'];
+    // var_dump($values);
+    $req = self::$bdd->prepare("UPDATE user SET " . implode(", ", $set) . " WHERE id = ?");
+    // var_dump($req);die;
+    $req->execute($values);
+    return $req->rowCount() > 0;
   }
 
   public function getAllUsers()
   {
     $this->getBdd();
-    $req = self::$bdd->query("SELECT id, firstName, lastName, picture FROM user");
+    $req = self::$bdd->query("SELECT id, firstName, lastName, picture, role FROM user");
     $users = [];
 
     while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
       $users[] = new User($data);
     }
-    
+
     $req->closeCursor();
     return $users;
   }
+
+  public function updateUserRole($userId, $options)
+  {
+    $this->getBdd();
+    $set = [];
+    $values = [];
+    foreach ($options as $key => $value) {
+      $set[] = "$key = ?";
+      $values[] = $value;
+    }
+
+    $values[] = $userId; // Ajoute le userId à la fin du tableau des valeurs
+
+    $req = self::$bdd->prepare("UPDATE user SET " . implode(", ", $set) . " WHERE id = ?");
+    $req->execute($values);
+
+    return $req->rowCount() > 0;
+  }
+
+  public function deleteUser($userId)
+  {
+    $this->getBdd();
+    $req = self::$bdd->prepare("DELETE FROM user WHERE id = ?");
+    $req->execute([$userId]);
+    return $req->rowCount() > 0;
+  }
+
 }

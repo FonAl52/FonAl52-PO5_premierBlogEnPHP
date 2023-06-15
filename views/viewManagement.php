@@ -18,10 +18,10 @@
 			</nav>
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 				<section id="users-section">
-					<!-- Code pour afficher les utilisateurs -->
-					<?php foreach ($users as $user) : ?>
-						<div class="col-lg-4 col-md-6">
-							<a href="admin&id=<?= $user->getId() ?>">
+					<div class="row">
+						<!-- Code pour afficher les utilisateurs -->
+						<?php foreach ($users as $user) : ?>
+							<div class="col-lg-4 col-md-6">
 								<div class="card h-100">
 									<div class="single-post post-style-1">
 										<div class="blog-image p-1">
@@ -34,24 +34,24 @@
 										<div class="blog-image mt-3"><?= $user->getFirstName(), " " ?> <?= $user->getLastName() ?></div>
 									</div><!-- single-post -->
 								</div><!-- card -->
-							</a>
-							<div class="managment-action users">
-								<ul>
-									<?php if ($user->getRole() == 3) : ?>
-										<li><a href="admin&userLock"><i class="fa-solid fa-lock"></i></a></li>
-									<?php else : ?>
-										<li><a href="admin&userUnlock"><i class="fa-solid fa-unlock"></i></a></li>
-									<?php endif; ?>
-									<li><a href="admin&userDelete"><i class="fa-solid fa-trash"></i></i></a></li>
-									<?php if ($user->getRole() == 3) : ?>
-										<li><a href="admin&userNorole"><i class="fa-regular fa-screwdriver-wrench"></i></a></li>
-									<?php else : ?>
-										<li><a href="admin&userAdmin"><i class="fa-solid fa-screwdriver-wrench"></i></a></li>
-									<?php endif; ?>
-								</ul>
-							</div>
-						</div><!-- col-lg-4 col-md-6 -->
-					<?php endforeach; ?>
+								<div class="managment-action users">
+									<ul>
+										<?php if ($user->getRole() == 3) : ?>
+											<li><a href="admin&userUnlock&id=<?= $user->getId() ?>"><i class="fa-solid fa-lock"></i></a></li>
+										<?php else : ?>
+											<li><a href="admin&userLock&id=<?= $user->getId() ?>"><i class="fa-solid fa-unlock"></i></a></li>
+										<?php endif; ?>
+										<li><a href="admin&userDelete&id=<?= $user->getId() ?>"><i class="fa-solid fa-trash"></i></i></a></li>
+										<?php if ($user->getRole() == 1) : ?>
+											<li><a href="admin&userNorole&id=<?= $user->getId() ?>"><i class="fa-solid fa-star"></i></a></li>
+										<?php else : ?>
+											<li><a href="admin&userAdmin&id=<?= $user->getId() ?>"><i class="fa-solid fa-screwdriver-wrench"></i></a></li>
+										<?php endif; ?>
+									</ul>
+								</div>
+							</div><!-- col-lg-4 col-md-6 -->
+						<?php endforeach; ?>
+					</div>
 				</section>
 				<section id="articles-section">
 					<div class="row">
@@ -112,7 +112,7 @@
 									<div class="managment-action posts">
 										<ul>
 											<li><a href="post&id=<?= $post['id'] ?>"><i class="fa-solid fa-pen"></i></a></li>
-											<li><a href=""><i class="fa-solid fa-trash"></i></i></a></li>
+											<li><a href="admin&postDelete&id=<?= $post['id'] ?>"><i class="fa-solid fa-trash"></i></a></li>
 										</ul>
 									</div>
 								</div><!-- card -->
@@ -134,7 +134,7 @@
 									$postTitle = $post['title'];
 								}
 							}
-							
+
 							foreach ($users as $user) {
 
 								if ($user->getId() == $comment->getUserId()) {
@@ -143,7 +143,7 @@
 									break;
 								}
 							}
-							
+
 							?>
 
 							<div class="col-lg-4 col-md-6">
@@ -164,14 +164,14 @@
 									</ul>
 								</div>
 								<div class="managment-action comments">
-										<ul>
-											<?php if ($comment->getValidated() == 1) : ?>
-												<li><a href=""><i class="fa-sharp fa-solid fa-xmark"></i></a></li>
-											<?php else : ?>
-												<li><a href=""><i class="fa-sharp fa-solid fa-check"></i></a></li>
-											<?php endif; ?>
-											<li><a href=""><i class="fa-solid fa-trash"></i></i></a></li>									
-										</ul>
+									<ul>
+										<?php if ($comment->getValidated() == 1) : ?>
+											<li><a href=""><i class="fa-sharp fa-solid fa-xmark"></i></a></li>
+										<?php else : ?>
+											<li><a href=""><i class="fa-sharp fa-solid fa-check"></i></a></li>
+										<?php endif; ?>
+										<li><a href=""><i class="fa-solid fa-trash"></i></i></a></li>
+									</ul>
 								</div>
 							</div>
 						<?php endforeach; ?>
