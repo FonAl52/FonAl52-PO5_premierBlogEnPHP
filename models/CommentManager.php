@@ -94,4 +94,29 @@ class CommentManager extends Model
         $req->closeCursor();
         return true;
     }
+    public function commentValidation($commentId, $options)
+    {
+        $this->getBdd();
+        $set = [];
+        $values = [];
+        foreach ($options as $key => $value) {
+            $set[] = "$key = ?";
+            $values[] = $value;
+        }
+
+        $values[] = $commentId; // Ajoute le userId à la fin du tableau des valeurs
+
+        $req = self::$bdd->prepare("UPDATE comment SET " . implode(", ", $set) . " WHERE id = ?");
+        $req->execute($values);
+
+        return $req->rowCount() > 0;
+    }
+
+    public function deleteComment($commentId)
+    {
+        $this->getBdd();
+        $req = self::$bdd->prepare("DELETE FROM comment WHERE id = ?");
+        $req->execute([$commentId]);
+        return $req->rowCount() > 0;
+    }
 }

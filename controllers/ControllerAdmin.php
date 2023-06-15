@@ -30,7 +30,17 @@ class ControllerAdmin
         }
         if (isset($_GET['postDelete'])) {
             $this->postDelete();
-        } else {
+        }
+        if (isset($_GET['commentUnvalidate'])) {
+            $this->commentUnvalidate();
+        }
+        if (isset($_GET['commentValidate'])) {
+            $this->commentValidate();
+        }
+        if (isset($_GET['commentDelete'])) {
+            $this->commentDelete();
+        } 
+        else {
             throw new \Exception("Page Introuvable");
         }
     }
@@ -125,4 +135,41 @@ class ControllerAdmin
         $this->postManager->deletePost($postId);
         header('Location: admin&management');
     }
+
+    public function commentValidate()
+    {
+        $this->commentManager = new CommentManager;
+
+        $commentId = $_GET['id'];
+        $validation = array(
+            'validated' => 1
+        );
+
+        $this->commentManager->commentValidation($commentId, $validation);
+        header('Location: admin&management');
+    }
+
+    public function commentUnvalidate()
+    {
+        $this->commentManager = new CommentManager;
+
+        $commentId = $_GET['id'];
+        $validation = array(
+            'validated' => 0
+        ); 
+
+        $this->commentManager->commentValidation($commentId, $validation);
+        header('Location: admin&management');
+    }
+
+    public function commentDelete()
+    {
+        $this->commentManager = new CommentManager;
+
+        $commentId = $_GET['id'];
+
+        $this->commentManager->deleteComment($commentId);
+        header('Location: admin&management');
+    }
+    
 }

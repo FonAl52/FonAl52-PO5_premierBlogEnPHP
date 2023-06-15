@@ -166,11 +166,11 @@
 								<div class="managment-action comments">
 									<ul>
 										<?php if ($comment->getValidated() == 1) : ?>
-											<li><a href=""><i class="fa-sharp fa-solid fa-xmark"></i></a></li>
+											<li><a href="admin&commentUnvalidate&id=<?= $comment->getId() ?>"><i class="fa-sharp fa-solid fa-xmark"></i></a></li>
 										<?php else : ?>
-											<li><a href=""><i class="fa-sharp fa-solid fa-check"></i></a></li>
+											<li><a href="admin&commentValidate&id=<?= $comment->getId() ?>"><i class="fa-sharp fa-solid fa-check"></i></a></li>
 										<?php endif; ?>
-										<li><a href=""><i class="fa-solid fa-trash"></i></i></a></li>
+										<li><a href="admin&commentDelete&id=<?= $comment->getId() ?>"><i class="fa-solid fa-trash"></i></i></a></li>
 									</ul>
 								</div>
 							</div>
