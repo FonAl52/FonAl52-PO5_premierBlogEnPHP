@@ -12,7 +12,7 @@ class ControllerAdmin
     {
         if (isset($_GET['management'])) {
             $this->management();
-        } 
+        }
         if (isset($_GET['userLock'])) {
             $this->userLock();
         }
@@ -28,48 +28,54 @@ class ControllerAdmin
         if (isset($_GET['userNorole'])) {
             $this->userNorole();
         }
-        else {
+        if (isset($_GET['postDelete'])) {
+            $this->postDelete();
+        } else {
             throw new \Exception("Page Introuvable");
         }
     }
 
-    public function management(){
+    public function management()
+    {
         $this->userManager = new UserManager;
         $users = $this->userManager->getAllUsers();
         $this->postManager = new PostManager;
         $posts = $this->postManager->getAll('post');
         $this->commentManager = new CommentManager;
         $comments = $this->commentManager->getAll('comment');
-        
+
         $this->view = new View('Management');
-        $this->view->generatePost(array('users' => $users, 'posts' => $posts,'comments' => $comments));
+        $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
     }
 
-    public function userLock(){
+    public function userLock()
+    {
         $this->userManager = new UserManager;
-        
+
         $userId = $_GET['id'];
         $updateRole = array(
             'role' => 3
         );
-    
+
         $this->userManager->updateUserRole($userId, $updateRole);
         header('Location: admin&management');
     }
 
-    public function userUnlock(){
+    public function userUnlock()
+    {
         $this->userManager = new UserManager;
-        
+
         $userId = $_GET['id'];
         $updateRole = array(
             'role' => 0
         );
-    
+
         $this->userManager->updateUserRole($userId, $updateRole);
         header('Location: admin&management');
     }
 
-    public function userDelete(){
+    public function userDelete()
+    {
         $this->userManager = new UserManager;
 
         $userId = $_GET['id'];
@@ -77,29 +83,46 @@ class ControllerAdmin
         header('Location: admin&management');
     }
 
-    public function userAdmin(){
+    public function userAdmin()
+    {
         $this->userManager = new UserManager;
-        
+
         $userId = $_GET['id'];
         $updateRole = array(
             'role' => 1
         );
-    
+
         $this->userManager->updateUserRole($userId, $updateRole);
         header('Location: admin&management');
     }
 
-    public function userNorole(){
+    public function userNorole()
+    {
         $this->userManager = new UserManager;
-        
+
         $userId = $_GET['id'];
         $updateRole = array(
             'role' => 0
         );
-    
+
         $this->userManager->updateUserRole($userId, $updateRole);
         header('Location: admin&management');
     }
-    
-    
+
+    public function postDelete()
+    {
+        $this->postManager = new PostManager;
+
+        $postId = $_GET['id'];
+        $post = $this->postManager->getPost($postId);
+
+        $fileName = $post[0]->getPicture();
+
+        if (file_exists($fileName)) {
+            unlink($fileName);
+        }
+
+        $this->postManager->deletePost($postId);
+        header('Location: admin&management');
+    }
 }

@@ -75,4 +75,13 @@ class PostManager extends Model
 
     return $data;
   }
+
+  public function deletePost($postId)
+  {
+    $this->getBdd();
+    
+    $req = self::$bdd->prepare("DELETE FROM post WHERE `post`.`id` = ?");
+    $req->execute([$postId]);
+    return $req->rowCount() > 0;
+  }
 }
