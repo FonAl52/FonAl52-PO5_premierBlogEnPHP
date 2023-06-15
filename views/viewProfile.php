@@ -80,7 +80,7 @@
                                 <div class="info-label">Email:</div>
                                 <div class="info-value"><?php echo $_SESSION['email']; ?></div>
                                 <div class="edit-icon" data-toggle="tooltip" data-placement="top" title="Modifier">
-                                    <a href="user&editEmail"><i class="fa-solid fa-pencil"></i></a>
+                                    <a href="user&editEmail"></a>
                                 </div>
                             <?php
                             }

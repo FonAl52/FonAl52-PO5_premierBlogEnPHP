@@ -13,6 +13,21 @@ class ControllerAdmin
         if (isset($_GET['management'])) {
             $this->management();
         } 
+        if (isset($_GET['userLock'])) {
+            $this->userLock();
+        }
+        if (isset($_GET['userUnlock'])) {
+            $this->userUnlock();
+        }
+        if (isset($_GET['userDelete'])) {
+            $this->userDelete();
+        }
+        if (isset($_GET['userAdmin'])) {
+            $this->userAdmin();
+        }
+        if (isset($_GET['userNorole'])) {
+            $this->userNorole();
+        }
         else {
             throw new \Exception("Page Introuvable");
         }
@@ -30,5 +45,61 @@ class ControllerAdmin
         $this->view->generatePost(array('users' => $users, 'posts' => $posts,'comments' => $comments));
     }
 
+    public function userLock(){
+        $this->userManager = new UserManager;
+        
+        $userId = $_GET['id'];
+        $updateRole = array(
+            'role' => 3
+        );
+    
+        $this->userManager->updateUserRole($userId, $updateRole);
+        header('Location: admin&management');
+    }
+
+    public function userUnlock(){
+        $this->userManager = new UserManager;
+        
+        $userId = $_GET['id'];
+        $updateRole = array(
+            'role' => 0
+        );
+    
+        $this->userManager->updateUserRole($userId, $updateRole);
+        header('Location: admin&management');
+    }
+
+    public function userDelete(){
+        $this->userManager = new UserManager;
+
+        $userId = $_GET['id'];
+        $this->userManager->deleteUser($userId);
+        header('Location: admin&management');
+    }
+
+    public function userAdmin(){
+        $this->userManager = new UserManager;
+        
+        $userId = $_GET['id'];
+        $updateRole = array(
+            'role' => 1
+        );
+    
+        $this->userManager->updateUserRole($userId, $updateRole);
+        header('Location: admin&management');
+    }
+
+    public function userNorole(){
+        $this->userManager = new UserManager;
+        
+        $userId = $_GET['id'];
+        $updateRole = array(
+            'role' => 0
+        );
+    
+        $this->userManager->updateUserRole($userId, $updateRole);
+        header('Location: admin&management');
+    }
+    
     
 }
