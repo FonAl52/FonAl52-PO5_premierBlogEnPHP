@@ -94,6 +94,7 @@ class CommentManager extends Model
         $req->closeCursor();
         return true;
     }
+    
     public function commentValidation($commentId, $options)
     {
         $this->getBdd();

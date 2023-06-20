@@ -41,7 +41,7 @@
 										<?php else : ?>
 											<li><a href="admin&userLock&id=<?= $user->getId() ?>"><i class="fa-solid fa-unlock"></i></a></li>
 										<?php endif; ?>
-										<li><a href="admin&userDelete&id=<?= $user->getId() ?>"><i class="fa-solid fa-trash"></i></i></a></li>
+										<li><a href="admin&userDelete&id=<?= $user->getId() ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet utilisateur ?')"><i class="fa-solid fa-trash"></i></i></a></li>
 										<?php if ($user->getRole() == 1) : ?>
 											<li><a href="admin&userNorole&id=<?= $user->getId() ?>"><i class="fa-solid fa-star"></i></a></li>
 										<?php else : ?>
@@ -112,7 +112,7 @@
 									<div class="managment-action posts">
 										<ul>
 											<li><a href="post&id=<?= $post['id'] ?>"><i class="fa-solid fa-pen"></i></a></li>
-											<li><a href="admin&postDelete&id=<?= $post['id'] ?>"><i class="fa-solid fa-trash"></i></a></li>
+											<li><a href="admin&postDelete&id=<?= $post['id'] ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet article ?')"><i class="fa-solid fa-trash"></i></a></li>
 										</ul>
 									</div>
 								</div><!-- card -->
@@ -170,7 +170,7 @@
 										<?php else : ?>
 											<li><a href="admin&commentValidate&id=<?= $comment->getId() ?>"><i class="fa-sharp fa-solid fa-check"></i></a></li>
 										<?php endif; ?>
-										<li><a href="admin&commentDelete&id=<?= $comment->getId() ?>"><i class="fa-solid fa-trash"></i></i></a></li>
+										<li><a href="admin&commentDelete&id=<?= $comment->getId() ?>" onclick="return confirm('Voulez-vous supprimer définitivement ce commentaire ?')"><i class="fa-solid fa-trash"></i></i></a></li>
 									</ul>
 								</div>
 							</div>

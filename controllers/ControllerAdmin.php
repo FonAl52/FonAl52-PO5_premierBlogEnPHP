@@ -171,5 +171,5 @@ class ControllerAdmin
         $this->commentManager->deleteComment($commentId);
         header('Location: admin&management');
     }
-    
+
 }

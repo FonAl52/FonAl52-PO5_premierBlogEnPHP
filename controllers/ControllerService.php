@@ -5,6 +5,7 @@ use PHPMailer\PHPMailer\Exception;
 require './vendor/autoload.php';
 require_once 'views/View.php';
 
+ 
 /**
  *
  */
@@ -29,6 +30,8 @@ class ControllerService
   }
 
   public function sendEmail(){
+    $mail_username = $_ENV['MAIL_USERNAME']; 
+    $mail_password = $_ENV['MAIL_PASSWORD'];
     $newFields = array_map('htmlspecialchars', $_POST);
         // Valider les données soumises
     $errors = [];
@@ -65,8 +68,8 @@ class ControllerService
       $mail->isSMTP();                                            //Send using SMTP
       $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
       $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'vod52m@gmail.com';                     //SMTP username
-      $mail->Password   = 'gdlpwksclmddnbbu';                               //SMTP password
+      $mail->Username   = $mail_username;                     //SMTP username
+      $mail->Password   = $mail_password;                               //SMTP password
       $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
       $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
   
