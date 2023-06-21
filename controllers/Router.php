@@ -47,6 +47,8 @@ class Router
                     require_once($controllerFile);
                     $this->ctrl = new $controllerClass($url);
                 } else {
+                    $this->view = new View('404');
+                    $this->view->generate(array('errorMsg' => $errorMsg));
                     throw new \Exception("Page introuvable", 1);
                 }
             }
