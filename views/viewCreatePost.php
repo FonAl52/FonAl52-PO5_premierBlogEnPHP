@@ -4,15 +4,15 @@
       <div class="col-lg-2 col-md-0"></div>
       <div class="col-lg-8 col-md-12">
         <div class="comment-form"><?php if (isset($errors) && !empty($errors)) : ?>
-          <div class="col-sm-12 center-text">
-          <div class="alert alert-danger">
-            <ul>
-              <?php foreach ($errors as $error) : ?>
-                <li><?= $error; ?></li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-          </div>
+            <div class="col-sm-12 center-text">
+              <div class="alert alert-danger">
+                <ul>
+                  <?php foreach ($errors as $error) : ?>
+                    <li><?= $error; ?></li>
+                  <?php endforeach; ?>
+                </ul>
+              </div>
+            </div>
           <?php endif; ?>
           <form method="post" action="post&new" class="contact1-form validate-form" enctype="multipart/form-data">
             <div class="row">
@@ -22,7 +22,7 @@
               <div class="col-sm-12">
                 <select name="categoryId" class="form-control">
                   <option value="">-- Sélectionner une catégorie --</option>
-                  <!-- boucle pour afficher les catégories enregistrées en base de données -->
+                  <!-- Loop to display the categories stored in the database -->
                   <?php foreach ($categories as $category) : ?>
                     <option value="<?= $category->getIdCategory(); ?>"><?= $category->getName(); ?></option>
                   <?php endforeach; ?>

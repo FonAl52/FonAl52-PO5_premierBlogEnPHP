@@ -20,7 +20,7 @@ class CommentManager extends Model
     {
 
         if (!($comment instanceof Comment)) {
-            // Retourner une erreur ou une exception
+            // Return an error or an exception
             return false;
         }
 
@@ -34,10 +34,9 @@ class CommentManager extends Model
         $req = self::$bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id desc');
         $req->execute();
 
-        //on crée la variable data qui
-        //va cobntenir les données
+        // Create the variable data that will hold the data
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
-            // var contiendra les données sous forme d'objets
+            // var will hold the data in the form of objectss
             $var[] = new $obj($data);
         }
 
@@ -70,7 +69,7 @@ class CommentManager extends Model
         $req->execute([$postId]);
 
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
-            // Conversion des dates au format français
+            // Conversion of dates to French format
             $data['createdAt'] = date('d/m/Y à H:i:s', strtotime($data['createdAt']));
             $data['updatedAt'] = date('d/m/Y à H:i:s', strtotime($data['updatedAt']));
 
@@ -94,7 +93,7 @@ class CommentManager extends Model
         $req->closeCursor();
         return true;
     }
-    
+
     public function commentValidation($commentId, $options)
     {
         $this->getBdd();
@@ -105,7 +104,7 @@ class CommentManager extends Model
             $values[] = $value;
         }
 
-        $values[] = $commentId; // Ajoute le userId à la fin du tableau des valeurs
+        $values[] = $commentId;
 
         $req = self::$bdd->prepare("UPDATE comment SET " . implode(", ", $set) . " WHERE id = ?");
         $req->execute($values);

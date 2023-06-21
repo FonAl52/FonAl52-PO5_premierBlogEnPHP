@@ -6,142 +6,141 @@
 class User
 {
 
-  private $id;
-  private $firstName;
-  private $lastName;
-  private $email;
-  private $age;
-  private $password;
-  private $phone;
-  private $picture;
-  private $role;
+    private $id;
+    private $firstName;
+    private $lastName;
+    private $email;
+    private $age;
+    private $password;
+    private $phone;
+    private $picture;
+    private $role;
 
 
-  public function __construct(array $data)
-  {
-    $this->hydrate($data);
-  }
-
-  //hdratation
-  public function hydrate(array $data)
-  {
-    foreach ($data as $key => $value) {
-      $method = 'set' . ucfirst($key);
-      if (method_exists($this, $method)) {
-        $this->$method($value);
-      }
+    public function __construct(array $data)
+    {
+        $this->hydrate($data);
     }
-  }
 
-
-  //setters
-
-  public function setId($id)
-  {
-    $id = (int) $id;
-    if ($id > 0) {
-      $this->id = $id;
+    //hdratation
+    public function hydrate(array $data)
+    {
+        foreach ($data as $key => $value) {
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
     }
-    return $this->id;
-  }
 
-  public function setFirstName($firstName)
-  {
-    if (is_string($firstName)) {
-      $this->firstName = $firstName;
+
+    //setters
+    public function setId($id)
+    {
+        $id = (int) $id;
+        if ($id > 0) {
+            $this->id = $id;
+        }
+        return $this->id;
     }
-  }
 
-  public function setLastName($lastName)
-  {
-    if (is_string($lastName)) {
-      $this->lastName = $lastName;
+    public function setFirstName($firstName)
+    {
+        if (is_string($firstName)) {
+            $this->firstName = $firstName;
+        }
     }
-  }
 
-  public function setEmail($email)
-  {
-    if (is_string($email)) {
-      $this->email = $email;
+    public function setLastName($lastName)
+    {
+        if (is_string($lastName)) {
+            $this->lastName = $lastName;
+        }
     }
-  }
 
-  public function setAge($age)
-  {
-    $age = (int) $age;
-    if ($age > 0) {
-      $this->age = $age;
+    public function setEmail($email)
+    {
+        if (is_string($email)) {
+            $this->email = $email;
+        }
     }
-  }
 
-  public function setPassword($password)
-  {
-    if (is_string($password)) {
-      $this->password = $password;
+    public function setAge($age)
+    {
+        $age = (int) $age;
+        if ($age > 0) {
+            $this->age = $age;
+        }
     }
-  }
 
-  public function setPhone($phone)
-  {
-    $phone = (int) $phone;
-    if ($phone > 0) {
-      $this->phone = $phone;
+    public function setPassword($password)
+    {
+        if (is_string($password)) {
+            $this->password = $password;
+        }
     }
-  }
 
-  public function setPicture($picture)
-  {
-    $this->picture = $picture;
-  }
+    public function setPhone($phone)
+    {
+        $phone = (int) $phone;
+        if ($phone > 0) {
+            $this->phone = $phone;
+        }
+    }
 
-  public function setRole($role)
-  {
-    $this->role = $role;
-  }
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
 
-  //getters
-  public function getId()
-  {
-    return $this->id;
-  }
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
 
-  public function getFirstName()
-  {
-    return $this->firstName;
-  }
+    //getters
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  public function getLastName()
-  {
-    return $this->lastName;
-  }
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
 
-  public function getEmail()
-  {
-    return $this->email;
-  }
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
 
-  public function getAge()
-  {
-    return $this->age;
-  }
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-  public function getPassword()
-  {
-    return $this->password;
-  }
+    public function getAge()
+    {
+        return $this->age;
+    }
 
-  public function getPhone()
-  {
-    return $this->phone;
-  }
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
-  public function getPicture() 
-  {
-    return $this->picture;
-  }
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 
-  public function getRole()
-  {
-    return $this->role;
-  }
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
 }

@@ -107,9 +107,6 @@ class ControllerAdmin
             'role' => 3
         );
 
-        // Ajout du code pour afficher les messages d'erreur et de réussite
-        session_start();
-
         try {
             $this->userManager->updateUserRole($userId, $updateRole);
             $_SESSION['success_message'] = "L'utilisateur a été bloqué avec succès.";
@@ -117,7 +114,6 @@ class ControllerAdmin
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour de l'utilisateur.";
         }
 
-        // Redirection vers la vue
         header('Location: admin&managementUsers');
     }
 
@@ -130,9 +126,6 @@ class ControllerAdmin
         $updateRole = array(
             'role' => 0
         );
-
-        // Ajout du code pour afficher les messages d'erreur et de réussite
-        session_start();
 
         try {
             $this->userManager->updateUserRole($userId, $updateRole);
@@ -156,7 +149,7 @@ class ControllerAdmin
         } catch (Exception $e) {
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression de l'utilisateur.";
         }
-        
+
         header('Location: admin&managementUsers');
     }
 
@@ -194,7 +187,7 @@ class ControllerAdmin
         } catch (Exception $e) {
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour de l'utilisateur.";
         }
-        
+
         header('Location: admin&managementUsers');
     }
 
@@ -218,7 +211,7 @@ class ControllerAdmin
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression de l'article.";
         }
 
-        
+
         header('Location: admin&managementPosts');
     }
 
@@ -238,7 +231,7 @@ class ControllerAdmin
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour du commentaire.";
         }
 
-        
+
         header('Location: admin&managementComments');
     }
 
@@ -257,7 +250,7 @@ class ControllerAdmin
         } catch (Exception $e) {
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour du commentaire.";
         }
-        
+
         header('Location: admin&managementComments');
     }
 
@@ -273,7 +266,7 @@ class ControllerAdmin
         } catch (Exception $e) {
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression du commentaire.";
         }
-        
+
         header('Location: admin&managementComments');
     }
 }

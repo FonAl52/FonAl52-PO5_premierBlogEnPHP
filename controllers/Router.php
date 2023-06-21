@@ -3,47 +3,49 @@ session_start();
 require_once 'views/View.php';
 
 /**
- *
+ * Router class responsible for routing requests.
  */
 class Router
 {
     private $ctrl;
     private $view;
 
+    /**
+     * Routes the request.
+     */
     public function routeReq()
     {
 
         try {
 
-            //chargement automatique des classes du dossier models
+            // Automatic loading of classes from the models folder
             spl_autoload_register(function ($class) {
                 require_once('models/' . $class . '.php');
             });
 
-            //on crée une variable $url
+            // Create a variable $url
             $url = '';
 
-            //on va determiner le controleur en
-            //fonction de la valeur de cette variable
+            // Determine the controller based on the value of this variable
             if (isset($_GET['url'])) {
-                //on décompose l'url et on lui applique un filtre
+                // Split and filter the URL
                 $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
 
-                //on recupere le premier parametre de url
-                //on le met tout en miniscule
-                //on met sa premiere lettre en majuscule
+                // Get the first parameter from the URL
+                // Convert it to lowercase
+                // Capitalize the first letter
                 $controller = ucfirst(strtolower($url[0]));
 
                 $controllerClass = "Controller" . $controller;
 
-                //on retrouve le chemin du controleur voulu
+                // Find the path of the desired controller
                 $controllerFile = "controllers/" . $controllerClass . ".php";
 
-                //on check si le fichier du controleur existe
+                // Check if the controller file exists
                 if (file_exists($controllerFile)) {
-                    //on lance la classe en question
-                    //avec tous les parametres url
-                    //pour respecter l'encapsulation
+                    // Launch the respective class
+                    // with all URL parameters
+                    // to respect encapsulation
                     require_once($controllerFile);
                     $this->ctrl = new $controllerClass($url);
                 } else {

@@ -6,7 +6,7 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-0"></div>
                         <div class="col-lg-4 col-md-12">
-                                <div class="alert-info" role="alert"><?php echo $errors['errors'] ?></div>
+                            <div class="alert-info" role="alert"><?php echo $errors['errors'] ?></div>
                         </div>
                     </div>
                 <?php } ?>
@@ -68,10 +68,10 @@
                                             <div class="col-sm-12">
                                                 <label class="form-label" for="email">Email:</label>
                                                 <input type="email" class="form-control" id="email" name="email" value="<?php echo $_SESSION['email']; ?>" required>
-                                            <div class="col-sm-12 center-text">
-                                                <button class="submit-btn" type="submit"><b>Enregistrer</b></button>
+                                                <div class="col-sm-12 center-text">
+                                                    <button class="submit-btn" type="submit"><b>Enregistrer</b></button>
+                                                </div>
                                             </div>
-                                        </div>
                                     </form>
                                 </div>
                             <?php

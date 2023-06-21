@@ -1,6 +1,6 @@
 <section id="single-post" class="blog-area section">
   <div class="container">
-  <div class="single-post post-style-2">
+    <div class="single-post post-style-2">
       <div class="post-row">
         <?php
         if (isset($_SESSION['message'])) {
@@ -141,7 +141,7 @@
         </div>
       <?php endforeach; ?>
     </div><!-- container -->
-    
+
     <?php if (isset($_SESSION['id'])) { ?>
       <form class="comment-form" action="comment&create" method="POST">
         <input type="hidden" name="postId" value="<?= $post[0]->getId() ?>">
