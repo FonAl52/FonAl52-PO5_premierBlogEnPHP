@@ -13,6 +13,15 @@ class ControllerAdmin
         if (isset($_GET['management'])) {
             $this->management();
         }
+        if (isset($_GET['managementUsers'])) {
+            $this->managementUsers();
+        }
+        if (isset($_GET['managementPosts'])) {
+            $this->managementPosts();
+        }
+        if (isset($_GET['managementComments'])) {
+            $this->managementComments();
+        }
         if (isset($_GET['userLock'])) {
             $this->userLock();
         }
@@ -39,13 +48,18 @@ class ControllerAdmin
         }
         if (isset($_GET['commentDelete'])) {
             $this->commentDelete();
-        } 
-        else {
+        } else {
             throw new \Exception("Page Introuvable");
         }
     }
 
     public function management()
+    {
+        $this->view = new View('Management');
+        $this->view->generatePost(array());
+    }
+
+    public function managementUsers()
     {
         $this->userManager = new UserManager;
         $users = $this->userManager->getAllUsers();
@@ -54,7 +68,33 @@ class ControllerAdmin
         $this->commentManager = new CommentManager;
         $comments = $this->commentManager->getAll('comment');
 
-        $this->view = new View('Management');
+        $this->view = new View('ManagementUsers');
+        $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
+    }
+
+    public function managementPosts()
+    {
+        $this->userManager = new UserManager;
+        $users = $this->userManager->getAllUsers();
+        $this->postManager = new PostManager;
+        $posts = $this->postManager->getAll('post');
+        $this->commentManager = new CommentManager;
+        $comments = $this->commentManager->getAll('comment');
+
+        $this->view = new View('ManagementPosts');
+        $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
+    }
+
+    public function managementComments()
+    {
+        $this->userManager = new UserManager;
+        $users = $this->userManager->getAllUsers();
+        $this->postManager = new PostManager;
+        $posts = $this->postManager->getAll('post');
+        $this->commentManager = new CommentManager;
+        $comments = $this->commentManager->getAll('comment');
+
+        $this->view = new View('ManagementComments');
         $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
     }
 
@@ -67,9 +107,20 @@ class ControllerAdmin
             'role' => 3
         );
 
-        $this->userManager->updateUserRole($userId, $updateRole);
-        header('Location: admin&management');
+        // Ajout du code pour afficher les messages d'erreur et de réussite
+        session_start();
+
+        try {
+            $this->userManager->updateUserRole($userId, $updateRole);
+            $_SESSION['success_message'] = "L'utilisateur a été bloqué avec succès.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour de l'utilisateur.";
+        }
+
+        // Redirection vers la vue
+        header('Location: admin&managementUsers');
     }
+
 
     public function userUnlock()
     {
@@ -80,8 +131,17 @@ class ControllerAdmin
             'role' => 0
         );
 
-        $this->userManager->updateUserRole($userId, $updateRole);
-        header('Location: admin&management');
+        // Ajout du code pour afficher les messages d'erreur et de réussite
+        session_start();
+
+        try {
+            $this->userManager->updateUserRole($userId, $updateRole);
+            $_SESSION['success_message'] = "L'utilisateur a été débloqué avec succès.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour de l'utilisateur.";
+        }
+
+        header('Location: admin&managementUsers');
     }
 
     public function userDelete()
@@ -89,8 +149,15 @@ class ControllerAdmin
         $this->userManager = new UserManager;
 
         $userId = $_GET['id'];
-        $this->userManager->deleteUser($userId);
-        header('Location: admin&management');
+
+        try {
+            $this->userManager->deleteUser($userId);
+            $_SESSION['success_message'] = "L'utilisateur a été supprimer avec succès.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression de l'utilisateur.";
+        }
+        
+        header('Location: admin&managementUsers');
     }
 
     public function userAdmin()
@@ -102,8 +169,14 @@ class ControllerAdmin
             'role' => 1
         );
 
-        $this->userManager->updateUserRole($userId, $updateRole);
-        header('Location: admin&management');
+        try {
+            $this->userManager->updateUserRole($userId, $updateRole);
+            $_SESSION['success_message'] = "L'utilisateur est maintenant un administrateur.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour de l'utilisateur.";
+        }
+
+        header('Location: admin&managementUsers');
     }
 
     public function userNorole()
@@ -115,8 +188,14 @@ class ControllerAdmin
             'role' => 0
         );
 
-        $this->userManager->updateUserRole($userId, $updateRole);
-        header('Location: admin&management');
+        try {
+            $this->userManager->updateUserRole($userId, $updateRole);
+            $_SESSION['success_message'] = "L'utilisateur n'est plus un administrateur.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour de l'utilisateur.";
+        }
+        
+        header('Location: admin&managementUsers');
     }
 
     public function postDelete()
@@ -132,8 +211,15 @@ class ControllerAdmin
             unlink($fileName);
         }
 
-        $this->postManager->deletePost($postId);
-        header('Location: admin&management');
+        try {
+            $this->postManager->deletePost($postId);
+            $_SESSION['success_message'] = "L'article à été supprimé.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression de l'article.";
+        }
+
+        
+        header('Location: admin&managementPosts');
     }
 
     public function commentValidate()
@@ -145,8 +231,15 @@ class ControllerAdmin
             'validated' => 1
         );
 
-        $this->commentManager->commentValidation($commentId, $validation);
-        header('Location: admin&management');
+        try {
+            $this->commentManager->commentValidation($commentId, $validation);
+            $_SESSION['success_message'] = "Le commentaire à été validé.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour du commentaire.";
+        }
+
+        
+        header('Location: admin&managementComments');
     }
 
     public function commentUnvalidate()
@@ -156,10 +249,16 @@ class ControllerAdmin
         $commentId = $_GET['id'];
         $validation = array(
             'validated' => 0
-        ); 
+        );
 
-        $this->commentManager->commentValidation($commentId, $validation);
-        header('Location: admin&management');
+        try {
+            $this->commentManager->commentValidation($commentId, $validation);
+            $_SESSION['success_message'] = "Le commentaire n'est plus validé.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour du commentaire.";
+        }
+        
+        header('Location: admin&managementComments');
     }
 
     public function commentDelete()
@@ -168,8 +267,13 @@ class ControllerAdmin
 
         $commentId = $_GET['id'];
 
-        $this->commentManager->deleteComment($commentId);
-        header('Location: admin&management');
+        try {
+            $this->commentManager->deleteComment($commentId);
+            $_SESSION['success_message'] = "Le commentaire à été supprimé.";
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression du commentaire.";
+        }
+        
+        header('Location: admin&managementComments');
     }
-
 }
