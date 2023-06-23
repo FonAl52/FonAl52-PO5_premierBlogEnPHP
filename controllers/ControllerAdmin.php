@@ -211,7 +211,6 @@ class ControllerAdmin
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la suppression de l'article.";
         }
 
-
         header('Location: admin&managementPosts');
     }
 
