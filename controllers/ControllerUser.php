@@ -96,10 +96,10 @@ class ControllerUser
                 $_SESSION['message'] = "Votre compte a été créé avec succès !";
                 header('location:user&connect');
             } else {
-                $_SESSION['error'] = "Une erreur est survenue lors de la création de votre compte. Veuillez réessayer ultérieurement.";
+                $_SESSION['message'] = "Une erreur est survenue lors de la création de votre compte. Veuillez réessayer ultérieurement.";
             }
         } else {
-            $_SESSION['error'] = "Des erreurs ont été détectées dans le formulaire. Veuillez les corriger et réessayer.";
+            $_SESSION['message'] = "Des erreurs ont été détectées dans le formulaire. Veuillez les corriger et réessayer.";
         }
 
         // If the data is invalid or the user creation has failed, display the registration form with the errors
@@ -200,10 +200,10 @@ class ControllerUser
                 $_SESSION['message'] = "Votre mot de passe a été mis à jour avec succès !";
                 header('location:user&connect');
             } else {
-                $_SESSION['error'] = "Une erreur est survenue lors de la modification de votre mot de passe. Veuillez réessayer ultérieurement.";
+                $_SESSION['message'] = "Une erreur est survenue lors de la modification de votre mot de passe. Veuillez réessayer ultérieurement.";
             }
         } else {
-            $_SESSION['error'] = "Des erreurs ont été détectées dans le formulaire. Veuillez les corriger et réessayer.";
+            $_SESSION['message'] = "Des erreurs ont été détectées dans le formulaire. Veuillez les corriger et réessayer.";
         }
 
         // If the data is not valid or if the update fails, display the modification form with the errors.
@@ -253,6 +253,7 @@ class ControllerUser
             }
             // Update the last name in the session
             $_SESSION['lastName'] = $newFields['lastName'];
+            $_SESSION['message'] = "Profile mis à jour avec succès";
         }
 
         header('location:user&profile');
@@ -287,6 +288,7 @@ class ControllerUser
             }
             // Update the firstname in the session
             $_SESSION['firstName'] = $newFields['firstName'];
+            $_SESSION['message'] = "Profile mis à jour avec succès";
         }
 
         header('location:user&profile');
@@ -327,8 +329,10 @@ class ControllerUser
             } else {
                 // Update email in the session
                 $_SESSION['email'] = $newFields['email'];
-            }
+                $_SESSION['message'] = "Profile mis à jour avec succès";
         }
+        }
+
         header('location:user&profile');
     }
 
@@ -365,6 +369,7 @@ class ControllerUser
             // Update user in database with new picture profile path
             $user = $this->userManager->getUserById($userId);
             $updateOptions = array('picture' => $picturePath);
+            
 
             // Delete old picture profile if there is
             if (!empty($user['picture'])) {
@@ -374,6 +379,7 @@ class ControllerUser
             if ($this->userManager->updateUser($user, $updateOptions)) {
                 // Update session to show new picture
                 $_SESSION['picture'] = $picturePath;
+                $_SESSION['message'] = "Profile mis à jour avec succès";
                 header('location:user&profile');
             } else {
                 $errors['errors'] = "Erreur lors de la mise à jour du chemin de l'image de profil dans la base de données";

@@ -2,12 +2,16 @@
   <div class="container">
     <div class="single-post post-style-2">
       <div class="post-row">
-        <?php
-        if (isset($_SESSION['message'])) {
-          echo '<div class="success-message">' . $_SESSION['message'] . '</div>';
-          unset($_SESSION['message']);
-        }
-        ?>
+        <?php if (isset($_SESSION['message'])) { ?>
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="comment-form">
+                <div class="alert-info" role="alert"><?php echo $_SESSION['message'] ?> </div>
+              </div>
+            </div>
+          </div>
+        <?php }
+        unset($_SESSION['message']); ?>
       </div>
     </div>
     <div class="col-lg-12 col-md-12">
@@ -47,13 +51,16 @@
           </ul>
           <?php
           $authorName = 'Unknown';
-          $authorImage = 'public/images/userProfilePicturePlaceholder.jpg';
 
           foreach ($users as $user) {
 
             if ($user->getId() == $post[0]->getUserId()) {
               $authorName = $user->getFirstName() . ' ' . $user->getLastName();
-              $authorImage = $user->getPicture();
+              if ($user->getPicture() != NULL ){
+                $authorImage = $user->getPicture();
+              } else {
+                $authorImage = './public/images/userProfilePicturePlaceholder.jpg';
+              }
               break;
             }
           }
@@ -113,13 +120,16 @@
       <?php foreach ($comments as $comment) : ?>
         <?php
         $commentAuthorName = 'Unknown';
-        $commentAuthorImage = '/public/images/userProfilePicturePlaceholder.jpg';
 
         foreach ($users as $user) {
 
           if ($user->getId() == $comment->getUserId()) {
             $commentAuthorName = $user->getFirstName() . ' ' . $user->getLastName();
-            $commentAuthorImage = $user->getPicture();
+            if ($user->getPicture() != NULL ){
+              $commentAuthorImage = $user->getPicture();
+            } else {
+              $commentAuthorImage = './public/images/userProfilePicturePlaceholder.jpg';
+            }
             break;
           }
         }

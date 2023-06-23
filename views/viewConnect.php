@@ -2,14 +2,13 @@
 	<div class="container">
 		<?php if (isset($_SESSION['message'])) { ?>
 			<div class="row">
-				<div class="col-lg-4 col-md-0"></div>
-				<div class="col-lg-4 col-md-12">
+				<div class="col-lg-12 col-md-12">
 					<div class="comment-form">
 						<div class="alert-info" role="alert"><?php echo $_SESSION['message'] ?> </div>
 					</div>
 				</div>
 			</div>
-		<?php } ?>
+		<?php } unset($_SESSION['message']); ?>
 		<div class="row">
 			<div class="col-lg-3 col-md-0"></div>
 			<div class="col-lg-6 col-md-12">

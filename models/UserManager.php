@@ -82,7 +82,7 @@ class UserManager extends Model
     public function getUserById($userId)
     {
         $this->getBdd();
-        $req = self::$bdd->prepare('SELECT firstName, lastName, email, age, phone, picture, role FROM user WHERE id = ?');
+        $req = self::$bdd->prepare('SELECT id, firstName, lastName, email, age, phone, picture, role FROM user WHERE id = ?');
         $req->execute(array($userId));
         $user = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -98,11 +98,10 @@ class UserManager extends Model
             $set[] = "$key = ?";
             $values[] = $value;
         }
-
         $values[] = $user['id'];
     
         $req = self::$bdd->prepare("UPDATE user SET " . implode(", ", $set) . " WHERE id = ?");
-    
+
         $req->execute($values);
         return $req->rowCount() > 0;
     }

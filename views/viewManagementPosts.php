@@ -1,14 +1,26 @@
 <section id="notifications">
 	<?php if (isset($_SESSION['error_message'])) : ?>
-		<div class="alert alert-danger">
-			<?php echo $_SESSION['error_message']; ?>
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<div class="comment-form">
+					<div class="alert alert-danger">
+						<?php echo $_SESSION['error_message']; ?>
+					</div>
+				</div>
+			</div>
 		</div>
 		<?php unset($_SESSION['error_message']); ?>
 	<?php endif; ?>
 
 	<?php if (isset($_SESSION['success_message'])) : ?>
-		<div class="alert alert-success">
-			<?php echo $_SESSION['success_message']; ?>
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<div class="comment-form">
+					<div class="alert alert-success">
+						<?php echo $_SESSION['success_message']; ?>
+					</div>
+				</div>
+			</div>
 		</div>
 		<?php unset($_SESSION['success_message']); ?>
 	<?php endif; ?>

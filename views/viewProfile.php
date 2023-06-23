@@ -1,17 +1,14 @@
 <section class="profile-section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <?php if (!empty($errors['errors'])) { ?>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-0"></div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="alert-info" role="alert"><?php echo $errors['errors'] ?></div>
-                        </div>
-                    </div>
-                <?php } ?>
-            </div>
-        </div>
+        <?php if (isset($_SESSION['message'])) { ?>
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<div class="comment-form">
+						<div class="alert-info" role="alert"><?php echo $_SESSION['message'] ?> </div>
+					</div>
+				</div>
+			</div>
+		<?php } unset($_SESSION['message']); ?>
         <div class="row">
             <div class="col-lg-2 col-md-0"></div>
             <div class="col-lg-8 col-md-12">
