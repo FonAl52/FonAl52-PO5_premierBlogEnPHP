@@ -27,7 +27,11 @@ class ControllerPost
             $this->addPost();
         } elseif (isset($_GET['viewAll'])) {
             $this->viewAll();
-        } elseif (isset($_GET['id'])) {
+        } elseif (isset($_GET['editPost'])) {
+            $this->update();
+        } elseif (isset($_GET['update'])) {
+            $this->updatePost();
+        } elseif (isset($_GET['id']) && (isset($_GET['id']))) {
             $this->viewOne();
         } else {
             $this->home();
@@ -180,5 +184,105 @@ class ControllerPost
             $this->view = new View('SinglePost');
             $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
         }
+    }
+
+    private function update()
+    {
+        if (isset($_GET['id'], $_GET['id'])) {
+            $this->postManager = new PostManager;
+            $this->userManager = new UserManager;
+            $this->commentManager = new CommentManager;
+            $postId = $_GET['id'];
+
+            $post = $this->postManager->getPost($_GET['id']);
+            $categories = $this->categoryId();
+
+            $users = $this->getAllUsers();
+
+            $comments =  $this->commentManager->getCommentsByPostId($postId);
+
+            $this->view = new View('updatePost');
+
+            $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
+        }
+    }
+
+    private function updatePost()
+    {
+        $this->postManager = new PostManager;
+        $this->userManager = new UserManager;
+        $this->commentManager = new CommentManager;
+        $postId = $_GET['id'];
+
+        $post = $this->postManager->getPost($_GET['id']);
+        $categories = $this->categoryId();
+
+        $users = $this->getAllUsers();
+
+        $comments =  $this->commentManager->getCommentsByPostId($postId);
+        $newFields = array_map('htmlspecialchars', $_POST);
+        $picturePath = '';
+        // Validate submitted data
+        $errors = [];
+        if (empty($newFields['title'])) {
+            $errors['title'] = "Le titre est obligatoire";
+        }
+        if (empty($newFields['chapo'])) {
+            $errors['chapo'] = "Le chapo est obligatoire";
+        }
+        if (empty($_FILES['picture']['name'])) {
+            $errors['picture'] = "Choisissez une photo pour votre article";
+        } else {
+            // Check if the file is a valid image
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (in_array($_FILES['picture']['type'], $allowedTypes)) {
+                // Check the file size
+                $maxFileSize = 2097152; // 2 Mo
+                if ($_FILES['picture']['size'] > $maxFileSize) {
+                    $errors['picture'] = 'La taille du fichier dépasse la limite autorisée.';
+                } else {
+                    // Generate a new unique file name to avoid naming conflicts
+                    $fileName = uniqid('', true) . '.' . pathinfo($_FILES['picture']['name'], PATHINFO_EXTENSION);
+
+                    // Move the uploaded file to the public/images/posts folder with the new file name
+                    $destination = 'public/images/posts/' . $fileName;
+                    if (move_uploaded_file($_FILES['picture']['tmp_name'], $destination)) {
+                        $picturePath = $destination;
+                    } else {
+                        $errors['picture'] = "Erreur lors de l'upload de l'image";
+                    }
+                }
+            } else {
+                $errors['picture'] = "Le fichier téléchargé n'est pas une image valide";
+            }
+        }
+        if (empty($newFields['content'])) {
+            $errors['content'] = "Le contenu de l'article ne peut pas être vide";
+        }
+        if (empty($newFields['categoryId'])) {
+            $errors['categoryId'] = "Merci de choisir une catégorie d'article";
+        }
+        // If the data is valid, create a new article and add it to the database
+        if (empty($errors)) {
+            $updatepost = array(
+                'title' => $newFields['title'],
+                'chapo' => $newFields['chapo'],
+                'picture' => $picturePath,
+                'content' => $newFields['content'],
+                'categoryId' => $newFields['categoryId']
+            );
+
+            if ($this->postManager->updatePost($postId, $updatepost)) {
+                $_SESSION['message'] = "Votre article a été modifier avec succès !";
+                header('location:post&home');
+            } else {
+                $errors['errors'] = "Une erreur est survenue lors de la modification de votre article. Veuillez réessayer ultérieurement.";
+            }
+        } else {
+            $errors['errors'] = "Des erreurs ont été détectées dans le formulaire. Veuillez les corriger et réessayer.";
+        }
+
+        $this->view = new View('SinglePost');
+        $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
     }
 }

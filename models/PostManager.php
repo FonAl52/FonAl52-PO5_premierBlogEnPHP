@@ -76,6 +76,25 @@ class PostManager extends Model
         return $data;
     }
 
+    public function updatePost($postId, $options)
+{
+    $this->getBdd();
+        $set = [];
+        $values = [];
+        
+        foreach ($options as $key => $value) {
+            $set[] = "$key = ?";
+            $values[] = $value;
+        }
+        $values[] = $postId;
+        $req = self::$bdd->prepare("UPDATE post SET " . implode(", ", $set) . " WHERE id = ?");
+        
+        $req->execute($values);
+        return $req->rowCount() > 0;
+}
+
+
+
     public function deletePost($postId)
     {
         $this->getBdd();
