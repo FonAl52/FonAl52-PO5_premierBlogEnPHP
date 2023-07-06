@@ -11,7 +11,6 @@
 		</div>
 		<?php unset($_SESSION['error_message']); ?>
 	<?php endif; ?>
-
 	<?php if (isset($_SESSION['success_message'])) : ?>
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
@@ -56,8 +55,6 @@
 				<section id="comments-section">
 					<!-- Affichage des commentaires -->
 					<div class="row">
-						<!-- Affichage du post -->
-
 						<!-- Affichage des commentaires -->
 						<?php foreach ($comments as $comment) : ?>
 							<?php
@@ -67,23 +64,19 @@
 									$postTitle = $post['title'];
 								}
 							}
-
 							foreach ($users as $user) {
-
 								if ($user->getId() == $comment->getUserId()) {
 									$commentAuthorName = $user->getFirstName() . ' ' . $user->getLastName();
-									if ($user->getPicture() != NULL ){
+									if ($user->getPicture() != NULL) {
 										$commentAuthorImage = $user->getPicture();
 									} else {
 										$commentAuthorImage = './public/images/userProfilePicturePlaceholder.jpg';
 									}
-									
+
 									break;
 								}
 							}
-
 							?>
-
 							<div class="col-lg-4 col-md-6">
 								<div class="comment-row single-post post-style-2">
 									<h4 class="title"><b><?= $postTitle ?></b></h4>
@@ -98,7 +91,6 @@
 										<?php else : ?>
 											<li>Date de mise en ligne : <?= $comment->getCreatedAt() ?></li>
 										<?php endif; ?>
-
 									</ul>
 								</div>
 								<div class="managment-action comments">

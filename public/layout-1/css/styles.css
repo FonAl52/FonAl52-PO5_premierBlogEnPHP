@@ -42,7 +42,7 @@ button:focus, button:active, button:hover{ text-decoration: none; color: #498BF9
 
 b{ font-weight: 500; }
 
-img{ width: 100%; }
+img{ height: 100%; object-fit: cover;}
 
 li{ list-style: none; display: inline-block; }
 

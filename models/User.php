@@ -16,7 +16,6 @@ class User
     private $picture;
     private $role;
 
-
     public function __construct(array $data)
     {
         $this->hydrate($data);
@@ -32,7 +31,6 @@ class User
             }
         }
     }
-
 
     //setters
     public function setId($id)

@@ -24,7 +24,7 @@
 		<div class="container-fluid position-relative no-side-padding">
 			<a href="post&home" class="logo"><img src="public/images/logo.png" alt="Logo Image"></a>
 			<ul class="main-menu visible-on-click">
-				<?php if (isset($_SESSION['id'])) { ?>
+				<?php if (isset($_SESSION['id']) && $_SESSION['role'] != 3) { ?>
 					<li><a href="user&disconnect">Se déconnecter</a></li>
 					<?php if (($_SESSION['role']) == 1) { ?>
 						<li><a href="post&newPost">Nouvel article</a></li>
@@ -47,11 +47,10 @@
 						<a class="logo" href="#"><img src="public/images/logo.png" alt="Logo Image"></a>
 						<p class="copyright">AllanFontaine @ <?= date("Y") ?> All rights reserved</p>
 						<ul class="icons">
-							<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
-							<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
-							<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
-							<li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
-							<li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+							<li><a href="https://github.com/FonAl52" target="blank"><i class="ion-social-github-outline"></i></a></li>
+							<li><a href="#" target="blank"><i class="ion-social-instagram-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-youtube-outline" target="blank"></i></a></li>
+							<li><a href="#"><i class="ion-social-twitch-outline" target="blank"></i></a></li>
 						</ul>
 					</div>
 				</div>
@@ -60,7 +59,7 @@
 						<h4 class="title"><b>CATÉGORIES</b></h4>
 						<ul>
 							<li><a href="service&contact">CONTACT</a></li>
-							<li><a href="https://github.com/zakariaeddouh">GITHUB</a></li>
+							<li><a href="https://github.com/FonAl52">GITHUB</a></li>
 							<li><a href="#">MENTION LÉGALE</a></li>
 						</ul>
 						<ul>

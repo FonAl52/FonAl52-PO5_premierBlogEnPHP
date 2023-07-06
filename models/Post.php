@@ -5,7 +5,6 @@
  */
 class Post
 {
-
     private $id;
     private $categoryId;
     private $userId;
@@ -15,7 +14,6 @@ class Post
     private $content;
     private $createdAt;
     private $updatedAt;
-
 
     public function __construct(array $data)
     {
@@ -34,7 +32,6 @@ class Post
     }
 
     //setters
-
     public function setId($id)
     {
         $id = (int) $id;
@@ -42,6 +39,7 @@ class Post
             $this->id = $id;
         }
     }
+
     public function setCategoryId($categoryId)
     {
         $categoryId = (int) $categoryId;
@@ -49,6 +47,7 @@ class Post
             $this->categoryId = $categoryId;
         }
     }
+
     public function setUserId($userId)
     {
         $userId = (int) $userId;
@@ -89,6 +88,7 @@ class Post
     {
         $this->createdAt = $createdAt;
     }
+
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;

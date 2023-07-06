@@ -33,7 +33,6 @@ class CommentManager extends Model
         $var = [];
         $req = self::$bdd->prepare('SELECT * FROM ' . $table . ' ORDER BY id desc');
         $req->execute();
-
         // Create the variable data that will hold the data
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             // var will hold the data in the form of objectss

@@ -1,6 +1,6 @@
 .profile-section {
-    width: 120vw;
-    min-height: 80vh;
+    width: 90vw;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,6 +11,7 @@
 }
 
 .profile-section .info-row {
+    width: 100%;
     font-size: 20px;
     color: #ffffff;
 }
@@ -35,6 +36,8 @@
     border: 15px solid #faff2d;
     border-radius: 250px;
     overflow: hidden;
+    width: 400px;
+    height: 400px;
 }
 
 .profile-picture:hover .edit-profile-icon {
@@ -80,7 +83,6 @@
     padding: 2%;
     padding-left: 11%;
 }
-
 
 .info-row:hover .edit-icon {
     display: inline-block;
@@ -143,11 +145,12 @@
     background-color: #1e1c1c;
     margin: 1%;
 }
-.nav-link:hover{
+
+.nav-link:hover {
     opacity: .8;
 }
 
-#admin{
+#admin {
     padding: 0;
 }
 
@@ -156,80 +159,86 @@
     padding: 10%;
 }
 
-body footer{
+body footer {
     margin-top: 0;
     padding: 5% 0;
 }
 
-body #single-post{
+body #single-post {
     background-color: #ffffff;
 }
-#single-post .blog-image img{
+
+#single-post .blog-image img {
     border-top-right-radius: 225px;
 }
-.blog-area .single-post{
+
+.blog-area .single-post {
     box-shadow: none;
     border: none;
 }
-#single-post .comment-row{
+
+#single-post .comment-row {
     margin: 1%;
     background-color: #424242;
 }
-#single-post .comment-row p, #single-post .comment-row ul{
+
+#single-post .comment-row p,
+#single-post .comment-row ul {
     color: #ffffff;
 }
-.para{
+
+.para {
     padding: 1% 3%;
 }
 
-.managment-action{
+.managment-action {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
 
-.managment-action ul{
+.managment-action ul {
     width: 100%;
 }
 
-.managment-action li{
+.managment-action li {
     color: #ffffff;
     margin: 2%;
 }
 
 .admin-buttons {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-	flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .admin-buttons-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .admin-button {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-	margin-bottom: 20px;
-	width: 200px;
-	height: 200px;
-	text-decoration: none;
-	color: #ffffff;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    text-decoration: none;
+    color: #ffffff;
 }
 
 .admin-button i {
-	font-size: 48px;
-	margin-bottom: 10px;
+    font-size: 48px;
+    margin-bottom: 10px;
 }
 
 .admin-button span {
-	font-size: 16px;
-	font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }

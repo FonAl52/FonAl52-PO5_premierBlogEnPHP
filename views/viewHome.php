@@ -17,9 +17,7 @@
 							<?php
 							$authorName = 'Unknown';
 							$authorImage = 'public/images/default-avatar.jpg';
-
 							foreach ($users as $user) {
-
 								if ($user->getId() == $post['userId']) {
 									$authorName = $user->getFirstName() . ' ' . $user->getLastName();
 									$authorImage = $user->getPicture();

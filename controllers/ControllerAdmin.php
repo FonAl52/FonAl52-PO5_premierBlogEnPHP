@@ -117,7 +117,6 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
-
     public function userUnlock()
     {
         $this->userManager = new UserManager;

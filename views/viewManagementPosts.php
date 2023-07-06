@@ -11,7 +11,6 @@
 		</div>
 		<?php unset($_SESSION['error_message']); ?>
 	<?php endif; ?>
-
 	<?php if (isset($_SESSION['success_message'])) : ?>
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
@@ -59,16 +58,12 @@
 							<div class="col-lg-4 col-md-6">
 								<div class="card h-100">
 									<div class="single-post post-style-1">
-
 										<div class="blog-image"><img src="<?= $post['picture'] ?>" alt="Blog Image"></div>
-
 										<!-- User picture profile & name display -->
 										<?php
 										$authorName = 'Unknown';
 										$authorImage = 'public/images/userProfilePicturePlaceholder.jpg';
-
 										foreach ($users as $user) {
-
 											if ($user->getId() == $post['userId']) {
 												$authorName = $user->getFirstName() . ' ' . $user->getLastName();
 												$authorImage = $user->getPicture();
@@ -76,11 +71,8 @@
 											}
 										}
 										?>
-
 										<a class="avatar" href="#"><img src="<?= $authorImage ?>" alt="Profile Image"></a>
-
 										<div class="blog-info">
-
 											<ul class="post-header">
 												<?php if ($post['createdAt'] === $post['updatedAt']) : ?>
 													<li>Date de mise en ligne : <?= $post['createdAt'] ?></li>
@@ -88,11 +80,8 @@
 													<li>Dernière modification : <?= $post['updatedAt'] ?></li>
 												<?php endif; ?>
 											</ul>
-
 											<h4 class="title"><b><?= $post['title'] ?></b></h4>
-
 											<p class="para"><?= $post['chapo'] ?></p>
-
 											<!-- Category display -->
 											<?php
 											$categoryName = 'Unknown';
@@ -103,15 +92,13 @@
 												}
 											}
 											?>
-
 											<p><strong>Categorie:</strong> <?= $categoryName ?></p>
 											<p><strong>Auteur:</strong> <?= $authorName ?></p>
-
 										</div><!-- blog-info -->
 									</div><!-- single-post -->
 									<div class="managment-action posts">
 										<ul>
-											<li><a href="post&id=<?= $post['id'] ?>"><i class="fa-solid fa-pen"></i></a></li>
+											<li><a href="post&editPost&id=<?= $post['id'] ?>"><i class="fa-solid fa-pen"></i></a></li>
 											<li><a href="admin&postDelete&id=<?= $post['id'] ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet article ?')"><i class="fa-solid fa-trash"></i></a></li>
 										</ul>
 									</div>

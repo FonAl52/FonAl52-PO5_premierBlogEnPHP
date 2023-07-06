@@ -137,7 +137,6 @@ class ControllerUser
             $this->view->generate(array('errors' => $errors));
             return;
         }
-
         // Checking if the user exists in the database
         $user = $userManager->verifyPassword($email, $password);
         if (!$user) {
@@ -146,7 +145,13 @@ class ControllerUser
             $this->view->generate(array('errors' => $errors));
             return;
         }
+        // Check user role
+        if ($user['role'] == 3) {
+            $_SESSION['message'] = "Votre compte est verrouillé. Veuillez contacter l'administrateur.";
 
+            $this->view = new View('Connect');
+            $this->view->generate(array('errors' => $errors));
+        }
         // Redirect to homepage
         header('location:post&home');
     }
@@ -259,7 +264,6 @@ class ControllerUser
         header('location:user&profile');
     }
 
-
     private function editFirstName()
     {
         $this->userManager = new UserManager;
@@ -330,13 +334,11 @@ class ControllerUser
                 // Update email in the session
                 $_SESSION['email'] = $newFields['email'];
                 $_SESSION['message'] = "Profile mis à jour avec succès";
-        }
+            }
         }
 
         header('location:user&profile');
     }
-
-
 
     public function editProfilePicture()
     {
@@ -364,18 +366,14 @@ class ControllerUser
         } else {
             $errors['errors'] = "Le fichier n'a pas été téléchargé";
         }
-
         if (!empty($picturePath)) {
             // Update user in database with new picture profile path
             $user = $this->userManager->getUserById($userId);
             $updateOptions = array('picture' => $picturePath);
-            
-
             // Delete old picture profile if there is
             if (!empty($user['picture'])) {
                 unlink($user['picture']);
             }
-
             if ($this->userManager->updateUser($user, $updateOptions)) {
                 // Update session to show new picture
                 $_SESSION['picture'] = $picturePath;
@@ -385,7 +383,6 @@ class ControllerUser
                 $errors['errors'] = "Erreur lors de la mise à jour du chemin de l'image de profil dans la base de données";
             }
         }
-
         //Display errors
         if (!empty($errors)) {
             $this->view->generate(array('errors' => $errors));

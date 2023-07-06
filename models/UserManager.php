@@ -99,7 +99,7 @@ class UserManager extends Model
             $values[] = $value;
         }
         $values[] = $user['id'];
-    
+
         $req = self::$bdd->prepare("UPDATE user SET " . implode(", ", $set) . " WHERE id = ?");
 
         $req->execute($values);

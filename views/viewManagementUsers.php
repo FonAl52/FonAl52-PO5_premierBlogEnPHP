@@ -11,7 +11,6 @@
 		</div>
 		<?php unset($_SESSION['error_message']); ?>
 	<?php endif; ?>
-
 	<?php if (isset($_SESSION['success_message'])) : ?>
 		<div class="row">
 			<div class="col-lg-12 col-md-12">

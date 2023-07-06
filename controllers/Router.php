@@ -17,15 +17,12 @@ class Router
     {
 
         try {
-
             // Automatic loading of classes from the models folder
             spl_autoload_register(function ($class) {
                 require_once('models/' . $class . '.php');
             });
-
             // Create a variable $url
             $url = '';
-
             // Determine the controller based on the value of this variable
             if (isset($_GET['url'])) {
                 // Split and filter the URL
@@ -37,10 +34,8 @@ class Router
                 $controller = ucfirst(strtolower($url[0]));
 
                 $controllerClass = "Controller" . $controller;
-
                 // Find the path of the desired controller
                 $controllerFile = "controllers/" . $controllerClass . ".php";
-
                 // Check if the controller file exists
                 if (file_exists($controllerFile)) {
                     // Launch the respective class

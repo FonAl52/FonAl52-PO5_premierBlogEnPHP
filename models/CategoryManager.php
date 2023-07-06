@@ -5,7 +5,7 @@
  */
 class CategoryManager extends Model
 {
-
+    
     public function getCategories()
     {
         $this->getBdd();

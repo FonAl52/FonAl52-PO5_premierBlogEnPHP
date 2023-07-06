@@ -5,7 +5,7 @@
  */
 class Category
 {
-
+    
     private $idCategory;
     private $name;
 
@@ -26,7 +26,6 @@ class Category
     }
 
     //setters
-
     public function setIdCategory($idCategory)
     {
         $idCategory = (int) $idCategory;
