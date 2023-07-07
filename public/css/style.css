@@ -13,7 +13,7 @@
 .profile-section .info-row {
     width: 100%;
     font-size: 20px;
-    color: #ffffff;
+    color: #fff;
 }
 
 .profile-section .info-row .info-label {
@@ -80,8 +80,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 2%;
-    padding: 2%;
-    padding-left: 11%;
+    padding: 2% 2% 2% 11%;
 }
 
 .info-row:hover .edit-icon {
@@ -117,13 +116,13 @@
 }
 
 .comment-row {
-    padding: 2% !important;
+    padding: 2%;
 }
 
 #single-post .comment {
     display: flex;
-    width: 80% !important;
-    height: 70% !important;
+    width: 80%;
+    height: 70%;
     flex-direction: column;
     align-items: stretch;
 }
@@ -135,7 +134,7 @@
 .sidebar {
     position: relative;
     top: -20%;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    box-shadow: inset -1px 0 0 #1e1c1c;
     background-color: #faff2d;
 }
 
@@ -165,7 +164,7 @@ body footer {
 }
 
 body #single-post {
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 #single-post .blog-image img {
@@ -184,7 +183,7 @@ body #single-post {
 
 #single-post .comment-row p,
 #single-post .comment-row ul {
-    color: #ffffff;
+    color: #fff;
 }
 
 .para {
@@ -202,7 +201,7 @@ body #single-post {
 }
 
 .managment-action li {
-    color: #ffffff;
+    color: #fff;
     margin: 2%;
 }
 
@@ -230,7 +229,7 @@ body #single-post {
     width: 200px;
     height: 200px;
     text-decoration: none;
-    color: #ffffff;
+    color: #fff;
 }
 
 .admin-button i {
