@@ -50,7 +50,7 @@ class View
 
         //template
         $view = $this->generateFile('views/templateForm.php', array('t' => $this->_t, 'content' => $content));
-        echo $view;
+        echo htmlspecialchars($view);
     }
 
 

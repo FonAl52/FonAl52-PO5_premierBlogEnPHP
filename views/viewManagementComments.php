@@ -4,7 +4,7 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="comment-form">
 					<div class="alert alert-danger">
-						<?php echo $_SESSION['error_message']; ?>
+						<?php echo htmlspecialchars($_SESSION['error_message']); ?>
 					</div>
 				</div>
 			</div>
@@ -16,7 +16,7 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="comment-form">
 					<div class="alert alert-success">
-						<?php echo $_SESSION['success_message']; ?>
+						<?php echo htmlspecialchars($_SESSION['success_message']); ?>
 					</div>
 				</div>
 			</div>
@@ -79,28 +79,28 @@
 							?>
 							<div class="col-lg-4 col-md-6">
 								<div class="comment-row single-post post-style-2">
-									<h4 class="title"><b><?= $postTitle ?></b></h4>
+									<h4 class="title"><b><?= htmlspecialchars($postTitle) ?></b></h4>
 									<p class="avatar mt-4">
-										<img src="<?= $commentAuthorImage ?>" alt="Profile Image">
+										<img src="<?= htmlspecialchars($commentAuthorImage) ?>" alt="Profile Image">
 									</p>
-									<p><strong>Auteur:</strong> <?= $commentAuthorName ?></p>
-									<p class="para m-4"><?= $comment->getComment() ?></p>
+									<p><strong>Auteur:</strong> <?= htmlspecialchars($commentAuthorName) ?></p>
+									<p class="para m-4"><?= htmlspecialchars($comment->getComment()) ?></p>
 									<ul class="m-4">
 										<?php if ($comment->getCreatedAt() === $comment->getUpdatedAt() && !empty($comment->getUpdatedAt())) : ?>
-											<li>Dernière modification : <?= $comment->getUpdatedAt() ?></li>
+											<li>Dernière modification : <?= htmlspecialchars($comment->getUpdatedAt()) ?></li>
 										<?php else : ?>
-											<li>Date de mise en ligne : <?= $comment->getCreatedAt() ?></li>
+											<li>Date de mise en ligne : <?= htmlspecialchars($comment->getCreatedAt()) ?></li>
 										<?php endif; ?>
 									</ul>
 								</div>
 								<div class="managment-action comments">
 									<ul>
 										<?php if ($comment->getValidated() == 1) : ?>
-											<li><a href="admin&commentUnvalidate&id=<?= $comment->getId() ?>"><i class="fa-sharp fa-solid fa-xmark"></i></a></li>
+											<li><a href="admin&commentUnvalidate&id=<?= htmlspecialchars($comment->getId()) ?>"><i class="fa-sharp fa-solid fa-xmark"></i></a></li>
 										<?php else : ?>
-											<li><a href="admin&commentValidate&id=<?= $comment->getId() ?>"><i class="fa-sharp fa-solid fa-check"></i></a></li>
+											<li><a href="admin&commentValidate&id=<?= htmlspecialchars($comment->getId()) ?>"><i class="fa-sharp fa-solid fa-check"></i></a></li>
 										<?php endif; ?>
-										<li><a href="admin&commentDelete&id=<?= $comment->getId() ?>" onclick="return confirm('Voulez-vous supprimer définitivement ce commentaire ?')"><i class="fa-solid fa-trash"></i></i></a></li>
+										<li><a href="admin&commentDelete&id=<?= htmlspecialchars($comment->getId()) ?>" onclick="return confirm('Voulez-vous supprimer définitivement ce commentaire ?')"><i class="fa-solid fa-trash"></i></i></a></li>
 									</ul>
 								</div>
 							</div>

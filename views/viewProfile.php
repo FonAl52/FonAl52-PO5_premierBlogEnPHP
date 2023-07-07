@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="comment-form">
-                        <div class="alert-info" role="alert"><?php echo $_SESSION['message'] ?> </div>
+                        <div class="alert-info" role="alert"><?php echo htmlspecialchars($_SESSION['message']) ?> </div>
                     </div>
                 </div>
             </div>
@@ -36,10 +36,8 @@
                         <div class="profile-picture">
                             <?php
                             if (isset($_SESSION['picture']) && $_SESSION['picture'] != '') {
-                                // Utilisez la valeur de la variable de session pour afficher l'image de profil de l'utilisateur
-                                echo '<img src="' . $_SESSION['picture'] . '" alt="Profile Picture">';
+                                echo '<img src="' . htmlspecialchars($_SESSION['picture']) . '" alt="Profile Picture">';
                             } else {
-                                // Si la variable de session est vide, afficher l'image par défaut
                                 echo '<img src="public/images/userProfilePicturePlaceholder.jpg" alt="Profile Picture">';
                             }
                             ?>
@@ -53,7 +51,7 @@
                 </div>
                 <div class="col-sm-12">
                     <div class="profile-info">
-                        <h2><?php echo $_SESSION['name']; ?></h2>
+                        <h2><?php echo htmlspecialchars($_SESSION['name']); ?></h2>
                         <div class="info-row">
                             <?php
                             if (isset($_GET['editEmail'])) {
@@ -74,7 +72,7 @@
                             } else {
                             ?>
                                 <div class="info-label">Email:</div>
-                                <div class="info-value"><?php echo $_SESSION['email']; ?></div>
+                                <div class="info-value"><?php echo htmlspecialchars($_SESSION['email']); ?></div>
                                 <div class="edit-icon" data-toggle="tooltip" data-placement="top" title="Modifier">
                                     <a href="user&editEmail"></a>
                                 </div>
@@ -103,7 +101,7 @@
                             } else {
                             ?>
                                 <div class="info-label">Nom:</div>
-                                <div class="info-value"><?php echo $_SESSION['lastName']; ?></div>
+                                <div class="info-value"><?php echo htmlspecialchars($_SESSION['lastName']); ?></div>
                                 <div class="edit-icon" data-toggle="tooltip" data-placement="top" title="Modifier">
                                     <a href="user&editLastName"><i class="fa-solid fa-pencil"></i></a>
                                 </div>
@@ -132,7 +130,7 @@
                             } else {
                             ?>
                                 <div class="info-label">Prénom:</div>
-                                <div class="info-value"><?php echo $_SESSION['firstName']; ?></div>
+                                <div class="info-value"><?php echo htmlspecialchars($_SESSION['firstName']); ?></div>
                                 <div class="edit-icon" data-toggle="tooltip" data-placement="top" title="Modifier">
                                     <a href="user&editFirstName"><i class="fa-solid fa-pencil"></i></a>
                                 </div>

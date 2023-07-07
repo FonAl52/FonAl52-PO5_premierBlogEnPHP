@@ -29,7 +29,7 @@
 					<?php if (($_SESSION['role']) == 1) { ?>
 						<li><a href="post&newPost">Nouvel article</a></li>
 					<?php } ?>
-					<li><a href="user&profile"><?php echo $_SESSION['firstName'] ?></a></li>
+					<li><a href="user&profile"><?php echo htmlspecialchars($_SESSION['firstName']) ?></a></li>
 				<?php } else { ?>
 					<li><a href="user&connect">Se connecter</a></li>
 					<li><a href="user&register">S’inscrire</a></li>
@@ -45,7 +45,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="footer-section">
 						<a class="logo" href="#"><img src="public/images/logo.png" alt="Logo Image"></a>
-						<p class="copyright">AllanFontaine @ <?= date("Y") ?> All rights reserved</p>
+						<p class="copyright">AllanFontaine @ <?= htmlspecialchars(date("Y")) ?> All rights reserved</p>
 						<ul class="icons">
 							<li><a href="https://github.com/FonAl52" target="blank"><i class="ion-social-github-outline"></i></a></li>
 							<li><a href="#" target="blank"><i class="ion-social-instagram-outline"></i></a></li>

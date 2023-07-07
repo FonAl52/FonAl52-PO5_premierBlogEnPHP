@@ -11,7 +11,7 @@
 							</div>
 							<div class="col-sm-6">
 								<input type="email" aria-required="true" name="email" class="form-control" placeholder="Votre email" aria-invalid="true" required>
-								<b class="text-danger"><?php if (isset($errors['email'])) echo $errors['email'] ?></b>
+								<b class="text-danger"><?php if (isset($errors['email'])) echo htmlspecialchars($errors['email']) ?></b>
 							</div>
 							<div class="col-sm-12">
 								<input type="text" aria-required="true" minlength="3" name="subject" class="form-control" placeholder="Objet du message" aria-invalid="true" required>
@@ -21,7 +21,7 @@
 							</div>
 							<div class="col-sm-12 center-text">
 								<button class="submit-btn" type="submit" id="form-submit"><b>Envoyer</b></button>
-								<b class="text-success"><?php if (isset($success['message'])) echo $success['message'] ?></b>
+								<b class="text-success"><?php if (isset($success['message'])) echo htmlspecialchars($success['message']) ?></b>
 							</div>
 						</div>
 					</form>

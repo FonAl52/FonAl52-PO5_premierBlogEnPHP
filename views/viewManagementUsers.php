@@ -4,7 +4,7 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="comment-form">
 					<div class="alert alert-danger">
-						<?php echo $_SESSION['error_message']; ?>
+						<?php echo htmlspecialchars($_SESSION['error_message']); ?>
 					</div>
 				</div>
 			</div>
@@ -16,7 +16,7 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="comment-form">
 					<div class="alert alert-success">
-						<?php echo $_SESSION['success_message']; ?>
+						<?php echo htmlspecialchars($_SESSION['success_message']); ?>
 					</div>
 				</div>
 			</div>
@@ -61,26 +61,26 @@
 									<div class="single-post post-style-1">
 										<div class="blog-image p-1">
 											<?php if ($user->getPicture()) : ?>
-												<img src="<?= $user->getPicture() ?>" alt="">
+												<img src="<?= htmlspecialchars($user->getPicture()) ?>" alt="">
 											<?php else : ?>
 												<img src="public/images/userProfilePicturePlaceholder.jpg" alt="Profile Picture">
 											<?php endif; ?>
 										</div>
-										<div class="blog-image mt-3"><?= $user->getFirstName(), " " ?> <?= $user->getLastName() ?></div>
+										<div class="blog-image mt-3"><?= htmlspecialchars($user->getFirstName(), " ") ?> <?= htmlspecialchars($user->getLastName()) ?></div>
 									</div><!-- single-post -->
 								</div><!-- card -->
 								<div class="managment-action users">
 									<ul>
 										<?php if ($user->getRole() == 3) : ?>
-											<li><a href="admin&userUnlock&id=<?= $user->getId() ?>"><i class="fa-solid fa-lock"></i></a></li>
+											<li><a href="admin&userUnlock&id=<?= htmlspecialchars($user->getId()) ?>"><i class="fa-solid fa-lock"></i></a></li>
 										<?php else : ?>
-											<li><a href="admin&userLock&id=<?= $user->getId() ?>"><i class="fa-solid fa-unlock"></i></a></li>
+											<li><a href="admin&userLock&id=<?= htmlspecialchars($user->getId()) ?>"><i class="fa-solid fa-unlock"></i></a></li>
 										<?php endif; ?>
-										<li><a href="admin&userDelete&id=<?= $user->getId() ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet utilisateur ?')"><i class="fa-solid fa-trash"></i></i></a></li>
+										<li><a href="admin&userDelete&id=<?= htmlspecialchars($user->getId()) ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet utilisateur ?')"><i class="fa-solid fa-trash"></i></i></a></li>
 										<?php if ($user->getRole() == 1) : ?>
-											<li><a href="admin&userNorole&id=<?= $user->getId() ?>"><i class="fa-solid fa-star"></i></a></li>
+											<li><a href="admin&userNorole&id=<?= htmlspecialchars($user->getId()) ?>"><i class="fa-solid fa-star"></i></a></li>
 										<?php else : ?>
-											<li><a href="admin&userAdmin&id=<?= $user->getId() ?>"><i class="fa-solid fa-screwdriver-wrench"></i></a></li>
+											<li><a href="admin&userAdmin&id=<?= htmlspecialchars($user->getId()) ?>"><i class="fa-solid fa-screwdriver-wrench"></i></a></li>
 										<?php endif; ?>
 									</ul>
 								</div>

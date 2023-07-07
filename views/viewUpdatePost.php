@@ -4,14 +4,14 @@
             <div class="col-10 text-center">
                 <div class="comment-form">
                     <?php if (isset($_SESSION['message'])) : ?>
-                        <div class="alert alert-success"><?= $_SESSION['message']; ?></div>
+                        <div class="alert alert-success"><?= htmlspecialchars($_SESSION['message']); ?></div>
                         <?php unset($_SESSION['message']); ?>
                     <?php endif; ?>
                     <?php if (isset($errors['errors'])) : ?>
-                        <div class="alert"><?= $errors['errors']; ?></div>
+                        <div class="alert"><?= htmlspecialchars($errors['errors']); ?></div>
                         <?php unset($errors['errors']); ?>
                     <?php endif; ?>
-                    <form method="post" action="post&updateTitle&id=<?= $post[0]->getId() ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
+                    <form method="post" action="post&updateTitle&id=<?= htmlspecialchars($post[0]->getId()) ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -22,7 +22,7 @@
                             </div>
                         </div>
                     </form>
-                    <form method="post" action="post&updateCategory&id=<?= $post[0]->getId() ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
+                    <form method="post" action="post&updateCategory&id=<?= htmlspecialchars($post[0]->getId()) ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -31,7 +31,7 @@
                                         <option value="">-- Sélectionner une catégorie --</option>
                                         <!-- Loop to display the categories stored in the database -->
                                         <?php foreach ($categories as $category) : ?>
-                                            <option value="<?= $category->getIdCategory(); ?>"><?= $category->getName(); ?></option>
+                                            <option value="<?= htmlspecialchars($category->getIdCategory()); ?>"><?= htmlspecialchars($category->getName()); ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <button class="submit-btn" type="submit" name="submitCategory"><b>Modifier la catégorie</b></button>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </form>
-                    <form method="post" action="post&updateChapo&id=<?= $post[0]->getId() ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
+                    <form method="post" action="post&updateChapo&id=<?= htmlspecialchars($post[0]->getId()) ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </form>
-                    <form method="post" action="post&updatePicture&id=<?= $post[0]->getId() ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
+                    <form method="post" action="post&updatePicture&id=<?= htmlspecialchars($post[0]->getId()) ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                     </form>
-                    <form method="post" action="post&updateContent&id=<?= $post[0]->getId() ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
+                    <form method="post" action="post&updateContent&id=<?= htmlspecialchars($post[0]->getId()) ?>" class="contact1-form validate-form mb-3" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">

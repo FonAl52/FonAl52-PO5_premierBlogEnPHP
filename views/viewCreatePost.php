@@ -8,7 +8,7 @@
                             <div class="alert alert-danger">
                                 <ul>
                                     <?php foreach ($errors as $error) : ?>
-                                        <li><?= $error; ?></li>
+                                        <li><?= htmlspecialchars($error); ?></li>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
@@ -24,7 +24,7 @@
                                     <option value="">-- Sélectionner une catégorie --</option>
                                     <!-- Loop to display the categories stored in the database -->
                                     <?php foreach ($categories as $category) : ?>
-                                        <option value="<?= $category->getIdCategory(); ?>"><?= $category->getName(); ?></option>
+                                        <option value="<?= htmlspecialchars($category->getIdCategory()); ?>"><?= htmlspecialchars($category->getName()); ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>

@@ -7,10 +7,10 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="comment-form">
                                 <?php if (isset($_SESSION['message'])) { ?>
-                                    <div class="alert-info" role="alert"><?php echo $_SESSION['message'] ?></div>
+                                    <div class="alert-info" role="alert"><?php echo htmlspecialchars($_SESSION['message']) ?></div>
                                 <?php } ?>
                                 <?php if (isset($errors['errors'])) { ?>
-                                    <div class="alert-danger" role="alert"><?php echo $errors['errors'] ?></div>
+                                    <div class="alert-danger" role="alert"><?php echo htmlspecialchars($errors['errors']) ?></div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -23,22 +23,22 @@
             <div class="single-post post-style-2">
                 <div class="post-row">
                     <div class="info-value">
-                        <h3><b><?= $post[0]->getTitle() ?></b></h3>
+                        <h3><b><?= htmlspecialchars($post[0]->getTitle()) ?></b></h3>
                     </div>
                 </div>
             </div><!-- single-post -->
             <div class="single-post post-style-2">
                 <div class="post-row">
                     <div class="blog-image">
-                        <img src="<?= $post[0]->getPicture() ?>" alt="Blog Image">
+                        <img src="<?= htmlspecialchars($post[0]->getPicture()) ?>" alt="Blog Image">
                     </div>
                 </div>
                 <div class="post-header">
                     <ul class="m-4">
                         <?php if ($post[0]->getCreatedAt() === $post[0]->getUpdatedAt()) : ?>
-                            <li>Date de mise en ligne : <?= $post[0]->getCreatedAt() ?></li>
+                            <li>Date de mise en ligne : <?= htmlspecialchars($post[0]->getCreatedAt()) ?></li>
                         <?php else : ?>
-                            <li>Dernière modification : <?= $post[0]->getUpdatedAt() ?></li>
+                            <li>Dernière modification : <?= htmlspecialchars($post[0]->getUpdatedAt()) ?></li>
                         <?php endif; ?>
                     </ul>
                     <?php
@@ -56,10 +56,10 @@
                     }
                     ?>
                     <p class="avatar mt-4">
-                        <img src="<?= $authorImage ?>" alt="Profile Image">
+                        <img src="<?= htmlspecialchars($authorImage) ?>" alt="Profile Image">
                     </p>
                     <div class="blog-info">
-                        <p><strong>Auteur:</strong> <?= $authorName ?></p>
+                        <p><strong>Auteur:</strong> <?= htmlspecialchars($authorName) ?></p>
                         <?php
                         $categoryName = 'Unknown';
 
@@ -71,17 +71,17 @@
                         }
                         ?>
                         <div class="post-row">
-                            <p><strong>Categorie:</strong> <?= $categoryName ?></p>
+                            <p><strong>Categorie:</strong> <?= htmlspecialchars($categoryName) ?></p>
                         </div>
                         <div class="post-row">
-                            <p class="para"><?= $post[0]->getChapo() ?></p>
+                            <p class="para"><?= htmlspecialchars($post[0]->getChapo()) ?></p>
                         </div>
                     </div><!-- blog-info -->
                 </div>
             </div><!-- single-post -->
             <div class="single-post post-style-2">
                 <div class="post-row">
-                    <p class="para m-4"><?= $post[0]->getContent() ?></p>
+                    <p class="para m-4"><?= htmlspecialchars($post[0]->getContent()) ?></p>
                 </div>
             </div><!-- single-post -->
         </div>
@@ -106,15 +106,15 @@
                 ?>
                 <div class="comment-row single-post post-style-2">
                     <p class="avatar mt-4">
-                        <img src="<?= $commentAuthorImage ?>" alt="Profile Image">
+                        <img src="<?= htmlspecialchars($commentAuthorImage) ?>" alt="Profile Image">
                     </p>
-                    <p><strong>Auteur:</strong> <?= $commentAuthorName ?></p>
-                    <p class="para m-4"><?= $comment->getComment() ?></p>
+                    <p><strong>Auteur:</strong> <?= htmlspecialchars($commentAuthorName) ?></p>
+                    <p class="para m-4"><?= htmlspecialchars($comment->getComment()) ?></p>
                     <ul class="m-4">
                         <?php if ($comment->getCreatedAt() === $comment->getUpdatedAt() && !empty($comment->getUpdatedAt())) : ?>
-                            <li>Dernière modification : <?= $comment->getUpdatedAt() ?></li>
+                            <li>Dernière modification : <?= htmlspecialchars($comment->getUpdatedAt()) ?></li>
                         <?php else : ?>
-                            <li>Date de mise en ligne : <?= $comment->getCreatedAt() ?></li>
+                            <li>Date de mise en ligne : <?= htmlspecialchars($comment->getCreatedAt()) ?></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -122,8 +122,8 @@
         </div><!-- container -->
         <?php if (isset($_SESSION['id'])) { ?>
             <form class="comment-form" action="comment&create" method="POST">
-                <input type="hidden" name="postId" value="<?= $post[0]->getId() ?>">
-                <input type="hidden" name="userId" value="<?= $_SESSION['id'] ?>">
+                <input type="hidden" name="postId" value="<?= htmlspecialchars($post[0]->getId()) ?>">
+                <input type="hidden" name="userId" value="<?= htmlspecialchars($_SESSION['id']) ?>">
 
                 <div class="form-group">
                     <label for="comment">Ajouter un nouveau commentaire</label>

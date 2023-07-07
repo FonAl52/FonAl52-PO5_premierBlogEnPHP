@@ -4,7 +4,7 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="comment-form">
 					<div class="alert alert-danger">
-						<?php echo $_SESSION['error_message']; ?>
+						<?php echo htmlspecialchars($_SESSION['error_message']); ?>
 					</div>
 				</div>
 			</div>
@@ -16,7 +16,7 @@
 			<div class="col-lg-12 col-md-12">
 				<div class="comment-form">
 					<div class="alert alert-success">
-						<?php echo $_SESSION['success_message']; ?>
+						<?php echo htmlspecialchars($_SESSION['success_message']); ?>
 					</div>
 				</div>
 			</div>
@@ -58,7 +58,7 @@
 							<div class="col-lg-4 col-md-6">
 								<div class="card h-100">
 									<div class="single-post post-style-1">
-										<div class="blog-image"><img src="<?= $post['picture'] ?>" alt="Blog Image"></div>
+										<div class="blog-image"><img src="<?= htmlspecialchars($post['picture']) ?>" alt="Blog Image"></div>
 										<!-- User picture profile & name display -->
 										<?php
 										$authorName = 'Unknown';
@@ -71,17 +71,17 @@
 											}
 										}
 										?>
-										<a class="avatar" href="#"><img src="<?= $authorImage ?>" alt="Profile Image"></a>
+										<a class="avatar" href="#"><img src="<?= htmlspecialchars($authorImage) ?>" alt="Profile Image"></a>
 										<div class="blog-info">
 											<ul class="post-header">
 												<?php if ($post['createdAt'] === $post['updatedAt']) : ?>
-													<li>Date de mise en ligne : <?= $post['createdAt'] ?></li>
+													<li>Date de mise en ligne : <?= htmlspecialchars($post['createdAt']) ?></li>
 												<?php else : ?>
-													<li>Dernière modification : <?= $post['updatedAt'] ?></li>
+													<li>Dernière modification : <?= htmlspecialchars($post['updatedAt']) ?></li>
 												<?php endif; ?>
 											</ul>
-											<h4 class="title"><b><?= $post['title'] ?></b></h4>
-											<p class="para"><?= $post['chapo'] ?></p>
+											<h4 class="title"><b><?= htmlspecialchars($post['title']) ?></b></h4>
+											<p class="para"><?= htmlspecialchars($post['chapo']) ?></p>
 											<!-- Category display -->
 											<?php
 											$categoryName = 'Unknown';
@@ -92,14 +92,14 @@
 												}
 											}
 											?>
-											<p><strong>Categorie:</strong> <?= $categoryName ?></p>
-											<p><strong>Auteur:</strong> <?= $authorName ?></p>
+											<p><strong>Categorie:</strong> <?= htmlspecialchars($categoryName) ?></p>
+											<p><strong>Auteur:</strong> <?= htmlspecialchars($authorName) ?></p>
 										</div><!-- blog-info -->
 									</div><!-- single-post -->
 									<div class="managment-action posts">
 										<ul>
-											<li><a href="post&editPost&id=<?= $post['id'] ?>"><i class="fa-solid fa-pen"></i></a></li>
-											<li><a href="admin&postDelete&id=<?= $post['id'] ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet article ?')"><i class="fa-solid fa-trash"></i></a></li>
+											<li><a href="post&editPost&id=<?= htmlspecialchars($post['id']) ?>"><i class="fa-solid fa-pen"></i></a></li>
+											<li><a href="admin&postDelete&id=<?= htmlspecialchars($post['id']) ?>" onclick="return confirm('Voulez-vous supprimer définitivement cet article ?')"><i class="fa-solid fa-trash"></i></a></li>
 										</ul>
 									</div>
 								</div><!-- card -->

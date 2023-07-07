@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
 					<div class="comment-form">
-						<div class="alert-info" role="alert"><?php echo $_SESSION['message'] ?> </div>
+						<div class="alert-info" role="alert"><?php echo htmlspecialchars($_SESSION['message']) ?> </div>
 					</div>
 				</div>
 			</div>
@@ -18,11 +18,11 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<input type="email" aria-required="true" name="email" class="form-control" placeholder="Entrez votre email" aria-invalid="true" required>
-								<b class="text-danger"><?php if (isset($errors['email'])) echo $errors['email'] ?></b>
+								<b class="text-danger"><?php if (isset($errors['email'])) echo htmlspecialchars($errors['email']) ?></b>
 							</div>
 							<div class="col-sm-12">
 								<input type="password" aria-required="true" minlength="6" name="password" class="form-control" placeholder="Entrez votre mot de passe" aria-invalid="true" required>
-								<b class="text-danger gras"><?php if (isset($errors['password'])) echo $errors['password'] ?></b>
+								<b class="text-danger gras"><?php if (isset($errors['password'])) echo htmlspecialchars($errors['password']) ?></b>
 							</div>
 							<div class="col-sm-12 center-text">
 								<button class="submit-btn" type="submit" id="form-submit"><b>CONNEXION</b></button>

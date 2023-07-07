@@ -5,7 +5,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="card h-100">
 						<div class="single-post post-style-1">
-							<div class="blog-image"><img src="<?= $post['picture'] ?>" alt="Blog Image"></div>
+							<div class="blog-image"><img src="<?= htmlspecialchars($post['picture']) ?>" alt="Blog Image"></div>
 							<!-- User picture profile & name display -->
 							<?php
 							$authorName = 'Unknown';
@@ -22,13 +22,13 @@
 							<div class="blog-info">
 								<ul class="post-header">
 									<?php if ($post['createdAt'] === $post['updatedAt']) : ?>
-										<li>Date de mise en ligne : <?= $post['createdAt'] ?></li>
+										<li>Date de mise en ligne : <?= htmlspecialchars($post['createdAt']) ?></li>
 									<?php else : ?>
-										<li>Dernière modification : <?= $post['updatedAt'] ?></li>
+										<li>Dernière modification : <?= htmlspecialchars($post['updatedAt']) ?></li>
 									<?php endif; ?>
 								</ul>
-								<h4 class="title"><a href="post&id=<?= $post['id'] ?>"><b><?= $post['title'] ?></b></a></h4>
-								<p class="para"><?= $post['chapo'] ?></p>
+								<h4 class="title"><a href="post&id=<?= htmlspecialchars($post['id']) ?>"><b><?= htmlspecialchars($post['title']) ?></b></a></h4>
+								<p class="para"><?= htmlspecialchars($post['chapo']) ?></p>
 								<!-- Category display -->
 								<?php
 								$categoryName = 'Unknown';
@@ -39,8 +39,8 @@
 									}
 								}
 								?>
-								<p><strong>Categorie:</strong> <?= $categoryName ?></p>
-								<p><strong>Auteur:</strong> <?= $authorName ?></p>
+								<p><strong>Categorie:</strong> <?= htmlspecialchars($categoryName) ?></p>
+								<p><strong>Auteur:</strong> <?= htmlspecialchars($authorName) ?></p>
 							</div><!-- blog-info -->
 						</div><!-- single-post -->
 					</div><!-- card -->

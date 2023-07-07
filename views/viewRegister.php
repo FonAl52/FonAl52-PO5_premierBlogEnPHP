@@ -14,11 +14,11 @@
 							</div>
 							<div class="col-sm-12">
 								<input type="email" aria-required="true" name="email" class="form-control" placeholder="Entrez votre email" aria-invalid="true" required>
-								<b class="text-danger"><?php if (isset($errors['email'])) echo $errors['email'] ?></b>
+								<b class="text-danger"><?php if (isset($errors['email'])) echo htmlspecialchars($errors['email']) ?></b>
 							</div>
 							<div class="col-sm-6">
 								<input type="password" aria-required="true" minlength="6" name="password" class="form-control" placeholder="Entrez votre mot de passe" aria-invalid="true" required>
-								<b class="text-danger gras"><?php if (isset($errors['password'])) echo $errors['password'] ?></b>
+								<b class="text-danger gras"><?php if (isset($errors['password'])) echo htmlspecialchars($errors['password']) ?></b>
 							</div>
 							<div class="col-sm-6">
 								<input type="password" aria-required="true" minlength="6" name="confirmPassword" class="form-control" placeholder="Confirmation du mot de passe" aria-invalid="true" required>
