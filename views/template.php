@@ -24,7 +24,7 @@
 		<div class="container-fluid position-relative no-side-padding">
 			<a href="post&home" class="logo"><img src="public/images/logo.png" alt="Logo Image"></a>
 			<ul class="main-menu visible-on-click">
-				<?php if (isset($_SESSION['id']) && $_SESSION['role'] !== '3') { ?>
+				<?php if (isset($_SESSION['id']) === TRUE && $_SESSION['role'] !== '3') { ?>
 					<li><a href="user&disconnect">Se déconnecter</a></li>
 					<?php if (($_SESSION['role']) === '1') { ?>
 						<li><a href="post&newPost">Nouvel article</a></li>

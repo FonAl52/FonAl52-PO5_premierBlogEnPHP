@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-10 text-center">
                 <div class="comment-form">
-                    <?php if (isset($_SESSION['message'])) : ?>
+                    <?php if (isset($_SESSION['message']) === true) : ?>
                         <div class="alert alert-success"><?= htmlspecialchars($_SESSION['message']); ?></div>
                         <?php unset($_SESSION['message']); ?>
                     <?php endif; ?>
-                    <?php if (isset($errors['errors'])) : ?>
+                    <?php if (isset($errors['errors']) === true) : ?>
                         <div class="alert"><?= htmlspecialchars($errors['errors']); ?></div>
                         <?php unset($errors['errors']); ?>
                     <?php endif; ?>
@@ -27,12 +27,27 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="categoryId">Catégorie de l'article:</label>
+                                    <!-- Category display -->
+                                    <?php
+                                    $categoryName = 'Unknown';
+
+                                    foreach ($categories as $category) {
+                                        if ($category->getIdCategory() === $post[0]->getCategoryId()) {
+                                            $categoryName = $category->getName();
+                                            break;
+                                        }
+                                    }
+                                    ?>
+
                                     <select name="categoryId" id="categoryId" class="form-control">
+                                    <option value="<?= htmlspecialchars($categoryName); ?>"><?= htmlspecialchars($categoryName); ?></option>
                                         <!-- Loop to display the categories stored in the database -->
                                         <?php foreach ($categories as $category) : ?>
+                                            <?php if ($category->getName() === $categoryName) continue; ?>
                                             <option value="<?= htmlspecialchars($category->getIdCategory()); ?>"><?= htmlspecialchars($category->getName()); ?></option>
                                         <?php endforeach; ?>
                                     </select>
+
                                     <button class="submit-btn" type="submit" name="submitCategory"><b>Modifier la catégorie</b></button>
                                 </div>
                             </div>
@@ -43,7 +58,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="chapo">Chapo de l'article:</label>
-                                    
+
                                     <textarea id="chapo" name="chapo" class="form-control" aria-required="true" aria-invalid="true" required><?= htmlspecialchars($post[0]->getChapo()) ?></textarea>
                                     <button class="submit-btn" type="submit" name="submitChapo"><b>Modifier le chapo</b></button>
                                 </div>
