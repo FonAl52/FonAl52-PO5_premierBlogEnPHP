@@ -83,7 +83,7 @@
 											<h4 class="title"><b><?= htmlspecialchars($post['title']) ?></b></h4>
 											<p class="para"><?= htmlspecialchars($post['chapo']) ?></p>
 											<!-- Category display -->
-											<?php
+											<?php											
 											$categoryName = 'Unknown';
 											foreach ($categories as $category) {
 												if ($category->getIdCategory() == $post['categoryId']) {

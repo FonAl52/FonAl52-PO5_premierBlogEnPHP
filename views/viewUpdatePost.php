@@ -16,7 +16,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="title">Titre de l'article:</label>
-                                    <input type="text" id="title" aria-required="true" minlength="3" name="title" class="form-control" placeholder="Titre de l'article" aria-invalid="true" required>
+                                    <input type="text" id="title" aria-required="true" minlength="3" name="title" class="form-control" value="<?= htmlspecialchars($post[0]->getTitle()) ?>" aria-invalid="true" required>
                                     <button class="submit-btn" type="submit" name="submitTitle"><b>Modifier le titre</b></button>
                                 </div>
                             </div>
@@ -28,7 +28,6 @@
                                 <div class="form-group">
                                     <label for="categoryId">Catégorie de l'article:</label>
                                     <select name="categoryId" id="categoryId" class="form-control">
-                                        <option value="">-- Sélectionner une catégorie --</option>
                                         <!-- Loop to display the categories stored in the database -->
                                         <?php foreach ($categories as $category) : ?>
                                             <option value="<?= htmlspecialchars($category->getIdCategory()); ?>"><?= htmlspecialchars($category->getName()); ?></option>
@@ -44,7 +43,8 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="chapo">Chapo de l'article:</label>
-                                    <textarea id="chapo" name="chapo" class="form-control" placeholder="Chapo de l'article" aria-required="true" aria-invalid="true" required></textarea>
+                                    
+                                    <textarea id="chapo" name="chapo" class="form-control" aria-required="true" aria-invalid="true" required><?= htmlspecialchars($post[0]->getChapo()) ?></textarea>
                                     <button class="submit-btn" type="submit" name="submitChapo"><b>Modifier le chapo</b></button>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="content">Contenu de l'article:</label>
-                                    <textarea id="content" name="content" class="form-control" placeholder="Contenu de l'article" aria-required="true" aria-invalid="true" required></textarea>
+                                    <textarea id="content" name="content" class="form-control" aria-required="true" aria-invalid="true" required><?= htmlspecialchars($post[0]->getContent()) ?></textarea>
                                     <button class="submit-btn" type="submit" name="submitContent"><b>Modifier le contenu</b></button>
                                 </div>
                             </div>

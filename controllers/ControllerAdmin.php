@@ -6,6 +6,7 @@ class ControllerAdmin
     private $userManager;
     private $postManager;
     private $commentManager;
+    private $categoryManager;
     private $view;
 
     public function __construct()
@@ -80,9 +81,11 @@ class ControllerAdmin
         $posts = $this->postManager->getAll('post');
         $this->commentManager = new CommentManager;
         $comments = $this->commentManager->getAll('comment');
+        $this->categoryManager = new CategoryManager;
+        $categories = $this->categoryManager->getCategories();
 
         $this->view = new View('ManagementPosts');
-        $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
+        $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments, 'categories' => $categories));
     }
 
     public function managementComments()

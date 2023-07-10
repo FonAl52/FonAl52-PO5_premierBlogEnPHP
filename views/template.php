@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title><?= $title ?? 'Bōna | blog personnel' ?></title>
+	<title><?= htmlspecialchars($title ?? 'Bōna | blog personnel') ?></title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
@@ -24,12 +24,12 @@
 		<div class="container-fluid position-relative no-side-padding">
 			<a href="post&home" class="logo"><img src="public/images/logo.png" alt="Logo Image"></a>
 			<ul class="main-menu visible-on-click">
-				<?php if (isset($_SESSION['id']) && $_SESSION['role'] != 3) { ?>
+				<?php if (isset($_SESSION['id']) && $_SESSION['role'] !== '3') { ?>
 					<li><a href="user&disconnect">Se déconnecter</a></li>
-					<?php if (($_SESSION['role']) == 1) { ?>
+					<?php if (($_SESSION['role']) === '1') { ?>
 						<li><a href="post&newPost">Nouvel article</a></li>
 					<?php } ?>
-					<li><a href="user&profile"><?php echo htmlspecialchars($_SESSION['firstName']) ?></a></li>
+					<li><a href="user&profile"><?= isset($_SESSION['firstName']) ? htmlspecialchars($_SESSION['firstName']) : '' ?></a></li>
 				<?php } else { ?>
 					<li><a href="user&connect">Se connecter</a></li>
 					<li><a href="user&register">S’inscrire</a></li>
@@ -46,6 +46,7 @@
 					<div class="footer-section">
 						<a class="logo" href="#"><img src="public/images/logo.png" alt="Logo Image"></a>
 						<p class="copyright">AllanFontaine @ <?= htmlspecialchars(date("Y")) ?> All rights reserved</p>
+
 						<ul class="icons">
 							<li><a href="https://github.com/FonAl52" target="blank"><i class="ion-social-github-outline"></i></a></li>
 							<li><a href="#" target="blank"><i class="ion-social-instagram-outline"></i></a></li>
@@ -63,7 +64,7 @@
 							<li><a href="#">MENTION LÉGALE</a></li>
 						</ul>
 						<ul>
-							<?php if (isset($_SESSION['role']) && $_SESSION['role'] == 1) { ?>
+							<?php if (isset($_SESSION['role']) && $_SESSION['role'] === '1') { ?>
 								<li><a href="admin&management">ADMINISTRATION</a></li>
 							<?php } ?>
 						</ul>

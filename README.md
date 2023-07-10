@@ -5,7 +5,7 @@ This repository is Allan Fontaine's fifth project for the Openclassrooms Develop
 ## Usage Instructions
     1. Clone this repository to your personal server folder.
     2. Start your server.
-    3. Import this database (bdd/P05_blog.sql) on your server using phpMyAdmin or mysql 
+    3. Import this database (db/P05_blog.sql) on your server using phpMyAdmin or mysql 
     4. Go to http://localhost:8888/FonAl52-PO5_premierBlogEnPHP/post&home to visit the blog.
 
 ## Using Composer
