@@ -3,6 +3,7 @@ require_once 'views/View.php';
 require_once 'models/Comment.php';
 require_once 'models/CommentManager.php';
 
+
 class ControllerComment
 {
     /**
@@ -17,13 +18,13 @@ class ControllerComment
     {
         if (isset($url) && count($url) < 1) {
             throw new \Exception("Page Introuvable");
-        } elseif (isset($_GET['create']) === TRUE) {
+        } else if (isset($_GET['create']) === TRUE) {
             $this->createComment();
         } else {
             throw new \Exception("Page Introuvable");
         }
 
-    }//end __construct()
+    }
 
 
     /**
@@ -41,6 +42,7 @@ class ControllerComment
 
         if (empty($newFields['postId']) === TRUE) {
             $errors['postId'] = "Une erreur est survenue merci de nous contacter";
+
         }
         if (empty($newFields['userId']) === TRUE) {
             $errors['userId'] = "Une erreur est survenue merci de nous contacter";
@@ -67,7 +69,7 @@ class ControllerComment
         // If the data is not valid or if the article creation failed, display the form with the errors.
         header('Location: post&id='.$newFields['postId']);
 
-    }// end createComment()
+    }
 
 
-}// end class ControllerComment
+}
