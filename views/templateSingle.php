@@ -25,9 +25,9 @@
 			<ul class="main-menu visible-on-click">
 				<?php if (isset($_SESSION['id']) === TRUE) { ?>
 					<li><a href="user&disconnect">Se déconnecter</a></li>
-						<?php if (($_SESSION['role']) === 1) { ?>
-							<li><a href="post&newPost">Nouvel article</a></li>
-						<?php } ?>
+								<?php if (($_SESSION['role']) === 1) { ?>
+									<li><a href="post&newPost">Nouvel article</a></li>
+								<?php } ?>
 					<li><a href="user&profile"><?= htmlspecialchars($_SESSION['firstName']) ?></a></li>
 				<?php } else { ?>
 					<li><a href="user&connect">Se connecter</a></li>
