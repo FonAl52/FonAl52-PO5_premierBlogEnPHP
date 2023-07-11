@@ -23,7 +23,8 @@ class ControllerComment
             throw new \Exception("Page Introuvable");
         }
 
-    } //end __construct()
+    }//end __construct()
+
 
     /**
      * Create a new comment.
@@ -66,6 +67,7 @@ class ControllerComment
         // If the data is not valid or if the article creation failed, display the form with the errors.
         header('Location: post&id='.$newFields['postId']);
 
-    } // end createComment()
+    }// end createComment()
 
-} // end class ControllerComment
+
+}// end class ControllerComment
