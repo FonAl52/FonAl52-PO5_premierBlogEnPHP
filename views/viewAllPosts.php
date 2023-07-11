@@ -29,15 +29,15 @@
 								</ul>
 								<h4 class="title"><a href="post&id=<?= htmlspecialchars($post['id']) ?>"><b><?= htmlspecialchars($post['title']) ?></b></a></h4>
 								<p class="para"><?= htmlspecialchars($post['chapo']) ?></p>
-								<!-- Category display -->
+									<!-- Category display -->
 									<?php
-										$categoryName = 'Unknown';
-											foreach ($categories as $category) {
-												if ($category->getIdCategory() == $post['categoryId']) {
-														$categoryName = $category->getName();
-														break;
+											$categoryName = 'Unknown';
+												foreach ($categories as $category) {
+													if ($category->getIdCategory() == $post['categoryId']) {
+															$categoryName = $category->getName();
+															break;
+													}
 												}
-											}
 									?>
 								<p><strong>Categorie:</strong> <?= htmlspecialchars($categoryName) ?></p>
 								<p><strong>Auteur:</strong> <?= htmlspecialchars($authorName) ?></p>
