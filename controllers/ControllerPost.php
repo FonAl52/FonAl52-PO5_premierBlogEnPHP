@@ -84,7 +84,7 @@ class ControllerPost
             $this->viewOne();
         } else {
             $this->home();
-        }
+        }//end if
 
     }//end __construct()
 
@@ -102,8 +102,8 @@ class ControllerPost
         $users = $this->getAllUsers();
 
         $this->view = new View('Home');
-        $this->view->generate(array('posts' => $posts, 'categories' => $categories, 'users' => $users));
-   
+        $this->view->generate(['posts' => $posts, 'categories' => $categories, 'users' => $users]);
+
     }//end home()
 
 
@@ -119,7 +119,7 @@ class ControllerPost
         $this->view = new View('CreatePost');
         $this->view->generate(['categories' => $categories]);
 
-    }//end create
+    }//end create()
 
 
     /**
