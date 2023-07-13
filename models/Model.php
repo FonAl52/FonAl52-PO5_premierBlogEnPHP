@@ -2,11 +2,22 @@
 
 abstract class Model
 {
+
+    /**
+    * The database connection.
+    *
+    * @var PDO
+    */
     protected static $bdd;
 
-    // Establish a database connection.
+    /**
+    * Establish a database connection.
+    *
+    * @return void
+    */ 
     private static function setBdd()
     {
+
         // Retrieve database credentials from environment variables.
         $db_host = $_ENV['DB_HOST'];
         $db_name = $_ENV['DB_NAME'];
@@ -18,19 +29,29 @@ abstract class Model
 
         // Set PDO attributes to handle errors.
         self::$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-    }
 
-    // Get the database connection.
+    }//end setBdd()
+
+
+    /**
+    * Get the database connection.
+    *
+    * @return self::$bdd
+    */
     protected function getBdd()
     {
+
         // Check if a database connection exists.
         if (self::$bdd == null) {
-            
+
             // If not, establish a new connection.
             self::setBdd();
         }
 
         // Return the existing database connection.
         return self::$bdd;
-    }
+
+    }//end getBdd()
+
+
 }
