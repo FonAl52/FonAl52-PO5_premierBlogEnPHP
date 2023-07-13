@@ -19,43 +19,43 @@ class ControllerAdmin
      */
     public function __construct()
     {
-        if (isset($_GET['management']) === TRUE) {
+        if (isset($_GET['management']) && isset($_GET['management']) === true) {
             $this->management();
         }
-        if (isset($_GET['managementUsers']) === TRUE) {
+        if (isset($_GET['managementUsers']) && isset($_GET['managementUsers']) === true) {
             $this->managementUsers();
         }
-        if (isset($_GET['managementPosts']) === TRUE) {
+        if (isset($_GET['managementPosts']) && isset($_GET['managementPosts']) === true) {
             $this->managementPosts();
         }
-        if (isset($_GET['managementComments']) === TRUE) {
+        if (isset($_GET['managementComments']) && isset($_GET['managementComments']) === true) {
             $this->managementComments();
         }
-        if (isset($_GET['userLock']) === TRUE) {
+        if (isset($_GET['userLock']) && isset($_GET['userLock']) === true) {
             $this->userLock();
         }
-        if (isset($_GET['userUnlock']) === TRUE) {
+        if (isset($_GET['userUnlock']) && isset($_GET['userUnlock']) === true) {
             $this->userUnlock();
         }
-        if (isset($_GET['userDelete']) === TRUE) {
+        if (isset($_GET['userDelete']) && isset($_GET['userDelete']) === true) {
             $this->userDelete();
         }
-        if (isset($_GET['userAdmin']) === TRUE) {
+        if (isset($_GET['userAdmin']) && isset($_GET['userAdmin']) === true) {
             $this->userAdmin();
         }
-        if (isset($_GET['userNorole']) === TRUE) {
+        if (isset($_GET['userNorole']) && isset($_GET['userNorole']) === true) {
             $this->userNorole();
         }
-        if (isset($_GET['postDelete']) === TRUE) {
+        if (isset($_GET['postDelete']) && isset($_GET['postDelete']) === true) {
             $this->postDelete();
         }
-        if (isset($_GET['commentUnvalidate']) === TRUE) {
+        if (isset($_GET['commentUnvalidate']) && isset($_GET['commentUnvalidate']) === true) {
             $this->commentUnvalidate();
         }
-        if (isset($_GET['commentValidate']) === TRUE) {
+        if (isset($_GET['commentValidate']) && isset($_GET['commentValidate']) === true) {
             $this->commentValidate();
         }
-        if (isset($_GET['commentDelete']) === TRUE) {
+        if (isset($_GET['commentDelete']) && isset($_GET['commentDelete']) === true) {
             $this->commentDelete();
         } else {
             throw new \Exception("Page Introuvable");
