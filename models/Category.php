@@ -5,7 +5,13 @@
  */
 class Category
 {
+
     
+    /**
+    * The ID of the category.
+    *
+    * @var int
+    */
     private $idCategory;
     private $name;
 

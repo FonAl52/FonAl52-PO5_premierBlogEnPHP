@@ -4,17 +4,17 @@ abstract class Model
 {
 
     /**
-    * The database connection.
-    *
-    * @var PDO
-    */
+     * The database connection.
+     *
+     * @var PDO
+     */
     protected static $bdd;
 
     /**
-    * Establish a database connection.
-    *
-    * @return void
-    */ 
+     * Establish a database connection.
+     *
+     * @return void
+     */
     private static function setBdd()
     {
 
