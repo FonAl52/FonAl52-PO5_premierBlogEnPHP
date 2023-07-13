@@ -3,6 +3,7 @@ require_once 'views/View.php';
 
 class ControllerAdmin
 {
+
     /**
      * User Manager instance.
      *
@@ -89,7 +90,8 @@ class ControllerAdmin
             $this->commentDelete();
         }
         throw new \Exception("Page Introuvable");
-    } //end __construct()
+
+    }//end __construct()
 
 
     /**
@@ -101,7 +103,7 @@ class ControllerAdmin
     {
         $this->view = new View('Management');
         $this->view->generatePost([]);
-    } //end management()
+    }//end management()
 
 
     /**
@@ -120,7 +122,8 @@ class ControllerAdmin
 
         $this->view = new View('ManagementUsers');
         $this->view->generatePost(['users' => $users, 'posts' => $posts, 'comments' => $comments]);
-    }
+
+    }//end managementUsers()
 
 
     /**
@@ -141,7 +144,8 @@ class ControllerAdmin
 
         $this->view = new View('ManagementPosts');
         $this->view->generatePost(['users' => $users, 'posts' => $posts, 'comments' => $comments, 'categories' => $categories]);
-    }
+        
+    }//end managementPosts()
 
 
     /**
@@ -160,7 +164,8 @@ class ControllerAdmin
 
         $this->view = new View('ManagementComments');
         $this->view->generatePost(['users' => $users, 'posts' => $posts, 'comments' => $comments]);
-    }
+    
+    }//end managementComments()
 
 
     /**
@@ -185,7 +190,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementUsers');
-    }
+
+    }//end userLock()
 
 
     /**
@@ -210,7 +216,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementUsers');
-    }
+
+    }//end userUnlock()
 
 
     /**
@@ -232,7 +239,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementUsers');
-    }
+
+    }//end userDelete()
 
 
     /**
@@ -257,7 +265,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementUsers');
-    }
+
+    }//end userAdmin()
 
     
     /**
@@ -282,7 +291,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementUsers');
-    }
+
+    }//end userNorole()
 
 
     /**
@@ -311,7 +321,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementPosts');
-    }
+
+    }//end postDelete()
 
 
     /**
@@ -336,7 +347,8 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementComments');
-    }
+
+    }//end commentValidate()
 
 
     /**
@@ -383,5 +395,6 @@ class ControllerAdmin
         }
 
         header('Location: admin&managementComments');
-    }
+
+    }//end commentDelete()
 }

@@ -71,5 +71,6 @@ class ControllerComment
         // If the data is not valid or if the article creation failed, display the form with the errors.
         header('Location: post&id='.$newFields['postId']);
 
-    }
+    }//end createComment()
+
 }

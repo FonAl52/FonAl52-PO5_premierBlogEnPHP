@@ -6,18 +6,51 @@ require_once 'models/Post.php';
 require_once 'models/PostManager.php';
 require_once 'models/Comment.php';
 require_once 'models/CommentManager.php';
-class ControllerPost
 
+
+class ControllerPost
 {
-    private $view;
-    private $categoryManager;
-    private $postManager;
+
+
+    /**
+     * User Manager instance.
+     *
+     * @var UserManager
+     */
     private $userManager;
+
+    /**
+     * Post Manager instance.
+     *
+     * @var PostManager
+     */
+    private $postManager;
+
+    /**
+     * Comment Manager instance.
+     *
+     * @var CommentManager
+     */
     private $commentManager;
 
     /**
+     * Category Manager instance.
+     *
+     * @var CategoryManager
+     */
+    private $categoryManager;
+
+    /**
+     * View instance.
+     *
+     * @var View
+     */
+    private $view;
+
+
+    /**
      * ControllerPost constructor.
-     * Initializes the ControllerComment object.
+     * Initializes the ControllerPost object.
      *
      * @throws \Exception If the page is not found.
      *
@@ -29,25 +62,25 @@ class ControllerPost
             throw new \Exception("Page Introuvable");
         } elseif (isset($_GET['home'])) {
             $this->home();
-        } elseif (isset($_GET['newPost']) && $_SESSION['role'] == 1) {
+        } elseif (isset($_GET['newPost']) === TRUE && $_SESSION['role'] == 1) {
             $this->create();
-        } elseif (isset($_GET['new']) && $_SESSION['role'] == 1) {
+        } elseif (isset($_GET['new']) === TRUE && $_SESSION['role'] == 1) {
             $this->addPost();
-        } elseif (isset($_GET['viewAll'])) {
+        } elseif (isset($_GET['viewAll']) === TRUE) {
             $this->viewAll();
-        } elseif (isset($_GET['editPost'])) {
+        } elseif (isset($_GET['editPost']) === TRUE) {
             $this->update();
-        } elseif (isset($_GET['updateTitle'])) {
+        } elseif (isset($_GET['updateTitle']) === TRUE) {
             $this->updatePostTitle();
-        } elseif (isset($_GET['updateCategory'])) {
+        } elseif (isset($_GET['updateCategory']) === TRUE) {
             $this->updatePostCategory();
-        } elseif (isset($_GET['updateChapo'])) {
+        } elseif (isset($_GET['updateChapo']) === TRUE) {
             $this->updatePostChapo();
-        } elseif (isset($_GET['updatePicture'])) {
+        } elseif (isset($_GET['updatePicture']) === TRUE) {
             $this->updatePostPicture();
-        } elseif (isset($_GET['updateContent'])) {
+        } elseif (isset($_GET['updateContent']) === TRUE) {
             $this->updatePostContent();
-        } elseif (isset($_GET['id']) && (isset($_GET['id']))) {
+        } elseif (isset($_GET['id']) === TRUE && (isset($_GET['id']))) {
             $this->viewOne();
         } else {
             $this->home();
@@ -55,7 +88,12 @@ class ControllerPost
 
     }//end __construct()
 
-    
+
+    /**
+     * Display home view.
+     *
+     * @return void
+     */
     public function home()
     {
         $this->postManager = new PostManager();
@@ -65,16 +103,30 @@ class ControllerPost
 
         $this->view = new View('Home');
         $this->view->generate(array('posts' => $posts, 'categories' => $categories, 'users' => $users));
-    }
+   
+    }//end home()
 
+
+    /**
+     * Display view formular to add a new post.
+     *
+     * @return void
+     */
     private function create()
     {
         $categories = $this->categoryId();
 
         $this->view = new View('CreatePost');
-        $this->view->generate(array('categories' => $categories));
-    }
+        $this->view->generate(['categories' => $categories]);
 
+    }//end create
+
+
+    /**
+     * Create a new post.
+     *
+     * @return void
+     */
     public function addPost()
     {
         $categories = $this->categoryId();
@@ -145,17 +197,31 @@ class ControllerPost
         }
         // If the data is not valid or if the article creation failed, display the form with the errors
         $this->view = new View('CreatePost');
-        $this->view->generate(array('errors' => $errors, 'categories' => $categories));
-    }
+        $this->view->generate(['errors' => $errors, 'categories' => $categories]);
 
+    }//end addPost()
+
+
+    /**
+     * Get the category of a post.
+     *
+     * @return $categories
+     */
     private function categoryId()
     {
         $this->categoryManager = new CategoryManager();
         $categories = $this->categoryManager->getCategories();
 
         return $categories;
-    }
 
+    }//end categoryId()
+
+
+    /**
+     * Dispaly all post.
+     *
+     * @return void
+     */
     public function viewAll()
     {
         $this->postManager = new PostManager();
@@ -165,24 +231,44 @@ class ControllerPost
 
         $this->view = new View('AllPosts');
         $this->view->generate(array('posts' => $posts, 'categories' => $categories, 'users' => $users));
-    }
+    
+    }//end viewAll()
 
+
+    /**
+     * Get all post.
+     *
+     * @return $posts
+     */
     private function getAllPosts()
     {
         $this->postManager = new PostManager;
         $posts = $this->postManager->getAll('post', 'posts');
 
         return $posts;
-    }
+    
+    }//end getAllPosts()
 
+    /**
+     * Get all users.
+     *
+     * @return $users
+     */
     private function getAllUsers()
     {
         $userManager = new UserManager();
         $users = $userManager->getAllUsers();
 
         return $users;
-    }
 
+    }//end getAllUsers()
+
+
+    /**
+     * Dispaly one post.
+     *
+     * @return void
+     */
     private function viewOne()
     {
         if (isset($_GET['id'], $_GET['id'])) {
@@ -197,10 +283,17 @@ class ControllerPost
             $comments =  $this->commentManager->getCommentsByPostId($postId);
 
             $this->view = new View('SinglePost');
-            $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
+            $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
         }
-    }
+    
+    }//end viewOne()
 
+
+    /**
+     * Dispaly formular to update post.
+     *
+     * @return void
+     */
     private function update()
     {
         if (isset($_GET['id'], $_GET['id'])) {
@@ -215,10 +308,16 @@ class ControllerPost
             $comments =  $this->commentManager->getCommentsByPostId($postId);
 
             $this->view = new View('updatePost');
-            $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
+            $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
         }
-    }
+    
+    }//end update()
 
+    /**
+     * Update post title.
+     *
+     * @return void
+     */
     private function updatePostTitle()
     {
         $this->postManager = new PostManager;
@@ -254,9 +353,16 @@ class ControllerPost
         }
 
         $this->view = new View('SinglePost');
-        $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
-    }
+        $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
+    
+    }//end updatePostTitle()
 
+
+    /**
+     * Update post category.
+     *
+     * @return void
+     */
     private function updatePostCategory()
     {
         $this->postManager = new PostManager;
@@ -292,9 +398,16 @@ class ControllerPost
         }
 
         $this->view = new View('SinglePost');
-        $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
-    }
+        $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
+    
+    }//end updatePostCategory()
 
+
+    /**
+     * Update post chapo.
+     *
+     * @return void
+     */
     private function updatePostChapo()
     {
         $this->postManager = new PostManager;
@@ -330,9 +443,16 @@ class ControllerPost
         }
 
         $this->view = new View('SinglePost');
-        $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
-    }
+        $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
+    
+    }//end updatPostChapo()
 
+
+    /**
+     * Update post picture.
+     *
+     * @return void
+     */
     private function updatePostPicture()
     {
         $this->postManager = new PostManager;
@@ -395,9 +515,16 @@ class ControllerPost
         }
 
         $this->view = new View('SinglePost');
-        $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
-    }
+        $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
+    
+    }//end updatePostpicture()
 
+
+    /**
+     * Update post content.
+     *
+     * @return void
+     */
     private function updatePostContent()
     {
         $this->postManager = new PostManager;
@@ -433,6 +560,9 @@ class ControllerPost
         }
 
         $this->view = new View('SinglePost');
-        $this->view->generate(array('post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments));
-    }
+        $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
+    
+    }//end updatePostContent
+
+
 }
