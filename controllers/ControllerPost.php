@@ -15,6 +15,14 @@ class ControllerPost
     private $userManager;
     private $commentManager;
 
+    /**
+     * ControllerPost constructor.
+     * Initializes the ControllerComment object.
+     *
+     * @throws \Exception If the page is not found.
+     *
+     * @return void
+     */
     public function __construct()
     {
         if (isset($url) && count($url) < 1) {
@@ -44,7 +52,8 @@ class ControllerPost
         } else {
             $this->home();
         }
-    }
+
+    }//end __construct()
 
     public function home()
     {

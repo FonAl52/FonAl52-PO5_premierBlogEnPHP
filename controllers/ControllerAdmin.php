@@ -9,57 +9,76 @@ class ControllerAdmin
     private $categoryManager;
     private $view;
 
+    /**
+     * ControllerAdmin constructor.
+     * Initializes the ControllerComment object.
+     *
+     * @throws \Exception If the page is not found.
+     *
+     * @return void
+     */
     public function __construct()
     {
-        if (isset($_GET['management'])) {
+        if (isset($_GET['management']) === TRUE) {
             $this->management();
         }
-        if (isset($_GET['managementUsers'])) {
+        if (isset($_GET['managementUsers']) === TRUE) {
             $this->managementUsers();
         }
-        if (isset($_GET['managementPosts'])) {
+        if (isset($_GET['managementPosts']) === TRUE) {
             $this->managementPosts();
         }
-        if (isset($_GET['managementComments'])) {
+        if (isset($_GET['managementComments']) === TRUE) {
             $this->managementComments();
         }
-        if (isset($_GET['userLock'])) {
+        if (isset($_GET['userLock']) === TRUE) {
             $this->userLock();
         }
-        if (isset($_GET['userUnlock'])) {
+        if (isset($_GET['userUnlock']) === TRUE) {
             $this->userUnlock();
         }
-        if (isset($_GET['userDelete'])) {
+        if (isset($_GET['userDelete']) === TRUE) {
             $this->userDelete();
         }
-        if (isset($_GET['userAdmin'])) {
+        if (isset($_GET['userAdmin']) === TRUE) {
             $this->userAdmin();
         }
-        if (isset($_GET['userNorole'])) {
+        if (isset($_GET['userNorole']) === TRUE) {
             $this->userNorole();
         }
-        if (isset($_GET['postDelete'])) {
+        if (isset($_GET['postDelete']) === TRUE) {
             $this->postDelete();
         }
-        if (isset($_GET['commentUnvalidate'])) {
+        if (isset($_GET['commentUnvalidate']) === TRUE) {
             $this->commentUnvalidate();
         }
-        if (isset($_GET['commentValidate'])) {
+        if (isset($_GET['commentValidate']) === TRUE) {
             $this->commentValidate();
         }
-        if (isset($_GET['commentDelete'])) {
+        if (isset($_GET['commentDelete']) === TRUE) {
             $this->commentDelete();
         } else {
             throw new \Exception("Page Introuvable");
         }
-    }
+        
+    }//end __construct()
 
+    /**
+     * Display management view.
+     *
+     * @return void
+     */
     public function management()
     {
         $this->view = new View('Management');
         $this->view->generatePost(array());
     }
 
+    /**
+     * Display managementUsers view.
+     *
+     * @return void
+     */
     public function managementUsers()
     {
         $this->userManager = new UserManager;
@@ -73,6 +92,11 @@ class ControllerAdmin
         $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
     }
 
+    /**
+     * Display managementPosts view.
+     *
+     * @return void
+     */
     public function managementPosts()
     {
         $this->userManager = new UserManager;
@@ -88,6 +112,11 @@ class ControllerAdmin
         $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments, 'categories' => $categories));
     }
 
+    /**
+     * Display managementComments view.
+     *
+     * @return void
+     */
     public function managementComments()
     {
         $this->userManager = new UserManager;
@@ -101,6 +130,11 @@ class ControllerAdmin
         $this->view->generatePost(array('users' => $users, 'posts' => $posts, 'comments' => $comments));
     }
 
+    /**
+     * Change userRole to lock.
+     *
+     * @return void
+     */
     public function userLock()
     {
         $this->userManager = new UserManager;
@@ -120,6 +154,11 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
+    /**
+     * Change userRole to unlock.
+     *
+     * @return void
+     */
     public function userUnlock()
     {
         $this->userManager = new UserManager;
@@ -139,6 +178,11 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
+    /**
+     * Delete a user.
+     *
+     * @return void
+     */
     public function userDelete()
     {
         $this->userManager = new UserManager;
@@ -155,6 +199,11 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
+    /**
+     * Change userRole to admin.
+     *
+     * @return void
+     */
     public function userAdmin()
     {
         $this->userManager = new UserManager;
@@ -174,6 +223,11 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
+    /**
+     * Remove admin role.
+     *
+     * @return void
+     */
     public function userNorole()
     {
         $this->userManager = new UserManager;
@@ -193,6 +247,11 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
+    /**
+     * Delete a post.
+     *
+     * @return void
+     */
     public function postDelete()
     {
         $this->postManager = new PostManager;
@@ -216,6 +275,11 @@ class ControllerAdmin
         header('Location: admin&managementPosts');
     }
 
+    /**
+     * Validate a comment.
+     *
+     * @return void
+     */
     public function commentValidate()
     {
         $this->commentManager = new CommentManager;
@@ -236,6 +300,11 @@ class ControllerAdmin
         header('Location: admin&managementComments');
     }
 
+    /**
+     * Unvalidate a comment.
+     *
+     * @return void
+     */
     public function commentUnvalidate()
     {
         $this->commentManager = new CommentManager;
@@ -255,6 +324,11 @@ class ControllerAdmin
         header('Location: admin&managementComments');
     }
 
+    /**
+     * Delete a comment.
+     *
+     * @return void
+     */
     public function commentDelete()
     {
         $this->commentManager = new CommentManager;

@@ -9,6 +9,14 @@ class ControllerUser
     private $userManager;
     private $view;
 
+    /**
+     * ControllerUser constructor.
+     * Initializes the ControllerComment object.
+     *
+     * @throws \Exception If the page is not found.
+     *
+     * @return void
+     */
     public function __construct()
     {
         if (isset($_GET['register'])) {
@@ -49,7 +57,8 @@ class ControllerUser
         } else {
             throw new \Exception("Page Introuvable");
         }
-    }
+
+    }//end __construct()
 
     private function register()
     {

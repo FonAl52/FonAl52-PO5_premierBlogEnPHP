@@ -14,6 +14,14 @@ class ControllerService
 {
     private $view;
 
+    /**
+     * ControllerService constructor.
+     * Initializes the ControllerComment object.
+     *
+     * @throws \Exception If the page is not found.
+     *
+     * @return void
+     */
     public function __construct()
     {
         if (isset($_GET['contact'])) {
@@ -24,7 +32,8 @@ class ControllerService
         } else {
             throw new \Exception("Page Introuvable");
         }
-    }
+
+    }//end __construct()
 
     public function contact()
     {
