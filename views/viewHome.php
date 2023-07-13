@@ -2,29 +2,29 @@
 	<div class="container">
 		<div class="row">
 			<?php
-			$postCount = 0;
-			foreach ($posts as $post) :
-				if ($postCount >= 3) {
-					break;
-				}
+				$postCount = 0;
+					foreach ($posts as $post) :
+						if ($postCount >= 3) {
+							break;
+						}
 				$postCount++;
 			?>
 				<div class="col-lg-4 col-md-6">
 					<div class="card h-100">
 						<div class="single-post post-style-1">
 							<div class="blog-image"><img src="<?= htmlspecialchars($post['picture']) ?>" alt="Blog Image"></div>
-							<!-- User picture profile & name display -->
-							<?php
-							$authorName = 'Unknown';
-							$authorImage = 'public/images/default-avatar.jpg';
-							foreach ($users as $user) {
-								if ($user->getId() == $post['userId']) {
-									$authorName = $user->getFirstName() . ' ' . $user->getLastName();
-									$authorImage = $user->getPicture();
-									break;
-								}
-							}
-							?>
+								<!-- User picture profile & name display -->
+								<?php
+									$authorName = 'Unknown';
+									$authorImage = 'public/images/default-avatar.jpg';
+										foreach ($users as $user) {
+											if ($user->getId() == $post['userId']) {
+												$authorName = $user->getFirstName() . ' ' . $user->getLastName();
+												$authorImage = $user->getPicture();
+												break;
+											}
+										}
+								?>
 							<a class="avatar" href="#"><img src="<?= htmlspecialchars($authorImage) ?>" alt="Profile Image"></a>
 							<div class="blog-info">
 								<ul class="post-header">
