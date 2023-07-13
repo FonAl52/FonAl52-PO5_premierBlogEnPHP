@@ -55,6 +55,7 @@ class ControllerPost
 
     }//end __construct()
 
+    
     public function home()
     {
         $this->postManager = new PostManager();

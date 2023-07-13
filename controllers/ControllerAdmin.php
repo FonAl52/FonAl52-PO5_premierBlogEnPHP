@@ -61,6 +61,7 @@ class ControllerAdmin
             throw new \Exception("Page Introuvable");
         }
         
+        
     }//end __construct()
 
     /**

@@ -35,6 +35,7 @@ class ControllerService
 
     }//end __construct()
 
+    
     public function contact()
     {
         $this->view = new View('Contact');

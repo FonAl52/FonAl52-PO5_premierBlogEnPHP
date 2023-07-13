@@ -60,6 +60,7 @@ class ControllerUser
 
     }//end __construct()
 
+    
     private function register()
     {
         $this->view = new View('Register');
