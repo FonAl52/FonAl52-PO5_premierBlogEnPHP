@@ -6,12 +6,26 @@ require_once 'views/View.php';
 
 class ControllerUser
 {
+
+
+    /**
+     * User Manager instance.
+     *
+     * @var UserManager
+     */
     private $userManager;
+
+    /**
+     * View instance.
+     *
+     * @var View
+     */
     private $view;
+
 
     /**
      * ControllerUser constructor.
-     * Initializes the ControllerComment object.
+     * Initializes the ControllerUser object.
      *
      * @throws \Exception If the page is not found.
      *
@@ -19,40 +33,40 @@ class ControllerUser
      */
     public function __construct()
     {
-        if (isset($_GET['register'])) {
+        if (isset($_GET['register']) === TRUE) {
             $this->register();
-        } elseif (isset($_GET['create'])) {
+        } elseif (isset($_GET['create']) === TRUE) {
             $this->createUser();
-        } elseif (isset($_GET['connect'])) {
+        } elseif (isset($_GET['connect']) === TRUE) {
             $this->connect();
-        } elseif (isset($_GET['login'])) {
+        } elseif (isset($_GET['login']) === TRUE) {
             $this->userLogin();
-        } elseif (isset($_GET['resetPassword'])) {
+        } elseif (isset($_GET['resetPassword']) === TRUE) {
             $this->resetPass();
-        } elseif (isset($_GET['verifyEmail'])) {
+        } elseif (isset($_GET['verifyEmail']) === TRUE) {
             $this->verifyEmail();
-        } elseif (isset($_GET['changePassword'])) {
+        } elseif (isset($_GET['changePassword']) === TRUE) {
             $this->changePassword();
-        } elseif (isset($_GET['disconnect'])) {
+        } elseif (isset($_GET['disconnect']) === TRUE) {
             $this->disconnect();
-        } elseif (isset($_GET['profile'])) {
+        } elseif (isset($_GET['profile']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['editLastName'])) {
+        } elseif (isset($_GET['editLastName']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['changeLastName'])) {
+        } elseif (isset($_GET['changeLastName']) === TRUE) {
             $this->editLastName();
-        } elseif (isset($_GET['editFirstName'])) {
+        } elseif (isset($_GET['editFirstName']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['changeFirstName'])) {
+        } elseif (isset($_GET['changeFirstName']) === TRUE) {
             $this->editFirstName();
-        } elseif (isset($_GET['editEmail'])) {
+        } elseif (isset($_GET['editEmail']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['changeEmail'])) {
+        } elseif (isset($_GET['changeEmail']) === TRUE) {
             $this->editEmail();
-        } elseif (isset($_GET['editProfilePicture'])) {
+        } elseif (isset($_GET['editProfilePicture']) === TRUE) {
             $this->profile();
             $this->editProfilePicture();
-        } elseif (isset($_GET['changeProfilePicture'])) {
+        } elseif (isset($_GET['changeProfilePicture']) === TRUE) {
             $this->editProfilePicture();
         } else {
             throw new \Exception("Page Introuvable");
@@ -60,18 +74,31 @@ class ControllerUser
 
     }//end __construct()
 
-    
+
+    /**
+     * Display register formular.
+     *
+     * @return void
+     */
     private function register()
     {
         $this->view = new View('Register');
-        $this->view->generate(array());
-    }
+        $this->view->generate([]);
+    
+    }//end register()
 
+
+    /**
+     * Create a new user.
+     *
+     * @return void
+     */
     private function createUser()
     {
         $userManager = new UserManager();
         $newFields = array_map('htmlspecialchars', $_POST);
-        // Validate submitted data
+
+        // Validate submitted data.
         $errors = [];
         if (empty($newFields['firstName'])) {
             $errors['firstName'] = "Le prénom est obligatoire";
@@ -94,9 +121,9 @@ class ControllerUser
             $errors['password'] = "Les mots de passe ne correspondent pas";
         }
 
-        // If data is valid, create a new user and add it to the database
+        // If data is valid, create a new user and add it to the database.
         if (empty($errors)) {
-            $user = new User(array());
+            $user = new User([]);
             $user->setFirstName($newFields['firstName']);
             $user->setLastName($newFields['lastName']);
             $user->setEmail($newFields['email']);
@@ -112,17 +139,31 @@ class ControllerUser
             $_SESSION['message'] = "Des erreurs ont été détectées dans le formulaire. Veuillez les corriger et réessayer.";
         }
 
-        // If the data is invalid or the user creation has failed, display the registration form with the errors
+        // If the data is invalid or the user creation has failed, display the registration form with the errors.
         $this->view = new View('Register');
-        $this->view->generate(array('errors' => $errors));
-    }
+        $this->view->generate(['errors' => $errors]);
+    
+    }//end createUser()
 
+
+    /**
+     * Display connection formular.
+     *
+     * @return void
+     */
     private function connect()
     {
         $this->view = new View('Connect');
-        $this->view->generate(array());
-    }
+        $this->view->generate([]);
 
+    }//end connect()
+
+
+    /**
+     * Connect user.
+     *
+     * @return void
+     */
     private function userLogin()
     {
         $userManager = new UserManager();
@@ -131,51 +172,67 @@ class ControllerUser
 
         $errors = [];
 
-        // Email verification
+        // Email verification.
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = "Adresse email invalide";
         }
 
-        // Password verification
+        // Password verification.
         if (strlen($password) < 6) {
             $errors['password'] = "Le mot de passe doit contenir au moins 6 caractères";
         }
 
-        // Display errors
+        // Display errors.
         if (!empty($errors)) {
             $this->view = new View('Connect');
-            $this->view->generate(array('errors' => $errors));
+            $this->view->generate(['errors' => $errors]);
             return;
         }
-        // Checking if the user exists in the database
+
+        // Checking if the user exists in the database.
         $user = $userManager->verifyPassword($email, $password);
         if (!$user) {
             $_SESSION['message'] = "Adresse email ou mot de passe invalide";
             $this->view = new View('Connect');
-            $this->view->generate(array('errors' => $errors));
+            $this->view->generate(['errors' => $errors]);
             return;
         }
-        // Check user role
+
+        // Check user role.
         if ($user['role'] == 3) {
             $_SESSION['message'] = "Votre compte est verrouillé. Veuillez contacter l'administrateur.";
 
             $this->view = new View('Connect');
-            $this->view->generate(array('errors' => $errors));
+            $this->view->generate(['errors' => $errors]);
         }
-        // Redirect to homepage
+        // Redirect to homepage.
         header('location:post&home');
-    }
 
+    }//end userLogin()
+
+
+    /**
+     * Display formular to reset password.
+     *
+     * @return void
+     */
     private function resetPass()
     {
         $this->view = new View('ResetPassword');
-        $this->view->generate(array());
-    }
+        $this->view->generate([]);
 
+    }//end resetPass()
+
+
+    /**
+     * Email verification.
+     *
+     * @return void
+     */
     private function verifyEmail()
     {
         $this->userManager = new UserManager;
-        $errors = array();
+        $errors = [];
         if (isset($_POST['email'])) {
             $email = $_POST['email'];
             $user = $this->userManager->getUserByEmail($email);
@@ -192,20 +249,29 @@ class ControllerUser
             header('location:user&resetPassword');
         }
         $_SESSION['errors'] = $errors;
-    }
 
+    }//end verifyEmail()
+
+
+    /**
+     * Change password.
+     *
+     * @return void
+     */
     private function changePassword()
     {
         $this->userManager = new UserManager;
         $newFields = array_map('htmlspecialchars', $_POST);
-        // Validate submitted data
+
+        // Validate submitted data.
         $errors = [];
         if (empty($newFields['new_password'])) {
             $errors['new_password'] = "Le nouveau mot de passe est obligatoire";
         } elseif (!empty($newFields['new_password']) && $newFields['new_password'] !== $newFields['confirm_password']) {
             $errors['new_password'] = "Les mots de passe ne correspondent pas";
         }
-        // If data is valid, update password in database
+
+        // If data is valid, update password in database.
         if (empty($errors)) {
             $userId = $_SESSION['id'];
             $newPassword = $newFields['new_password'];
@@ -223,23 +289,44 @@ class ControllerUser
 
         // If the data is not valid or if the update fails, display the modification form with the errors.
         $this->view = new View('ResetPassword');
-        $this->view->generate(array('errors' => $errors));
-    }
+        $this->view->generate(['errors' => $errors]);
 
+    }//end changePassword()
+
+
+    /**
+     * Disconnect user.
+     *
+     * @return void
+     */
     private function disconnect()
     {
         session_unset();
         session_destroy();
 
         header('location:user&connect');
-    }
+    
+    }//end disconnect()
 
+
+    /**
+     * Display user profile page.
+     *
+     * @return void
+     */
     private function profile()
     {
         $this->view = new View('Profile');
-        $this->view->generate(array());
-    }
+        $this->view->generate([]);
 
+    }//end profile()
+
+
+    /**
+     * Edit user lastname.
+     *
+     * @return void
+     */
     private function editLastName()
     {
         $this->userManager = new UserManager;
@@ -249,31 +336,39 @@ class ControllerUser
         if (empty($newFields['lastName'])) {
             $errors['lastName'] = "Le nom est obligatoire";
         }
-        // Check if the new last name is valid
+
+        // Check if the new last name is valid.
         if (!preg_match("/^[a-zA-Z'-]+$/", $newFields['lastName'])) {
             $errors['lastName'] = "Le nouveau nom de famille n'est pas valide";
         }
         if (empty($errors)) {
-            // Retrieve the user from the database
+
+            // Retrieve the user from the database.
             $user = $this->userManager->getUserById($userId);
 
-            // Create an array with the updated last name
-            $updateOptions = array(
-                'lastName' => $newFields['lastName']
-            );
+            // Create an array with the updated last name.
+            $updateOptions = ['lastName' => $newFields['lastName']];
 
-            // Update the user in the database
+            // Update the user in the database.
             if (!$this->userManager->updateUser($user, $updateOptions)) {
                 $errors['lastName'] = "Erreur lors de la mise à jour du nom de famille de l'utilisateur";
             }
-            // Update the last name in the session
+
+            // Update the last name in the session.
             $_SESSION['lastName'] = $newFields['lastName'];
             $_SESSION['message'] = "Profile mis à jour avec succès";
         }
 
         header('location:user&profile');
-    }
 
+    }// end editLastName()
+
+
+    /**
+     * Edit user firstname.
+     *
+     * @return void
+     */
     private function editFirstName()
     {
         $this->userManager = new UserManager;
@@ -283,31 +378,38 @@ class ControllerUser
         if (empty($newFields['firstName'])) {
             $errors['firstName'] = "Le prénom est obligatoire";
         }
-        // Check if the new firstname is valid
+
+        // Check if the new firstname is valid.
         if (!preg_match("/^[a-zA-Z'-]+$/", $newFields['firstName'])) {
             $errors['firstName'] = "Le nouveau prénom n'est pas valide";
         }
         if (empty($errors)) {
-            // Retrieve the user from the database
+
+            // Retrieve the user from the database.
             $user = $this->userManager->getUserById($userId);
 
-            // Create an array with the updated firstname
-            $updateOptions = array(
-                'firstName' => $newFields['firstName']
-            );
+            // Create an array with the updated firstname.
+            $updateOptions = ['firstName' => $newFields['firstName']];
 
-            // Update the user in the database
+            // Update the user in the database.
             if (!$this->userManager->updateUser($user, $updateOptions)) {
                 $errors['firstName'] = "Erreur lors de la mise à jour du prénom de l'utilisateur";
             }
-            // Update the firstname in the session
+            // Update the firstname in the session.
             $_SESSION['firstName'] = $newFields['firstName'];
             $_SESSION['message'] = "Profile mis à jour avec succès";
         }
 
         header('location:user&profile');
-    }
 
+    }//end editFristName()
+
+
+    /**
+     * Edit user email.
+     *
+     * @return void
+     */
     private function editEmail()
     {
         $this->userManager = new UserManager;
@@ -319,7 +421,7 @@ class ControllerUser
             $errors['errors'] = "L'email est obligatoire";
         }
 
-        // Check if email is valid
+        // Check if email is valid.
         if (!filter_var($newFields['email'], FILTER_VALIDATE_EMAIL)) {
             $errors['errors'] = "Le nouvel email n'est pas valide";
         }
@@ -329,27 +431,34 @@ class ControllerUser
         }
 
         if (empty($errors)) {
-            // Retrieve the user from the database
+
+            // Retrieve the user from the database.
             $user = $this->userManager->getUserById($userId);
 
-            // Create an array with the updated email
-            $updateOptions = array(
-                'email' => $newFields['email']
-            );
+            // Create an array with the updated email.
+            $updateOptions = ['email' => $newFields['email']];
 
-            // Update the user in the database
+            // Update the user in the database.
             if (!$this->userManager->updateUser($user, $updateOptions)) {
                 $errors['errors'] = "Erreur lors de la mise à jour de l'email de l'utilisateur";
             } else {
-                // Update email in the session
+
+                // Update email in the session.
                 $_SESSION['email'] = $newFields['email'];
                 $_SESSION['message'] = "Profile mis à jour avec succès";
             }
         }
 
         header('location:user&profile');
-    }
 
+    }//end editEmail()
+
+
+    /**
+     * Edit user profile picture.
+     *
+     * @return void
+     */
     public function editProfilePicture()
     {
         $this->userManager = new UserManager;
@@ -357,13 +466,15 @@ class ControllerUser
         $picturePath = '';
 
         if (isset($_FILES['profilePicture']) && $_FILES['profilePicture']['error'] == 0) {
-            // Check if the file is a valid image
+
+            // Check if the file is a valid image.
             $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
             if (in_array($_FILES['profilePicture']['type'], $allowedTypes)) {
-                // Generate a new unique file name to avoid naming conflicts
+
+                // Generate a new unique file name to avoid naming conflicts.
                 $fileName = uniqid('', true) . '.' . pathinfo($_FILES['profilePicture']['name'], PATHINFO_EXTENSION);
 
-                // Move the uploaded file to the public/images/profile folder with the new file name
+                // Move the uploaded file to the public/images/profile folder with the new file name.
                 $destination = 'public/images/profile/' . $fileName;
                 if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $destination)) {
                     $picturePath = $destination;
@@ -377,15 +488,18 @@ class ControllerUser
             $errors['errors'] = "Le fichier n'a pas été téléchargé";
         }
         if (!empty($picturePath)) {
-            // Update user in database with new picture profile path
+
+            // Update user in database with new picture profile path.
             $user = $this->userManager->getUserById($userId);
-            $updateOptions = array('picture' => $picturePath);
-            // Delete old picture profile if there is
+            $updateOptions = ['picture' => $picturePath];
+
+            // Delete old picture profile if there is.
             if (!empty($user['picture'])) {
                 unlink($user['picture']);
             }
             if ($this->userManager->updateUser($user, $updateOptions)) {
-                // Update session to show new picture
+
+                // Update session to show new picture.
                 $_SESSION['picture'] = $picturePath;
                 $_SESSION['message'] = "Profile mis à jour avec succès";
                 header('location:user&profile');
@@ -393,9 +507,13 @@ class ControllerUser
                 $errors['errors'] = "Erreur lors de la mise à jour du chemin de l'image de profil dans la base de données";
             }
         }
-        //Display errors
+
+        //Display errors.
         if (!empty($errors)) {
-            $this->view->generate(array('errors' => $errors));
+            $this->view->generate(['errors' => $errors]);
         }
-    }
+
+    }//end editProfilePicture()
+
+
 }
