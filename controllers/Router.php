@@ -11,10 +11,10 @@ class Router
 
 
     /**
-    * The controller instance.
-    *
-    * @var Controller
-    */
+     * The controller instance.
+     *
+     * @var Controller
+     */
     private $ctrl;
 
     /**
@@ -27,7 +27,7 @@ class Router
 
     /**
      * Routes the request.
-     * 
+     *
      * @return void
      */
     public function routeReq()
@@ -35,7 +35,8 @@ class Router
 
         try {
             // Automatic loading of classes from the models folder.
-            spl_autoload_register(function ($class) {
+            spl_autoload_register(
+                function ($class) {
                     require_once('models/' . $class . '.php');
                 }
             );
@@ -61,19 +62,19 @@ class Router
                     // to respect encapsulation.
                     require_once($controllerFile);
                     $this->ctrl = new $controllerClass($url);
-                } 
+                } else {
                     $this->view = new View('404');
-                    $this->view->generate(array('errorMsg' => $errorMsg));
+                    $this->view->generate(['errorMsg' => $errorMsg]);
                     throw new \Exception("Page introuvable", 1);
+                }
             }
-            
         } catch (\Exception $e) {
             $errorMsg = $e->getMessage();
             $this->view = new View('Error');
-            $this->view->generate(array('errorMsg' => $errorMsg));
+            $this->view->generate(['errorMsg' => $errorMsg]);
         }
 
-    }//end routeReq()
+    } //end routeReq()
 
 
 }
