@@ -87,7 +87,7 @@ class ControllerAdmin
         }
         if (isset($_GET['commentDelete']) === TRUE) {
             $this->commentDelete();
-        } 
+        }
         throw new \Exception("Page Introuvable");
     } //end __construct()
 
@@ -101,8 +101,7 @@ class ControllerAdmin
     {
         $this->view = new View('Management');
         $this->view->generatePost([]);
-
-    }//end management()
+    } //end management()
 
 
     /**
@@ -121,7 +120,6 @@ class ControllerAdmin
 
         $this->view = new View('ManagementUsers');
         $this->view->generatePost(['users' => $users, 'posts' => $posts, 'comments' => $comments]);
-
     }
 
 
@@ -143,7 +141,6 @@ class ControllerAdmin
 
         $this->view = new View('ManagementPosts');
         $this->view->generatePost(['users' => $users, 'posts' => $posts, 'comments' => $comments, 'categories' => $categories]);
-
     }
 
 
@@ -163,7 +160,6 @@ class ControllerAdmin
 
         $this->view = new View('ManagementComments');
         $this->view->generatePost(['users' => $users, 'posts' => $posts, 'comments' => $comments]);
-
     }
 
 
@@ -263,6 +259,7 @@ class ControllerAdmin
         header('Location: admin&managementUsers');
     }
 
+    
     /**
      * Remove admin role.
      *
@@ -338,7 +335,6 @@ class ControllerAdmin
             $_SESSION['error_message'] = "Une erreur s'est produite lors de la mise à jour du commentaire.";
         }
 
-
         header('Location: admin&managementComments');
     }
 
@@ -388,6 +384,4 @@ class ControllerAdmin
 
         header('Location: admin&managementComments');
     }
-
-
 }

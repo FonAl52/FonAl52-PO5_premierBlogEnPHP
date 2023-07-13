@@ -6,6 +6,8 @@ require_once 'models/CommentManager.php';
 
 class ControllerComment
 {
+
+
     /**
      * ControllerComment constructor.
      * Initializes the ControllerComment object.
@@ -43,6 +45,7 @@ class ControllerComment
         if (empty($newFields['postId']) === TRUE) {
             $errors['postId'] = "Une erreur est survenue merci de nous contacter";
         }
+        
         if (empty($newFields['userId']) === TRUE) {
             $errors['userId'] = "Une erreur est survenue merci de nous contacter";
         }
@@ -69,6 +72,4 @@ class ControllerComment
         header('Location: post&id='.$newFields['postId']);
 
     }
-
-
 }
