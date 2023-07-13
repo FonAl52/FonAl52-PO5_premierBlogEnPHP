@@ -7,11 +7,15 @@ require './vendor/autoload.php';
 require_once 'views/View.php';
 
 
-/**
- *
- */
 class ControllerService
 {
+
+
+    /**
+     * View instance.
+     *
+     * @var View
+     */
     private $view;
 
     /**
@@ -24,10 +28,10 @@ class ControllerService
      */
     public function __construct()
     {
-        if (isset($_GET['contact'])) {
+        if (isset($_GET['contact']) === TRUE) {
             $this->contact();
         }
-        if (isset($_GET['send'])) {
+        if (isset($_GET['send']) === TRUE) {
             $this->sendEmail();
         } else {
             throw new \Exception("Page Introuvable");
@@ -35,19 +39,32 @@ class ControllerService
 
     }//end __construct()
 
-    
+
+    /**
+     * Display contact formular.
+     *
+     * @return void
+     */
     public function contact()
     {
         $this->view = new View('Contact');
-        $this->view->generate(array());
-    }
+        $this->view->generate([]);
+    
+    }//end contact()
 
+
+    /**
+     * Send email with contact formular.
+     *
+     * @return void
+     */
     public function sendEmail()
     {
         $mail_username = $_ENV['MAIL_USERNAME'];
         $mail_password = $_ENV['MAIL_PASSWORD'];
         $newFields = array_map('htmlspecialchars', $_POST);
-        // Valider les données soumises
+
+        // Valider les données soumises.
         $errors = [];
 
         if (empty($newFields['firstName'])) {
@@ -71,36 +88,36 @@ class ControllerService
             $subject = $newFields['subject'];
             $message = $newFields['message'];
         }
-        //Create a new PHPMailer instance
 
+        // Create a new PHPMailer instance.
         $mail = new PHPMailer;
 
         try {
 
-            //Server settings
-            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = $mail_username;                     //SMTP username
-            $mail->Password   = $mail_password;                               //SMTP password
-            $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            // Server settings.
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $mail_username;
+            $mail->Password   = $mail_password;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
 
-            //Recipients
+            // Recipients.
             $mail->setFrom('vod52m@gmail.com', 'Administrateur AFID');
-            $mail->addAddress($email, $firstName);     //Add a recipient
-            //$mail->addAddress('ellen@example.com');               //Name is optional
+            $mail->addAddress($email, $firstName);
+            //$mail->addAddress('ellen@example.com');     
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
             //$mail->addBCC('bcc@example.com');
 
-            //Attachments
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+            // Attachments.
+            //$mail->addAttachment('/var/tmp/file.tar.gz');
+            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');
 
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
+            // Content.
+            $mail->isHTML(true);
             $mail->Subject = $subject;
             $mail->Body    = $message;
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
@@ -110,5 +127,8 @@ class ControllerService
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
         header('Location: service&contact');
-    }
+
+    }//end sendEmail()
+
+
 }
