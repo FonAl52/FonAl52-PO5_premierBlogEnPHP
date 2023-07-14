@@ -53,13 +53,15 @@ class Category
     }//end hydrate()
 
 
-    // setters
+    //  setters
 
 
     /**
      * Set the ID of the category.
      *
      * @param integer $idCategory The ID of the category.
+     *
+     * @return void
      */
     public function setIdCategory($idCategory)
     {
@@ -85,7 +87,7 @@ class Category
     }//end setName()
 
 
-    // getters
+    //  getters
 
 
     /**
