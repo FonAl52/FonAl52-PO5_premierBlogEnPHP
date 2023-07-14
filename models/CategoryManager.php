@@ -5,7 +5,13 @@
  */
 class CategoryManager extends Model
 {
-    
+
+
+    /**
+     * Get the category.
+     *
+     * @return $categories The Name of the category.
+     */
     public function getCategories()
     {
         $this->getBdd();
@@ -13,8 +19,12 @@ class CategoryManager extends Model
         $categories = [];
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $categories[] = new Category($data);
+
         }
         $req->closeCursor();
         return $categories;
-    }
+        
+    }//end getCategories()
+
+
 }

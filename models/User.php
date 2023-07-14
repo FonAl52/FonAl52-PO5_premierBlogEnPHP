@@ -15,7 +15,6 @@ class User
 
     private $id;
 
-
     /**
      * The firstname of the user.
      *
