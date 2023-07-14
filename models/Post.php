@@ -15,23 +15,42 @@ class Post
     private $createdAt;
     private $updatedAt;
 
+    /**
+     * Class constructor.
+     *
+     * @param array $data The data used for object initialization.
+     */
     public function __construct(array $data)
     {
         $this->hydrate($data);
-    }
 
-    //hdratation
+    }//end __construct()
+
+
+    /**
+     * Hydrates the object with the provided data.
+     *
+     * @param array $data The data to be used for object initialization.
+     */
     public function hydrate(array $data)
     {
         foreach ($data as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set'.ucfirst($key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
-    }
 
-    //setters
+    }//end hydrate()
+
+    
+    // setters
+
+    /**
+     * Set the ID of the post.
+     *
+     * @param integer $id The ID of the post.
+     */
     public function setId($id)
     {
         $id = (int) $id;
@@ -94,7 +113,14 @@ class Post
         $this->updatedAt = $updatedAt;
     }
 
-    //getters
+
+    // getters
+
+    /**
+     * Get the ID of the post.
+     *
+     * @return integer The ID of the post.
+     */
     public function getId()
     {
         return $this->id;

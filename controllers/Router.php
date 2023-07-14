@@ -74,7 +74,7 @@ class Router
             $this->view->generate(['errorMsg' => $errorMsg]);
         }
 
-    } //end routeReq()
+    }//end routeReq()
 
 
 }

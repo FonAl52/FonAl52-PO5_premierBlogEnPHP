@@ -16,23 +16,42 @@ class User
     private $picture;
     private $role;
 
+    /**
+     * Class constructor.
+     *
+     * @param array $data The data used for object initialization.
+     */
     public function __construct(array $data)
     {
         $this->hydrate($data);
-    }
 
-    //hdratation
+    }//end __construct()
+
+
+    /**
+     * Hydrates the object with the provided data.
+     *
+     * @param array $data The data to be used for object initialization.
+     */
     public function hydrate(array $data)
     {
         foreach ($data as $key => $value) {
-            $method = 'set' . ucfirst($key);
+            $method = 'set'.ucfirst($key);
             if (method_exists($this, $method)) {
                 $this->$method($value);
             }
         }
-    }
 
-    //setters
+    }//end hydrate()
+
+    
+    // setters
+
+    /**
+     * Set the ID of the user.
+     *
+     * @param integer $id The ID of the user.
+     */
     public function setId($id)
     {
         $id = (int) $id;
@@ -96,7 +115,14 @@ class User
         $this->role = $role;
     }
 
-    //getters
+
+    // getters
+
+    /**
+     * Get the ID of the user.
+     *
+     * @return integer The ID of the user.
+     */
     public function getId()
     {
         return $this->id;
