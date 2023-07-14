@@ -30,7 +30,7 @@ class Category
      * Class constructor.
      *
      * @param array $data The data used for object initialization.
-     * 
+     *
      * @return void
      */
     public function __construct(array $data)
@@ -91,7 +91,7 @@ class Category
 
     // getters
 
-    
+
     /**
      * Get the ID of the category.
      *
