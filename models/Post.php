@@ -40,7 +40,6 @@ class Post
 
     private $title;
 
-
     /**
      * The chapo of the post.
      *
@@ -48,7 +47,6 @@ class Post
      */
 
     private $chapo;
-
 
     /**
      * The picture of the post.
@@ -58,7 +56,6 @@ class Post
 
     private $picture;
 
-
     /**
      * The content of the post.
      *
@@ -67,7 +64,6 @@ class Post
 
     private $content;
 
-
     /**
      * The date of creation of the post.
      *
@@ -75,7 +71,6 @@ class Post
      */
 
     private $createdAt;
-
 
     /**
      * The update date of the post.
@@ -116,14 +111,13 @@ class Post
 
     }//end hydrate()
 
-    
-    // setters
-
 
     /**
      * Set the ID of the post.
      *
      * @param integer $id The ID of the post.
+     *
+     * @return void
      */
     public function setId($id)
     {
@@ -139,6 +133,8 @@ class Post
      * Set the category ID of the post.
      *
      * @param integer $categoryId The category ID of the post.
+     *
+     * @return void
      */
     public function setCategoryId($categoryId)
     {
@@ -154,6 +150,8 @@ class Post
      * Set the user ID of the post.
      *
      * @param integer $userId The user ID of the post.
+     *
+     * @return void
      */
     public function setUserId($userId)
     {
@@ -169,6 +167,8 @@ class Post
      * Set the chapo of the post.
      *
      * @param string $chapo The chapo of the post.
+     *
+     * @return void
      */
     public function setChapo($chapo)
     {
@@ -183,6 +183,8 @@ class Post
      * Set the picture of the post.
      *
      * @param string $picture The picture of the post.
+     *
+     * @return void
      */
     public function setPicture($picture)
     {
@@ -197,6 +199,8 @@ class Post
      * Set the Title of the post.
      *
      * @param string $title The Title of the post.
+     *
+     * @return void
      */
     public function setTitle($title)
     {
@@ -211,6 +215,8 @@ class Post
      * Set the content of the post.
      *
      * @param string $content The content of the post.
+     *
+     * @return void
      */
     public function setContent($content)
     {
@@ -225,6 +231,8 @@ class Post
      * Set the date of creation of the post.
      *
      * @param integer $createdAt The date of creation of the post.
+     *
+     * @return void
      */
     public function setCreatedAt($createdAt)
     {
@@ -237,15 +245,14 @@ class Post
      * Set the update date of the post.
      *
      * @param integer $updatedAt The update date of the post.
+     *
+     * @return void
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
     }//end setUpdatedAt()
-
-
-    // getters
 
 
     /**

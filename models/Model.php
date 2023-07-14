@@ -43,7 +43,6 @@ abstract class Model
     {
         // Check if a database connection exists.
         if (self::$bdd === null) {
-
             // If not, establish a new connection.
             self::setBdd();
         }

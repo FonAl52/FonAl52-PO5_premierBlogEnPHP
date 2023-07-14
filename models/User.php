@@ -97,7 +97,7 @@ class User
      * Hydrates the object with the provided data.
      *
      * @param array $data The data to be used for object initialization.
-     * 
+     *
      * @return void
      */
     public function hydrate(array $data)
@@ -111,14 +111,13 @@ class User
 
     }//end hydrate()
 
-    
-    // setters
-
 
     /**
      * Set the ID of the user.
      *
      * @param integer $id The ID of the user.
+     *
+     * @return void
      */
     public function setId($id)
     {
@@ -136,6 +135,8 @@ class User
      * Set the firstname of the user.
      *
      * @param string $firstName The firstname of the user.
+     *
+     * @return void
      */
     public function setFirstName($firstName)
     {
@@ -150,6 +151,8 @@ class User
      * Set the lastname of the user.
      *
      * @param string $lastName The lastname of the user.
+     *
+     * @return void
      */
     public function setLastName($lastName)
     {
@@ -164,6 +167,8 @@ class User
      * Set the email of the user.
      *
      * @param string $email The email of the user.
+     *
+     * @return void
      */
     public function setEmail($email)
     {
@@ -178,6 +183,8 @@ class User
      * Set the age of the user.
      *
      * @param integer $age The age of the user.
+     *
+     * @return void
      */
     public function setAge($age)
     {
@@ -193,6 +200,8 @@ class User
      * Set the password of the user.
      *
      * @param string $password The password of the user.
+     *
+     * @return void
      */
     public function setPassword($password)
     {
@@ -207,6 +216,8 @@ class User
      * Set the phone number of the user.
      *
      * @param integer $phone The phone number of the user.
+     *
+     * @return void
      */
     public function setPhone($phone)
     {
@@ -222,6 +233,8 @@ class User
      * Set the picture of the user.
      *
      * @param string $picture The pictue of the user.
+     *
+     * @return void
      */
     public function setPicture($picture)
     {
@@ -234,6 +247,8 @@ class User
      * Set the role of the user.
      *
      * @param integer $role The role of the user.
+     *
+     * @return void
      */
     public function setRole($role)
     {
@@ -242,9 +257,6 @@ class User
     }//end setRole()
 
 
-    // getters
-
-    
     /**
      * Get the ID of the user.
      *

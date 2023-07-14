@@ -63,6 +63,7 @@ class Comment
 
     private $updatedAt;
 
+
     /**
      * Class constructor.
      *
@@ -93,14 +94,13 @@ class Comment
 
     }//end hydrate()
 
-    
-    //  setters
 
-    
     /**
      * Set the ID of the comment.
      *
      * @param integer $id The ID of the comment.
+     *
+     * @return void
      */
     public function setId($id)
     {
@@ -116,6 +116,8 @@ class Comment
      * Set the Post related ID of the comment.
      *
      * @param integer $postId The Post related ID of the comment.
+     *
+     * @return void
      */
     public function setPostId($postId)
     {
@@ -131,6 +133,8 @@ class Comment
      * Set the user ID of the comment.
      *
      * @param integer $userId The user ID of the comment.
+     *
+     * @return void
      */
     public function setUserId($userId)
     {
@@ -145,6 +149,8 @@ class Comment
      * Set the content of the comment.
      *
      * @param string $comment The content of the comment.
+     *
+     * @return void
      */
     public function setComment($comment)
     {
@@ -159,6 +165,8 @@ class Comment
      * Set the validation status of the comment.
      *
      * @param integer $validated The validation status of the comment.
+     *
+     * @return void
      */
     public function setValidated($validated)
     {
@@ -173,6 +181,8 @@ class Comment
      * Set the date of creation of the comment.
      *
      * @param integer $createdAt The validation status of the comment.
+     *
+     * @return void
      */
     public function setCreatedAt($createdAt)
     {
@@ -185,6 +195,8 @@ class Comment
      * Set the update date of the comment.
      *
      * @param integer $updatedAt The update date of the comment.
+     *
+     * @return void
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -193,9 +205,6 @@ class Comment
     }//end setUpdatedAt()
 
 
-    //  getters
-
-    
     /**
      * Get the ID of the comment.
      *
