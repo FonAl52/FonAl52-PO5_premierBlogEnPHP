@@ -13,6 +13,7 @@ class Comment
      *
      * @var integer
      */
+
     private $id;
 
 
@@ -21,6 +22,7 @@ class Comment
      *
      * @var integer
      */
+
     private $postId;
 
 
@@ -29,14 +31,16 @@ class Comment
      *
      * @var integer
      */
+
     private $userId;
 
-    
+
     /**
      * The content of the comment.
      *
      * @var string
      */
+
     private $comment;
 
 
@@ -45,6 +49,7 @@ class Comment
      *
      * @var integer
      */
+
     private $validated;
 
 
@@ -53,6 +58,7 @@ class Comment
      *
      * @var integer
      */
+
     private $createdAt;
 
 
@@ -61,6 +67,7 @@ class Comment
      *
      * @var integer
      */
+
     private $updatedAt;
 
     
@@ -80,6 +87,8 @@ class Comment
      * Hydrates the object with the provided data.
      *
      * @param array $data The data to be used for object initialization.
+     * 
+     * @return void
      */
     public function hydrate(array $data)
     {
@@ -95,6 +104,7 @@ class Comment
     
     // setters
 
+    
     /**
      * Set the ID of the comment.
      *
@@ -176,7 +186,7 @@ class Comment
     {
         $this->createdAt = $createdAt;
 
-    }//end setCreatedAt
+    }//end setCreatedAt()
 
 
     /**
@@ -188,11 +198,12 @@ class Comment
     {
         $this->updatedAt = $updatedAt;
 
-    }//end setUpdatedAt
+    }//end setUpdatedAt()
 
 
     // getters
 
+    
     /**
      * Get the ID of the comment.
      *
@@ -241,7 +252,6 @@ class Comment
     }//end getComment()
 
 
-
     /**
      * Get the validation status of the comment.
      *
@@ -275,7 +285,7 @@ class Comment
     {
         return $this->updatedAt;
     
-    }//end getUpdateAt()
+    }//end getUpdatedAt()
 
 
-}
+}//end __construct()

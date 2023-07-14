@@ -7,22 +7,18 @@
 class Category
 {
 
-
     /**
      * The ID of the category.
      *
      * @var integer
      */
-
     private $idCategory;
-
 
     /**
      * The name of the category.
      *
      * @var string
      */
-
     private $name;
 
 
@@ -30,8 +26,6 @@ class Category
      * Class constructor.
      *
      * @param array $data The data used for object initialization.
-     *
-     * @return void
      */
     public function __construct(array $data)
     {
@@ -44,6 +38,8 @@ class Category
      * Hydrates the object with the provided data.
      *
      * @param array $data The data to be used for object initialization.
+     * 
+     * @return void
      */
     public function hydrate(array $data)
     {
@@ -116,4 +112,4 @@ class Category
     }//end getName()
 
 
-}
+}//end __construct()
