@@ -10,6 +10,7 @@ abstract class Model
      */
     protected static $bdd;
 
+
     /**
      * Establish a database connection.
      *
@@ -34,15 +35,14 @@ abstract class Model
 
 
     /**
-    * Get the database connection.
-    *
-    * @return self::$bdd
-    */
+     * Get the database connection.
+     *
+     * @return self::$bdd
+     */
     protected function getBdd()
     {
-
         // Check if a database connection exists.
-        if (self::$bdd == null) {
+        if (self::$bdd === null) {
 
             // If not, establish a new connection.
             self::setBdd();
@@ -54,4 +54,4 @@ abstract class Model
     }//end getBdd()
 
 
-}
+}//end class
