@@ -1,18 +1,69 @@
 <?php
 
+
 /**
  *
  */
 class Comment
 {
+
+
+    /**
+     * The ID of the comment.
+     *
+     * @var integer
+     */
     private $id;
+
+
+    /**
+     * The post related ID of the comment.
+     *
+     * @var integer
+     */
     private $postId;
+
+
+    /**
+     * The userID of the comment.
+     *
+     * @var integer
+     */
     private $userId;
+
+    
+    /**
+     * The content of the comment.
+     *
+     * @var string
+     */
     private $comment;
+
+
+    /**
+     * The statut of the comment.
+     *
+     * @var integer
+     */
     private $validated;
+
+
+    /**
+     * The date of creation of the comment.
+     *
+     * @var integer
+     */
     private $createdAt;
+
+
+    /**
+     * The update date of the comment.
+     *
+     * @var integer
+     */
     private $updatedAt;
 
+    
     /**
      * Class constructor.
      *
