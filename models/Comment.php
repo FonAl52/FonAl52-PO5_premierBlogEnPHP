@@ -7,7 +7,6 @@
 class Comment
 {
 
-
     /**
      * The ID of the comment.
      *
@@ -15,7 +14,6 @@ class Comment
      */
 
     private $id;
-
 
     /**
      * The post related ID of the comment.
@@ -25,7 +23,6 @@ class Comment
 
     private $postId;
 
-
     /**
      * The userID of the comment.
      *
@@ -33,7 +30,6 @@ class Comment
      */
 
     private $userId;
-
 
     /**
      * The content of the comment.
@@ -43,7 +39,6 @@ class Comment
 
     private $comment;
 
-
     /**
      * The statut of the comment.
      *
@@ -51,7 +46,6 @@ class Comment
      */
 
     private $validated;
-
 
     /**
      * The date of creation of the comment.
@@ -61,7 +55,6 @@ class Comment
 
     private $createdAt;
 
-
     /**
      * The update date of the comment.
      *
@@ -70,7 +63,6 @@ class Comment
 
     private $updatedAt;
 
-    
     /**
      * Class constructor.
      *
@@ -102,7 +94,7 @@ class Comment
     }//end hydrate()
 
     
-    // setters
+    //  setters
 
     
     /**
@@ -201,7 +193,7 @@ class Comment
     }//end setUpdatedAt()
 
 
-    // getters
+    //  getters
 
     
     /**
