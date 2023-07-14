@@ -23,21 +23,21 @@ class CommentManager extends Model
     /**
      * Get one comment.
      *
+     * @param   int    $postId The ID of the post.
      * @return array An array of one comment content.
-     *
      */
     public function getOne($postId)
     {
         return $this->getOneComment('comment', 'Comment', $postId);
-    
+
     }//end getOne()
 
 
     /**
      * Create one comment.
      *
+     * @param   int    $comment The comment create by createOne().
      * @return array An array of one comment content.
-     *
      */
     public function createComment($comment)
     {
@@ -49,14 +49,14 @@ class CommentManager extends Model
 
         return $this->createOne('comment', $comment);
 
-    }//end createCommment()
+    }//end createComment()
 
 
     /**
      * Get all comments from a table.
      *
-     * @param string $table The table name.
-     * @param string $obj The object name.
+     * @param   string    $table The table name.
+     * @param   string    $obj The object name.
      * @return array An array of comments.
      *
      */
@@ -81,9 +81,9 @@ class CommentManager extends Model
     /**
      * Get a single comment from a table.
      *
-     * @param string $table The table name.
-     * @param string $obj The object name.
-     * @param int $postId The ID of the post.
+     * @param   string    $table The table name.
+     * @param   string    $obj The object name.
+     * @param   int    $postId The ID of the post.
      * @return array|null The comment or null if not found.
      *
      */
@@ -107,7 +107,7 @@ class CommentManager extends Model
     /**
      * Get comments by post ID.
      *
-     * @param int $postId The ID of the post.
+     * @param   int    $postId The ID of the post.
      * @return array An array of comments.
      *
      */
@@ -137,8 +137,8 @@ class CommentManager extends Model
     /**
      * Create a new record in the specified table.
      *
-     * @param string $table The name of the table.
-     * @param object $obj The object containing the data to be inserted.
+     * @param   string    $table The name of the table.
+     * @param   object    $obj The object containing the data to be inserted.
      * @return boolean
      */
     public function createOne($table, $obj)
@@ -146,9 +146,11 @@ class CommentManager extends Model
         $this->getBdd();
         $req = self::$bdd->prepare("INSERT INTO ".$table." (postId, userId, comment, validated, createdAt, updatedAt) VALUES (?, ?, ?, 0, NOW(), NOW())");
         $req->execute(
-                    [$obj->getPostId(),
-                    $obj->getUserId(),
-                    $obj->getComment(),]
+            [
+                     $obj->getPostId(),
+                     $obj->getUserId(),
+                     $obj->getComment(),
+            ]
         );
         $req->closeCursor();
 
@@ -160,8 +162,8 @@ class CommentManager extends Model
     /**
      * Update the validation status of a comment.
      *
-     * @param int $commentId The ID of the comment.
-     * @param array $options The options containing the data to be updated.
+     * @param   int    $commentId The ID of the comment.
+     * @param   array    $options The options containing the data to be updated.
      * @return boolean
      */
     public function commentValidation($commentId, $options)
@@ -187,7 +189,7 @@ class CommentManager extends Model
     /**
      * Update the validation status of a comment.
      *
-     * @param int $commentId The ID of the comment to be deleted.
+     * @param   int    $commentId The ID of the comment to be deleted.
      * @return bool True if the deletion was successful, false otherwise.
      */
     public function deleteComment($commentId)
