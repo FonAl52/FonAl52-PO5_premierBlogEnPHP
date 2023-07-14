@@ -7,78 +7,78 @@
 class User
 {
 
-
     /**
      * The ID of the user.
      *
      * @var integer
      */
+
     private $id;
 
-    
+
     /**
      * The firstname of the user.
      *
      * @var string
      */
+
     private $firstName;
 
-    
     /**
      * The lastname of the user.
      *
      * @var string
      */
-    private $lastName;
 
+    private $lastName;
 
     /**
      * The email of the user.
      *
      * @var string
      */
-    private $email;
 
+    private $email;
 
     /**
      * The age of the user.
      *
      * @var integer
      */
-    private $age;
 
+    private $age;
 
     /**
      * The password of the user.
      *
      * @var string
      */
-    private $password;
 
+    private $password;
 
     /**
      * The phone number of the user.
      *
      * @var integer
      */
-    private $phone;
 
+    private $phone;
 
     /**
      * The picture of the user.
      *
      * @var string
      */
-    private $picture;
 
+    private $picture;
 
     /**
      * The role of the user.
      *
      * @var integer
      */
-    private $role;
 
+    private $role;
 
 
     /**
@@ -97,6 +97,8 @@ class User
      * Hydrates the object with the provided data.
      *
      * @param array $data The data to be used for object initialization.
+     * 
+     * @return void
      */
     public function hydrate(array $data)
     {
@@ -112,6 +114,7 @@ class User
     
     // setters
 
+
     /**
      * Set the ID of the user.
      *
@@ -123,6 +126,7 @@ class User
         if ($id > 0) {
             $this->id = $id;
         }
+
         return $this->id;
 
     }//end setId()
@@ -182,7 +186,7 @@ class User
             $this->age = $age;
         }
 
-    }//en setAge()
+    }//end setAge()
 
 
     /**
@@ -240,6 +244,7 @@ class User
 
     // getters
 
+    
     /**
      * Get the ID of the user.
      *
