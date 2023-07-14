@@ -17,7 +17,6 @@ class PostManager extends Model
         if (!($post instanceof Post)) {
             // Return an error or an exception.
             return false;
-
         }
 
         return $this->createOne('post', $post);
@@ -40,7 +39,7 @@ class PostManager extends Model
     /**
      * Get a post by its ID.
      *
-     * @param int $postId The ID of the post.
+     * @param   int    $id The ID of the post.
      * @return Post|null The Post object representing the post, or null if not found.
      */
     public function getPost($id)
@@ -53,8 +52,8 @@ class PostManager extends Model
     /**
      * Create a new entry in the specified table with the provided object.
      *
-     * @param string $table The name of the table.
-     * @param object $obj The object containing the data to be inserted.
+     * @param   string    $table The name of the table.
+     * @param   object    $obj The object containing the data to be inserted.
      * @return boolean True if the entry was created successfully, false otherwise.
      */
     private function createOne($table, $obj)
@@ -63,13 +62,15 @@ class PostManager extends Model
 
         $req = self::$bdd->prepare("INSERT INTO ".$table." (categoryId, userId, title, chapo, picture, content) VALUES (?, ?, ?, ?, ?, ?)");
         $req->execute(
-                    [$obj->getCategoryId(),
-                    $obj->getUserId(),
-                    $obj->getTitle(),
-                    $obj->getChapo(),
-                    $obj->getPicture(),
-                    $obj->getContent(),]
-                    );
+            [
+                     $obj->getCategoryId(),
+                     $obj->getUserId(),
+                     $obj->getTitle(),
+                     $obj->getChapo(),
+                     $obj->getPicture(),
+                     $obj->getContent(),
+            ]
+        );
         $req->closeCursor();
         return true;
 
@@ -79,9 +80,9 @@ class PostManager extends Model
     /**
      * Get a single entry from the specified table by ID.
      *
-     * @param string $table The name of the table.
-     * @param object $obj The object representing the entry.
-     * @param int $id The ID of the entry.
+     * @param   string    $table The name of the table.
+     * @param   object    $obj The object representing the entry.
+     * @param   int    $id The ID of the entry.
      * @return mixed|null The retrieved entry or null if not found.
      */
     private function getOne($table, $obj, $id)
@@ -92,7 +93,7 @@ class PostManager extends Model
         $req->execute([$id]);
         while ($var = $req->fetch(PDO::FETCH_ASSOC)) {
             $data[] = new $obj($var);
-            
+
         }
         $req->closeCursor();
 
@@ -104,7 +105,7 @@ class PostManager extends Model
     /**
      * Get all entries from the specified table.
      *
-     * @param string $table The name of the table.
+     * @param   string    $table The name of the table.
      * @return array The retrieved entries.
      */
     public function getAll($table)
@@ -129,8 +130,8 @@ class PostManager extends Model
     /**
      * Update a post with the specified options.
      *
-     * @param int $postId The ID of the post to update.
-     * @param array $options The options to update the post with.
+     * @param   int    $postId The ID of the post to update.
+     * @param   array    $options The options to update the post with.
      * @return bool True if the update was successful, false otherwise.
      */
     public function updatePost($postId, $options)
@@ -155,7 +156,7 @@ class PostManager extends Model
     /**
      * Delete a post with the specified ID.
      *
-     * @param int $postId The ID of the post to delete.
+     * @param   int    $postId The ID of the post to delete.
      * @return bool True if the deletion was successful, false otherwise.
      */
     public function deletePost($postId)
