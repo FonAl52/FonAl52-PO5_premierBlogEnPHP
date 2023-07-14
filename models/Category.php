@@ -53,9 +53,6 @@ class Category
     }//end hydrate()
 
 
-    //  setters
-
-
     /**
      * Set the ID of the category.
      *
@@ -77,6 +74,8 @@ class Category
      * Set the name of the category.
      *
      * @param string $name The Name of the category.
+     *
+     * @return void
      */
     public function setName($name)
     {
@@ -85,9 +84,6 @@ class Category
         }
 
     }//end setName()
-
-
-    //  getters
 
 
     /**
