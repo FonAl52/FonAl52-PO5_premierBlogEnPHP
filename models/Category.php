@@ -13,14 +13,16 @@ class Category
      *
      * @var integer
      */
+
     private $idCategory;
 
-    
+
     /**
      * The name of the category.
      *
      * @var string
      */
+
     private $name;
 
 
@@ -28,6 +30,8 @@ class Category
      * Class constructor.
      *
      * @param array $data The data used for object initialization.
+     * 
+     * @return void
      */
     public function __construct(array $data)
     {
@@ -54,6 +58,7 @@ class Category
 
 
     // setters
+
 
     /**
      * Set the ID of the category.
@@ -86,6 +91,7 @@ class Category
 
     // getters
 
+    
     /**
      * Get the ID of the category.
      *
