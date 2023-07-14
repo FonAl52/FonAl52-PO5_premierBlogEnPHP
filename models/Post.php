@@ -1,19 +1,84 @@
 <?php
 
+
 /**
  *
  */
 class Post
 {
+
+
+    /**
+     * The ID of the post.
+     *
+     * @var integer
+     */
     private $id;
+
+
+    /**
+     * The category ID of the post.
+     *
+     * @var integer
+     */
     private $categoryId;
+
+    
+    /**
+     * The user ID of the post.
+     *
+     * @var integer
+     */
     private $userId;
+
+
+    /**
+     * The title of the post.
+     *
+     * @var string
+     */
     private $title;
+
+
+    /**
+     * The chapo of the post.
+     *
+     * @var string
+     */
     private $chapo;
+
+
+    /**
+     * The picture of the post.
+     *
+     * @var string
+     */
     private $picture;
+
+
+    /**
+     * The content of the post.
+     *
+     * @var string
+     */
     private $content;
+
+
+    /**
+     * The date of creation of the post.
+     *
+     * @var integer
+     */
     private $createdAt;
+
+
+    /**
+     * The update date of the post.
+     *
+     * @var integer
+     */
     private $updatedAt;
+
 
     /**
      * Class constructor.

@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  *
  */
@@ -16,7 +17,7 @@ class Category
 
     
     /**
-     * The name of the variable.
+     * The name of the category.
      *
      * @var string
      */

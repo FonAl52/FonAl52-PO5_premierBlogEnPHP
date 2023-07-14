@@ -1,20 +1,85 @@
 <?php
 
+
 /**
  *
  */
 class User
 {
 
+
+    /**
+     * The ID of the user.
+     *
+     * @var integer
+     */
     private $id;
+
+    
+    /**
+     * The firstname of the user.
+     *
+     * @var string
+     */
     private $firstName;
+
+    
+    /**
+     * The lastname of the user.
+     *
+     * @var string
+     */
     private $lastName;
+
+
+    /**
+     * The email of the user.
+     *
+     * @var string
+     */
     private $email;
+
+
+    /**
+     * The age of the user.
+     *
+     * @var integer
+     */
     private $age;
+
+
+    /**
+     * The password of the user.
+     *
+     * @var string
+     */
     private $password;
+
+
+    /**
+     * The phone number of the user.
+     *
+     * @var integer
+     */
     private $phone;
+
+
+    /**
+     * The picture of the user.
+     *
+     * @var string
+     */
     private $picture;
+
+
+    /**
+     * The role of the user.
+     *
+     * @var integer
+     */
     private $role;
+
+    
 
     /**
      * Class constructor.
