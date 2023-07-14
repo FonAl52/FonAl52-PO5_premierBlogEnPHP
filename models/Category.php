@@ -38,7 +38,7 @@ class Category
      * Hydrates the object with the provided data.
      *
      * @param array $data The data to be used for object initialization.
-     * 
+     *
      * @return void
      */
     public function hydrate(array $data)
@@ -112,4 +112,4 @@ class Category
     }//end getName()
 
 
-}//end __construct()
+}//end class

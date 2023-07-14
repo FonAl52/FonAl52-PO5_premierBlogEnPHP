@@ -7,28 +7,28 @@
 class Post
 {
 
-
     /**
      * The ID of the post.
      *
      * @var integer
      */
-    private $id;
 
+    private $id;
 
     /**
      * The category ID of the post.
      *
      * @var integer
      */
+
     private $categoryId;
 
-    
     /**
      * The user ID of the post.
      *
      * @var integer
      */
+
     private $userId;
 
 
@@ -37,6 +37,7 @@ class Post
      *
      * @var string
      */
+
     private $title;
 
 
@@ -45,6 +46,7 @@ class Post
      *
      * @var string
      */
+
     private $chapo;
 
 
@@ -53,6 +55,7 @@ class Post
      *
      * @var string
      */
+
     private $picture;
 
 
@@ -61,6 +64,7 @@ class Post
      *
      * @var string
      */
+
     private $content;
 
 
@@ -69,6 +73,7 @@ class Post
      *
      * @var integer
      */
+
     private $createdAt;
 
 
@@ -77,6 +82,7 @@ class Post
      *
      * @var integer
      */
+
     private $updatedAt;
 
 
@@ -96,6 +102,8 @@ class Post
      * Hydrates the object with the provided data.
      *
      * @param array $data The data to be used for object initialization.
+     * 
+     * @return void
      */
     public function hydrate(array $data)
     {
@@ -110,6 +118,7 @@ class Post
 
     
     // setters
+
 
     /**
      * Set the ID of the post.
@@ -159,7 +168,7 @@ class Post
     /**
      * Set the chapo of the post.
      *
-     * @param string $id The chapo of the post.
+     * @param string $chapo The chapo of the post.
      */
     public function setChapo($chapo)
     {
@@ -221,7 +230,7 @@ class Post
     {
         $this->createdAt = $createdAt;
 
-    }//end setCreatedAt
+    }//end setCreatedAt()
 
 
     /**
@@ -233,10 +242,11 @@ class Post
     {
         $this->updatedAt = $updatedAt;
 
-    }//end setUpdatedAt
+    }//end setUpdatedAt()
 
 
     // getters
+
 
     /**
      * Get the ID of the post.
@@ -346,4 +356,4 @@ class Post
     }//end getUpdatedAt()
 
 
-}
+}//end class

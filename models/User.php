@@ -79,7 +79,7 @@ class User
      */
     private $role;
 
-    
+
 
     /**
      * Class constructor.
@@ -348,4 +348,4 @@ class User
     }//end getRole()
 
     
-}
+}//end class
