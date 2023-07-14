@@ -19,11 +19,10 @@ class CategoryManager extends Model
         $categories = [];
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $categories[] = new Category($data);
-
         }
         $req->closeCursor();
         return $categories;
-        
+
     }//end getCategories()
 
 
