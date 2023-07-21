@@ -1,5 +1,7 @@
 # FonAl52-PO5_premierBlogEnPHP
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/62cf356fbe4d4822b9f681645edfe3e4)](https://app.codacy.com/gh/FonAl52/FonAl52-PO5_premierBlogEnPHP?utm_source=github.com&utm_medium=referral&utm_content=FonAl52/FonAl52-PO5_premierBlogEnPHP&utm_campaign=Badge_Grade)
+
 This repository is Allan Fontaine's fifth project for the Openclassrooms Developer PHP/Symfony certificate.
 
 ## Usage Instructions
