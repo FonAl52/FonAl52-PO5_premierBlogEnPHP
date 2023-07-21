@@ -3637,7 +3637,7 @@ tbody.collapse.show {
 
 .custom-control-input:active ~ .custom-control-indicator {
   color: #1e1c1c;
-  background-color: #d8420;
+  background-color: #d84202;
 }
 
 .custom-control-input:disabled ~ .custom-control-indicator {

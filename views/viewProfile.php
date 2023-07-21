@@ -1,5 +1,5 @@
 <section class="profile-section">
-    <div class="container">
+    <div class="container-fluid">
         <?php if (isset($_SESSION['message'])) : ?>
             <div class="row">
                 <div class="col-lg-12 col-md-12">
@@ -12,7 +12,7 @@
         <?php endif; ?>
         <div class="row">
             <div class="col-lg-2 col-md-0"></div>
-            <div class="col-lg-8 col-md-12">
+            <div class="profile-content col-12 col-md-10 mx-auto">
                 <div class="col-sm-6">
                     <?php if (isset($_GET['editProfilePicture'])) : ?>
                         <div class="comment-form">

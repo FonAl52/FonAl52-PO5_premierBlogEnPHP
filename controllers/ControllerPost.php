@@ -58,35 +58,44 @@ class ControllerPost
      */
     public function __construct()
     {
-        if (isset($url) && count($url) < 1) {
-            throw new \Exception("Page Introuvable");
-        } elseif (isset($_GET['home'])) {
+        if (isset($_GET['home']) === TRUE) {
             $this->home();
-        } elseif (isset($_GET['newPost']) === TRUE && $_SESSION['role'] == 1) {
+        }
+        if (isset($_GET['newPost']) === TRUE && $_SESSION['role'] == 1) {
             $this->create();
-        } elseif (isset($_GET['new']) === TRUE && $_SESSION['role'] == 1) {
+        } 
+        elseif (isset($_GET['new']) === TRUE && $_SESSION['role'] == 1) {
             $this->addPost();
-        } elseif (isset($_GET['viewAll']) === TRUE) {
+        } 
+        elseif (isset($_GET['viewAll']) === TRUE) {
             $this->viewAll();
-        } elseif (isset($_GET['editPost']) === TRUE) {
+        } 
+        elseif (isset($_GET['editPost']) === TRUE) {
             $this->update();
-        } elseif (isset($_GET['updateTitle']) === TRUE) {
+        } 
+        elseif (isset($_GET['updateTitle']) === TRUE) {
             $this->updatePostTitle();
-        } elseif (isset($_GET['updateCategory']) === TRUE) {
+        } 
+        elseif (isset($_GET['updateCategory']) === TRUE) {
             $this->updatePostCategory();
-        } elseif (isset($_GET['updateChapo']) === TRUE) {
+        } 
+        elseif (isset($_GET['updateChapo']) === TRUE) {
             $this->updatePostChapo();
-        } elseif (isset($_GET['updatePicture']) === TRUE) {
+        } 
+        elseif (isset($_GET['updatePicture']) === TRUE) {
             $this->updatePostPicture();
-        } elseif (isset($_GET['updateContent']) === TRUE) {
+        } 
+        elseif (isset($_GET['updateContent']) === TRUE) {
             $this->updatePostContent();
-        } elseif (isset($_GET['id']) === TRUE && (isset($_GET['id']))) {
+        } 
+        elseif (isset($_GET['id']) === TRUE && (isset($_GET['id']))) {
             $this->viewOne();
-        } else {
-            $this->home();
-        }//end if
+        } 
+        else {
+            header('Location: home');
+        } //end if
 
-    }//end __construct()
+    } //end __construct()
 
 
     /**
@@ -103,8 +112,7 @@ class ControllerPost
 
         $this->view = new View('Home');
         $this->view->generate(['posts' => $posts, 'categories' => $categories, 'users' => $users]);
-
-    }//end home()
+    } //end home()
 
 
     /**
@@ -118,8 +126,7 @@ class ControllerPost
 
         $this->view = new View('CreatePost');
         $this->view->generate(['categories' => $categories]);
-
-    }//end create()
+    } //end create()
 
 
     /**
@@ -198,8 +205,7 @@ class ControllerPost
         // If the data is not valid or if the article creation failed, display the form with the errors
         $this->view = new View('CreatePost');
         $this->view->generate(['errors' => $errors, 'categories' => $categories]);
-
-    }//end addPost()
+    } //end addPost()
 
 
     /**
@@ -213,8 +219,7 @@ class ControllerPost
         $categories = $this->categoryManager->getCategories();
 
         return $categories;
-
-    }//end categoryId()
+    } //end categoryId()
 
 
     /**
@@ -231,8 +236,7 @@ class ControllerPost
 
         $this->view = new View('AllPosts');
         $this->view->generate(array('posts' => $posts, 'categories' => $categories, 'users' => $users));
-    
-    }//end viewAll()
+    } //end viewAll()
 
 
     /**
@@ -246,8 +250,7 @@ class ControllerPost
         $posts = $this->postManager->getAll('post', 'posts');
 
         return $posts;
-    
-    }//end getAllPosts()
+    } //end getAllPosts()
 
     /**
      * Get all users.
@@ -260,8 +263,7 @@ class ControllerPost
         $users = $userManager->getAllUsers();
 
         return $users;
-
-    }//end getAllUsers()
+    } //end getAllUsers()
 
 
     /**
@@ -285,8 +287,7 @@ class ControllerPost
             $this->view = new View('SinglePost');
             $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
         }
-    
-    }//end viewOne()
+    } //end viewOne()
 
 
     /**
@@ -310,8 +311,7 @@ class ControllerPost
             $this->view = new View('updatePost');
             $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
         }
-    
-    }//end update()
+    } //end update()
 
     /**
      * Update post title.
@@ -354,8 +354,7 @@ class ControllerPost
 
         $this->view = new View('SinglePost');
         $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
-    
-    }//end updatePostTitle()
+    } //end updatePostTitle()
 
 
     /**
@@ -399,8 +398,7 @@ class ControllerPost
 
         $this->view = new View('SinglePost');
         $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
-    
-    }//end updatePostCategory()
+    } //end updatePostCategory()
 
 
     /**
@@ -444,8 +442,7 @@ class ControllerPost
 
         $this->view = new View('SinglePost');
         $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
-    
-    }//end updatPostChapo()
+    } //end updatPostChapo()
 
 
     /**
@@ -516,8 +513,7 @@ class ControllerPost
 
         $this->view = new View('SinglePost');
         $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
-    
-    }//end updatePostpicture()
+    } //end updatePostpicture()
 
 
     /**
@@ -561,8 +557,7 @@ class ControllerPost
 
         $this->view = new View('SinglePost');
         $this->view->generate(['post' => $post, 'categories' => $categories, 'users' => $users, 'comments' => $comments]);
-    
-    }//end updatePostContent
+    } //end updatePostContent
 
 
 }

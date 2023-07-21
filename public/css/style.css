@@ -1,13 +1,39 @@
+body section div h1 {
+   color: #ffffff;
+   margin-bottom: 5%;
+}
+
 .profile-section {
-    width: 90vw;
-    min-height: 90vh;
+    width: 90%;
+    min-height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.profile-section .container-fluid .row .profile-content {
+    max-width: 90%;
+}
 
-.profile-section .profile-picture {
+.profile-section  .container-fluid .row .profile-content .profile-picture {
     margin: 10% 2%;
+}
+
+.profile-picture {
+    border: 15px solid #faff2d;
+    border-radius: 250px;
+    overflow: hidden;
+    width: 400px;
+    height: 400px;
+}
+
+.profile-picture:hover .edit-profile-icon {
+    display: inline-block;
+    color: #faff2d;
+}
+
+.profile-picture:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
 }
 
 .profile-section .info-row {
@@ -30,24 +56,6 @@
     transform: translate(-50%, -50%);
     font-size: 24px;
     color: #faff2d;
-}
-
-.profile-picture {
-    border: 15px solid #faff2d;
-    border-radius: 250px;
-    overflow: hidden;
-    width: 400px;
-    height: 400px;
-}
-
-.profile-picture:hover .edit-profile-icon {
-    display: inline-block;
-    color: #faff2d;
-}
-
-.profile-picture:hover {
-    cursor: pointer;
-    filter: brightness(0.8);
 }
 
 .edit-icon {
@@ -240,4 +248,11 @@ body #single-post {
 .admin-button span {
     font-size: 16px;
     font-weight: bold;
+}
+@media only screen and (max-width: 479px)
+{
+    .profile-picture {
+        width: 350px;
+        height: 350px;
+    }
 }

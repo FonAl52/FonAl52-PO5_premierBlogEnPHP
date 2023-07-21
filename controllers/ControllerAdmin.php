@@ -50,46 +50,48 @@ class ControllerAdmin
      */
     public function __construct()
     {
-        if (isset($_GET['management']) === TRUE) {
+        if (isset($_GET['management']) === TRUE && $_SESSION['role'] == 1) {
             $this->management();
         }
-        if (isset($_GET['managementUsers']) === TRUE) {
+        elseif (isset($_GET['managementUsers']) === TRUE && $_SESSION['role'] == 1) {
             $this->managementUsers();
         }
-        if (isset($_GET['managementPosts']) === TRUE) {
+        elseif (isset($_GET['managementPosts']) === TRUE && $_SESSION['role'] == 1) {
             $this->managementPosts();
         }
-        if (isset($_GET['managementComments']) === TRUE) {
+        elseif (isset($_GET['managementComments']) === TRUE && $_SESSION['role'] == 1) {
             $this->managementComments();
         }
-        if (isset($_GET['userLock']) === TRUE) {
+        elseif (isset($_GET['userLock']) === TRUE && $_SESSION['role'] == 1) {
             $this->userLock();
         }
-        if (isset($_GET['userUnlock']) === TRUE) {
+        elseif (isset($_GET['userUnlock']) === TRUE && $_SESSION['role'] == 1) {
             $this->userUnlock();
         }
-        if (isset($_GET['userDelete']) === TRUE) {
+        elseif (isset($_GET['userDelete']) === TRUE && $_SESSION['role'] == 1) {
             $this->userDelete();
         }
-        if (isset($_GET['userAdmin']) === TRUE) {
+        elseif (isset($_GET['userAdmin']) === TRUE && $_SESSION['role'] == 1) {
             $this->userAdmin();
         }
-        if (isset($_GET['userNorole']) === TRUE) {
+        elseif (isset($_GET['userNorole']) === TRUE && $_SESSION['role'] == 1) {
             $this->userNorole();
         }
-        if (isset($_GET['postDelete']) === TRUE) {
+        elseif (isset($_GET['postDelete']) === TRUE && $_SESSION['role'] == 1) {
             $this->postDelete();
         }
-        if (isset($_GET['commentUnvalidate']) === TRUE) {
+        elseif (isset($_GET['commentUnvalidate']) === TRUE && $_SESSION['role'] == 1) {
             $this->commentUnvalidate();
         }
-        if (isset($_GET['commentValidate']) === TRUE) {
+        elseif (isset($_GET['commentValidate']) === TRUE && $_SESSION['role'] == 1) {
             $this->commentValidate();
         }
-        if (isset($_GET['commentDelete']) === TRUE) {
+        elseif (isset($_GET['commentDelete']) === TRUE && $_SESSION['role'] == 1) {
             $this->commentDelete();
+        } else {
+            header('Location: home');
         }
-        throw new \Exception("Page Introuvable");
+        
 
     }//end __construct()
 

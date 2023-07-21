@@ -35,40 +35,57 @@ class ControllerUser
     {
         if (isset($_GET['register']) === TRUE) {
             $this->register();
-        } elseif (isset($_GET['create']) === TRUE) {
+        } 
+        elseif (isset($_GET['create']) === TRUE) {
             $this->createUser();
-        } elseif (isset($_GET['connect']) === TRUE) {
+        } 
+        elseif (isset($_GET['connect']) === TRUE) {
             $this->connect();
-        } elseif (isset($_GET['login']) === TRUE) {
+        } 
+        elseif (isset($_GET['login']) === TRUE) {
             $this->userLogin();
-        } elseif (isset($_GET['resetPassword']) === TRUE) {
+        } 
+        elseif (isset($_GET['resetPassword']) === TRUE) {
             $this->resetPass();
-        } elseif (isset($_GET['verifyEmail']) === TRUE) {
+        } 
+        elseif (isset($_GET['verifyEmail']) === TRUE) {
             $this->verifyEmail();
-        } elseif (isset($_GET['changePassword']) === TRUE) {
+        } 
+        elseif (isset($_GET['changePassword']) === TRUE) {
             $this->changePassword();
-        } elseif (isset($_GET['disconnect']) === TRUE) {
+        }
+        elseif (isset($_GET['disconnect']) === TRUE) {
             $this->disconnect();
-        } elseif (isset($_GET['profile']) === TRUE) {
+        } 
+        elseif (isset($_GET['profile']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['editLastName']) === TRUE) {
+        } 
+        elseif (isset($_GET['editLastName']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['changeLastName']) === TRUE) {
+        } 
+        elseif (isset($_GET['changeLastName']) === TRUE) {
             $this->editLastName();
-        } elseif (isset($_GET['editFirstName']) === TRUE) {
+        } 
+        elseif (isset($_GET['editFirstName']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['changeFirstName']) === TRUE) {
+        } 
+        elseif (isset($_GET['changeFirstName']) === TRUE) {
             $this->editFirstName();
-        } elseif (isset($_GET['editEmail']) === TRUE) {
+        } 
+        elseif (isset($_GET['editEmail']) === TRUE) {
             $this->profile();
-        } elseif (isset($_GET['changeEmail']) === TRUE) {
+        } 
+        elseif (isset($_GET['changeEmail']) === TRUE) {
             $this->editEmail();
-        } elseif (isset($_GET['editProfilePicture']) === TRUE) {
+        } 
+        elseif (isset($_GET['editProfilePicture']) === TRUE) {
             $this->profile();
             $this->editProfilePicture();
-        } elseif (isset($_GET['changeProfilePicture']) === TRUE) {
+        } 
+        elseif (isset($_GET['changeProfilePicture']) === TRUE) {
             $this->editProfilePicture();
-        } else {
+        } 
+        else {
             throw new \Exception("Page Introuvable");
         }
 

@@ -20,9 +20,11 @@ class ControllerComment
     {
         if (isset($url) && count($url) < 1) {
             throw new \Exception("Page Introuvable");
-        } else if (isset($_GET['create']) === TRUE) {
+        } 
+        else if (isset($_GET['create']) === TRUE) {
             $this->createComment();
-        } else {
+        } 
+        else {
             throw new \Exception("Page Introuvable");
         }
 
