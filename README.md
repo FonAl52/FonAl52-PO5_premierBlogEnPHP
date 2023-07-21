@@ -37,3 +37,6 @@ The project is configured to use Composer's autoloader. This means you don't nee
     2. Posts sample
     3. Comments sample
     4. Category sample
+
+## Codacy Results
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8331f70df104720aeedd776f91df5c2)](https://app.codacy.com/gh/FonAl52/FonAl52-PO5_premierBlogEnPHP/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
