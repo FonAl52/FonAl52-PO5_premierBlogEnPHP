@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-	<title><?= htmlspecialchars($title ?? 'Bōna | blog personnel') ?></title>
+	<title><?= htmlspecialchars($title ?? 'Allan | blog personnel') ?></title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
+	<link rel="icon" href="public/images/logo.png">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap" rel="stylesheet">
@@ -76,7 +77,7 @@
 					<div class="footer-section">
 						<h4 class="title"><b>MON CV</b></h4>
 						<div>
-							<a class="load-more-btn" download="Cv_allan_fontaine" href="public/cv/CV_fontaine_allan_dev_web_back_front.pdf">Télécharger mon CV</a>					
+							<a class="load-more-btn" target="_blank" href="public/cv/CV_fontaine_allan_dev_web_back_front.pdf">Télécharger mon CV</a>					
 						</div>
 					</div>
 				</div>

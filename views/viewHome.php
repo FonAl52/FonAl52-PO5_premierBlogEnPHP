@@ -1,6 +1,6 @@
 <section class="blog-area section">
 	<div class="container">
-	<h1 class="title">Bienvenu sur le blog de Allan Fontaine</h1>
+	<h1 class="title">Bienvenue sur le blog de Allan Fontaine</h1>
 		<div class="row">
 			<?php
 				$postCount = 0;
