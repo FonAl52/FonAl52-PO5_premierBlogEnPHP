@@ -3,6 +3,14 @@ body section div h1 {
    margin-bottom: 5%;
 }
 
+body section {
+    min-height: calc(100vh - 200px);
+}
+
+#notifications{
+    min-height: 20px;
+} 
+
 .profile-section {
     width: 90%;
     min-height: 100%;
